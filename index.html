@@ -462,6 +462,7 @@
   <section class="mt-sec" id="detail">
     <div class="mt-sec-h"><h2><span data-draw="selname" data-source="types">—</span> · 지점·매니저 현황</h2><p>위의 유형 카드나 비교 표의 행을 클릭해도 바뀝니다</p></div>
     <div class="mt-chips" role="group" aria-label="유형 선택">
+      <button type="button" class="mt-chip" data-pick="all" aria-pressed="false">총 매니저</button>
       <button type="button" class="mt-chip" data-pick="core" aria-pressed="false"><i class="mt-sw" data-tswatch="core"></i>Core</button>
       <button type="button" class="mt-chip" data-pick="rising" aria-pressed="false"><i class="mt-sw" data-tswatch="rising"></i>Rising</button>
       <button type="button" class="mt-chip" data-pick="swing" aria-pressed="false"><i class="mt-sw" data-tswatch="swing"></i>Swing</button>
@@ -804,10 +805,11 @@
   dash.calc('branches', {
     inputs: ['managers'],
     title: '유형 × 지점 집계',
-    description: '유형·지점별 매니저 수, 추가관리대상 수, 1~9월 LG 판매 합, 판매 합으로 계산한 가중 MS',
+    description: '유형·지점별(type=all은 전체 유형) 매니저 수, 추가관리대상 수, 1~9월 LG 판매 합, 판매 합으로 계산한 가중 MS',
     fn: (managers) => {
       const out = [];
-      for (const [type, byBranch] of d3.group(managers, (m) => m.type, (m) => m.branch)) {
+      const groups = [...d3.group(managers, (m) => m.type, (m) => m.branch), ['all', d3.group(managers, (m) => m.branch)]];
+      for (const [type, byBranch] of groups) {
         for (const [branch, ms] of byBranch) {
           const s = (c) => d3.sum(ms, (m) => Number(m[c]) || 0);
           const w = (p) => { const l = s('lg_' + p), x = s('ss_' + p); return l + x > 0 ? Math.round((1000 * l) / (l + x)) / 10 : null; };
@@ -828,10 +830,11 @@
   MT.sort = { k: 'branch', dir: 1 };
   const cellNum = (v, f) => { const n = v === '' || v == null ? NaN : Number(v); return isNaN(n) ? '—' : MT.F[f](n); };
   const ppClass = (v) => { const n = v === '' || v == null ? NaN : Number(v); return isNaN(n) ? '' : n > 0 ? 'up' : n < 0 ? 'down' : 'flat'; };
-  const selRows = () => (MT.ok('managers') ? dash.data('managers').data.filter((m) => m.type === MT.sel) : []);
+  const selRows = () => (MT.ok('managers') ? dash.data('managers').data.filter((m) => MT.sel === 'all' || m.type === MT.sel) : []);
   const td = (text, cls) => { const c = document.createElement('td'); c.textContent = text; if (cls) c.className = cls; return c; };
 
   dash.draw('selname', (el) => {
+    if (MT.sel === 'all') { el.textContent = '총 매니저'; return; }
     if (!MT.ok('types')) { el.textContent = '—'; return; }
     const r = dash.data('types').data.find((t) => t.type === MT.sel);
     el.textContent = r ? `${r.name_en} ${r.name_ko}` : '—';
