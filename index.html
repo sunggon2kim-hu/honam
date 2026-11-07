@@ -238,6 +238,7 @@
   .mt-st-total { background: var(--lg-red-solid); border-color: var(--lg-red-solid); color: #FFFFFF; }
   .mt-st-total .mt-st-l, .mt-st-total .mt-st-d { color: rgba(255, 255, 255, .85); }
   .mt-st-total .mt-st-n { color: #FFFFFF; }
+  .mt-st-total .mt-st-d b, .mt-st-total .mt-st-d b * { color: #FFFFFF !important; font-weight: 700; }
   .mt-kpi { border-top: 2px solid var(--color-fg); }
   .mt-sec-h h2 { display: flex; align-items: center; gap: .5rem; font-weight: 700; }
   .mt-sec-h h2::before { content: ""; width: .55rem; height: .55rem; border-radius: 2px; background: var(--lg-red); flex: none; }
@@ -256,6 +257,52 @@
   .mt-note { background: var(--lg-red-soft); border-color: color-mix(in srgb, #A50034 25%, var(--color-border-line)); }
   @media (max-width: 40rem) { .mt-dlcard { width: 100%; } }
   [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+
+  /* ---------- Phone layout ---------- */
+  @media (max-width: 40rem) {
+    .mt-title { font-size: 1.55rem; word-break: keep-all; }
+    .mt-eyebrow { font-size: 11px; }
+    .mt-take { font-size: 13px; }
+    .mt-dl-ic { width: 2rem; height: 2rem; }
+    .mt-strip { grid-template-columns: 1fr 1fr; gap: 6px; }
+    .mt-st-total { grid-column: 1 / -1; }
+    .mt-st { padding: 10px; }
+    .mt-st-n { font-size: 1.4rem; }
+    .mt-st-d { font-size: 11.5px; }
+    .mt-st-l .mt-name { font-size: 13px; }
+    .mt-st-l .mt-badge { font-size: 10px; padding: 0 4px; }
+    .mt-sec-h p { font-size: 12px; }
+    .mt-card { padding: 14px; gap: 10px; }
+    .mt-panel { padding: 12px; }
+    /* Matrix: compact tappable grid, details appear in the list below */
+    .mt-mx { min-width: 0; grid-template-columns: 4.4rem repeat(4, minmax(0, 1fr)); gap: 4px; }
+    .mt-mx > div { padding: 6px; }
+    .mt-mx-corner > * { display: none; }
+    .mt-mx-corner::before { content: 'GAP ↓ / 6~7월 MS →'; font-size: 10px; line-height: 1.3; color: var(--color-fg-muted); }
+    .mt-mx-ch > .mt-mx-top + .mt-mx-top, .mt-mx-ch .mt-mx-sh, .mt-mx-rh .mt-small, .mt-mx-rh .mt-mx-traj,
+    .mt-mx-cell .mt-mx-traj, .mt-mx-cell .mt-mx-hint { display: none; }
+    .mt-mx-ch .mt-mx-top { flex-direction: column; align-items: flex-start; gap: 0; font-size: 11px; }
+    .mt-mx-name { font-size: 13px; }
+    .mt-mx-rh { justify-content: center; }
+    .mt-mx-cell .mt-mx-top { flex-direction: column; align-items: flex-start; gap: 0; }
+    .mt-mx-n { font-size: 1.15rem; }
+    .mt-mx-cell .mt-mx-sh { font-size: 10px; white-space: normal; }
+    /* Tables: smaller text, first column stays put while scrolling sideways */
+    .mt-table { font-size: 12px; }
+    .mt-table th, .mt-table td { padding: 5px 6px; }
+    .mt-table th:first-child, .mt-table td:first-child { position: sticky; left: 0; background: var(--color-panel); z-index: 1; box-shadow: 1px 0 0 var(--color-border-line); }
+    .mt-scroll thead th:first-child { z-index: 2; }
+    .mt-sortable th:first-child, .mt-sortable td:first-child { box-sizing: border-box; width: 6.4rem; min-width: 6.4rem; max-width: 6.4rem; overflow: hidden; text-overflow: ellipsis; box-shadow: none; }
+    .mt-sortable th:nth-child(2), .mt-sortable td:nth-child(2) { position: sticky; left: 6.4rem; background: var(--color-panel); z-index: 1; box-shadow: 1px 0 0 var(--color-border-line); }
+    .mt-scroll thead th:nth-child(2) { z-index: 2; }
+    .mt-sortable tr.is-sel td:nth-child(2) { background: color-mix(in srgb, #A50034 10%, var(--color-panel)); }
+    .mt-table tr.is-sel td:first-child { background: color-mix(in srgb, #A50034 10%, var(--color-panel)); }
+    .mt-scroll { max-height: 26rem; }
+    .mt-chips { gap: 4px; }
+    .mt-chip { font-size: 12.5px; padding: 3px 8px; }
+    .mt-selstats { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .mt-big { font-size: 1.3rem; }
+  }
 </style>
 </head>
 <body>
@@ -380,7 +427,7 @@
     </div>
     <div class="mt-tw">
       <div class="mt-mx" data-source="ms_matrix managers">
-        <div class="mt-mx-corner"><b>6~7월 개인 MS \ 행사 전후 MS 감소폭</b><span class="mt-small">GAP: 6~7월 MS − 1~5월 MS · 대상 <span class="" data-draw="mx" data-l="all" data-c="all" data-f="n">—</span>명</span></div>
+        <div class="mt-mx-corner"><b>6~7월 개인 MS / 행사 전후 MS 감소폭</b><span class="mt-small">GAP: 6~7월 MS − 1~5월 MS · 대상 <span class="" data-draw="mx" data-l="all" data-c="all" data-f="n">—</span>명</span></div>
         <div class="mt-mx-ch"><div class="mt-mx-top"><b class="mt-mx-name">우수</b> <span>(<span class="" data-draw="mx" data-l="all" data-c="A" data-f="n">—</span>명)</span><span class="mt-mx-sh">판매비중 <span class="" data-draw="mx" data-l="all" data-c="A" data-f="share">—</span></span></div><div class="mt-mx-top"><span class="mt-small">개인 MS ≥ 50%</span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="all" data-c="A" data-f="traj">—</span></span></div></div>
         <div class="mt-mx-ch"><div class="mt-mx-top"><b class="mt-mx-name">양호</b> <span>(<span class="" data-draw="mx" data-l="all" data-c="B" data-f="n">—</span>명)</span><span class="mt-mx-sh">판매비중 <span class="" data-draw="mx" data-l="all" data-c="B" data-f="share">—</span></span></div><div class="mt-mx-top"><span class="mt-small">개인 MS 40~50%</span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="all" data-c="B" data-f="traj">—</span></span></div></div>
         <div class="mt-mx-ch"><div class="mt-mx-top"><b class="mt-mx-name">미흡</b> <span>(<span class="" data-draw="mx" data-l="all" data-c="C" data-f="n">—</span>명)</span><span class="mt-mx-sh">판매비중 <span class="" data-draw="mx" data-l="all" data-c="C" data-f="share">—</span></span></div><div class="mt-mx-top"><span class="mt-small">개인 MS 30~40%</span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="all" data-c="C" data-f="traj">—</span></span></div></div>
