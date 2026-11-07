@@ -1,0 +1,1223 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>혼매호남팀 매니저 유형 현황</title>
+<style>
+  :root {
+    --color-fg: #1F1F1F; --color-fg-muted: #6B6B6B; --color-bg: #F5F5F5; --color-panel: #FFFFFF; --color-border-line: #E2E2E2;
+    --color-ok: #15803D; --color-warn: #B45309; --color-bad: #C2410C;
+    --cds-chart-muted: #A3A8B0; --cds-chart-grid: #ECECEC; --cds-chart-axis: #9AA0A6; --cds-chart-reference: #9AA0A6;
+    --cds-surface-popover: #FFFFFF; --cds-border: #E2E2E2; --cds-shadow-popover: 0 6px 20px rgba(0,0,0,.12); --cds-text-secondary: #6B6B6B;
+    --cds-font-size-caption: 12px; --cds-font-size-body: 14px; --cds-font-size-heading: 16px; --cds-font-size-title: 26px; --cds-font-weight-medium: 600;
+    --cds-gap-xs: 4px; --cds-gap-sm: 8px; --cds-gap-md: 12px; --cds-gap-lg: 20px; --cds-gap-xl: 28px;
+    --cds-pad-xs: 4px; --cds-pad-sm: 8px; --cds-pad-md: 12px; --cds-pad-lg: 18px; --cds-pad-xl: 24px;
+    --cds-radius: 8px; --cds-dur-slow: .2s; --cds-ease-out: ease-out;
+    --font-anthropic-sans: "Pretendard", "Malgun Gothic", "맑은 고딕", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+    --font-anthropic-serif: var(--font-anthropic-sans);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-fg: #EDEDED; --color-fg-muted: #A3A3A3; --color-bg: #121212; --color-panel: #1C1C1C; --color-border-line: #333333;
+      --color-ok: #4ADE80; --color-warn: #FBBF24; --color-bad: #FB923C;
+      --cds-chart-muted: #6B7078; --cds-chart-grid: #2A2A2A; --cds-chart-axis: #6B7078; --cds-chart-reference: #6B7078;
+      --cds-surface-popover: #222222; --cds-border: #3A3A3A; --cds-text-secondary: #A3A3A3;
+      color-scheme: dark;
+    }
+  }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--color-bg); color: var(--color-fg); font-family: var(--font-anthropic-sans); font-size: 14px; }
+  .site { max-width: 1400px; margin: 0 auto; padding-block: 28px 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .dash-skeleton { background: color-mix(in srgb, var(--color-fg) 6%, transparent); border-radius: var(--cds-radius); }
+  [hidden] { display: none !important; }
+  .mt-dlgroup { display: flex; flex-direction: column; align-items: stretch; gap: 6px; }
+  .mt-dl-alt { text-align: center; font-size: var(--cds-font-size-caption); font-weight: 600; color: #A50034; text-decoration: none; border: 1px solid #A50034; border-radius: var(--cds-radius); padding: 6px 10px; background: var(--color-panel); }
+  .mt-dl-alt:hover { background: color-mix(in srgb, #A50034 8%, var(--color-panel)); }
+  @media (prefers-color-scheme: dark) { .mt-dl-alt { color: #FF6B9A; border-color: #FF6B9A; } }
+  .site-foot { margin-top: 40px; font-size: 12px; color: var(--color-fg-muted); }
+
+
+  .mt { font-family: var(--font-anthropic-sans); color: var(--color-fg); display: flex; flex-direction: column; gap: var(--cds-gap-xl); font-variant-numeric: tabular-nums; }
+  .mt h1, .mt h2, .mt h3, .mt p { margin: 0; }
+  .mt-head { display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+  .mt-eyebrow { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); letter-spacing: .04em; }
+  .mt-title { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); text-wrap: balance; }
+  .mt-take { font-size: var(--cds-font-size-body); line-height: 1.6; max-width: 70ch; }
+  .mt .mt-take b, .mt .mt-note b { font-weight: 600; }
+  .up { color: var(--color-ok); }
+  .down { color: var(--color-bad); }
+  .flat { color: var(--color-fg-muted); }
+
+  .mt-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); gap: var(--cds-gap-md); }
+  .mt-kpi { display: flex; flex-direction: column; gap: var(--cds-gap-xs); padding: var(--cds-pad-md) 0; border-top: 1px solid var(--color-border-line); min-width: 0; }
+  .mt-kpi-l { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .mt-kpi-v { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); line-height: 1.1; }
+  .mt-kpi-d { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .mt-kpi-na .mt-kpi-v { color: var(--color-fg-muted); }
+
+  .mt-note { display: flex; gap: var(--cds-gap-sm); align-items: flex-start; padding: var(--cds-pad-md) var(--cds-pad-lg); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-panel); font-size: var(--cds-font-size-body); line-height: 1.55; }
+  .mt-note-tag { flex: none; font-size: var(--cds-font-size-caption); color: var(--color-warn); border: 1px solid currentColor; border-radius: var(--cds-radius); padding: 0 var(--cds-pad-xs); margin-top: .15rem; }
+
+  .mt-sec { display: flex; flex-direction: column; gap: var(--cds-gap-md); }
+  .mt-sec-h { display: flex; align-items: baseline; gap: var(--cds-gap-sm); flex-wrap: wrap; }
+  .mt-sec-h h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); }
+  .mt-sec-h p { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+
+  .mt-badge { display: inline-block; font-size: var(--cds-font-size-caption); line-height: 1.4; padding: 0 var(--cds-pad-xs); border-radius: var(--cds-radius); border: 1px solid var(--color-border-line); color: var(--color-fg-muted); white-space: nowrap; }
+  .mt-badge.main { color: var(--color-fg); border-color: var(--color-fg); }
+
+  .mt-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: var(--cds-gap-md); }
+  .mt-card { --tc: var(--color-fg); display: flex; flex-direction: column; gap: var(--cds-gap-md); background: var(--color-panel); border: 1px solid var(--color-border-line); border-top: 3px solid var(--tc); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; }
+  .mt-card-h { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--cds-gap-sm); }
+  .mt-en { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); line-height: 1.1; color: var(--tc); }
+  .mt-ko { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .mt-desc { font-size: var(--cds-font-size-body); line-height: 1.45; min-height: 2.9em; }
+  .mt-desc.none { color: var(--color-fg-muted); }
+  .mt-stats { display: grid; grid-template-columns: 1fr 1fr; gap: var(--cds-gap-sm); margin: 0; }
+  .mt-stats dt { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .mt-stats dd { margin: 0; font-size: var(--cds-font-size-heading); }
+  .mt .mt-stats b { font-weight: 500; }
+  .mt-small { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .mt-ms { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--cds-gap-sm); padding-top: var(--cds-pad-sm); border-top: 1px solid var(--color-border-line); }
+  .mt-ms-big { display: flex; flex-direction: column; }
+  .mt-lbl { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .mt-big { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); line-height: 1.1; }
+  .mt-deltas { display: flex; flex-direction: column; align-items: flex-end; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .mt .mt-deltas b { font-weight: 600; }
+  .mt-spark { min-height: 6.5rem; }
+  .mt-spark svg, .mt-trend svg { display: block; }
+  .mt-gbar { display: flex; height: 1.25rem; border-radius: var(--cds-radius); overflow: hidden; margin-top: var(--cds-gap-xs); }
+  .mt-seg { display: flex; align-items: center; justify-content: center; font-size: var(--cds-font-size-caption); min-width: 0; overflow: hidden; white-space: nowrap; }
+
+  .mt-subcard > * { flex: 1 1 9rem; }
+  .mt-subcard > :first-child { flex: 1.3 1 12rem; }
+  .mt-subcard { --tc: var(--cds-chart-muted); display: flex; flex-wrap: wrap; gap: var(--cds-gap-md) var(--cds-gap-lg); align-items: center; background: var(--color-panel); border: 1px dashed var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md) var(--cds-pad-lg); }
+  .mt-subcard .mt-en { font-size: var(--cds-font-size-heading); color: var(--color-fg); }
+  .mt-subcard .mt-cell { display: flex; flex-direction: column; min-width: 0; }
+  .mt-subcard .mt-cell b { font-weight: 500; font-size: var(--cds-font-size-heading); }
+  .mt-subcard > .mt-gcell { flex-basis: 100%; }
+
+  .mt-panel { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-sm); min-width: 0; }
+  .mt-panel h3 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); }
+  .mt-panel > p { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .mt-grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); }
+  .mt-trend { position: relative; min-height: 300px; }
+  .mt-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs) var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .mt-legend span { display: inline-flex; align-items: center; gap: .35rem; }
+  .mt-sw { width: .7rem; height: .7rem; border-radius: 2px; display: inline-block; }
+  .mt-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); min-width: 10rem; z-index: 2; }
+  .mt-tip-h { color: var(--cds-text-secondary); margin-bottom: 2px; }
+  .mt-tip-r { display: flex; align-items: center; gap: .4rem; }
+  .mt-tip-r span:last-child { margin-left: auto; padding-left: .75rem; }
+
+  .mt-tg { display: flex; flex-direction: column; gap: var(--cds-gap-sm); min-height: 12rem; }
+  .mt-tg-row { display: grid; grid-template-columns: 6.5rem 1fr; gap: var(--cds-gap-sm); align-items: center; }
+  .mt-tg-row .mt-gbar { margin: 0; height: 1.5rem; }
+  .mt-tg-name { font-size: var(--cds-font-size-caption); display: flex; gap: .3rem; align-items: center; }
+
+  .mt-tw { overflow-x: auto; }
+  .mt-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-body); }
+  .mt-table th { font-size: var(--cds-font-size-caption); font-weight: 500; color: var(--color-fg-muted); text-align: right; padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+  .mt-table th:first-child, .mt-table td:first-child { text-align: left; }
+  .mt-table td { text-align: right; padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+  .mt-table tr.sub td { background: color-mix(in srgb, var(--color-fg) 4%, transparent); }
+  .mt-table tr.ref td { color: var(--color-fg-muted); }
+  .mt-table tr.tot td { font-weight: 600; }
+  .mt-table .nm { display: inline-flex; gap: .4rem; align-items: center; }
+  .mt-table .dot { width: .55rem; height: .55rem; border-radius: 50%; display: inline-block; }
+  .mt-table .ko { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+
+  .mt details { font-size: var(--cds-font-size-body); line-height: 1.6; border-top: 1px solid var(--color-border-line); padding-top: var(--cds-pad-md); }
+  .mt summary { cursor: pointer; font-weight: 500; }
+  .mt details dl { display: grid; grid-template-columns: minmax(7rem, max-content) 1fr; gap: var(--cds-gap-xs) var(--cds-gap-md); margin: var(--cds-gap-md) 0 0; }
+  .mt details dt { color: var(--color-fg-muted); }
+  .mt details dd { margin: 0; max-width: 70ch; }
+  .mt-pickable { cursor: pointer; transition: box-shadow var(--cds-dur-slow); }
+  .mt-pickable:hover { box-shadow: 0 0 0 1px var(--tc) inset; }
+  .mt-pickable:focus-visible, .mt-chip:focus-visible, .mt-click tr:focus-visible, .mt-sortable th:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+  .mt-pickable.is-sel { box-shadow: 0 0 0 2px var(--tc) inset; }
+  .mt-pick-hint { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: auto; }
+  .mt-pickable.is-sel .mt-pick-hint { color: var(--color-fg); }
+  tbody[data-draw="cmp"] tr { cursor: pointer; }
+  tbody[data-draw="cmp"] tr:hover td, .mt-click tbody tr:hover td { background: color-mix(in srgb, var(--color-fg) 6%, transparent); }
+  tbody[data-draw="cmp"] tr.is-sel td:first-child { box-shadow: 3px 0 0 var(--color-fg) inset; }
+  .mt-chips { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); }
+  .mt-chip { display: inline-flex; align-items: center; gap: .4rem; font: inherit; font-size: var(--cds-font-size-body); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: 999px; background: var(--color-panel); color: var(--color-fg); cursor: pointer; }
+  .mt-chip-sub { color: var(--color-fg-muted); border-style: dashed; }
+  .mt-chip.is-sel { border-color: var(--color-fg); border-style: solid; color: var(--color-fg); font-weight: 600; }
+  .mt-selstats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr)); gap: var(--cds-gap-md); }
+  .mt-selstats > div { display: flex; flex-direction: column; border-top: 1px solid var(--color-border-line); padding-top: var(--cds-pad-sm); }
+  .mt-scroll { max-height: 22rem; overflow: auto; }
+  .mt-scroll-lg { max-height: 32rem; }
+  .mt-scroll thead th { position: sticky; top: 0; background: var(--color-panel); z-index: 1; }
+  .mt-click tbody tr { cursor: pointer; }
+  .mt-click tbody tr.is-sel td { background: color-mix(in srgb, var(--color-fg) 10%, transparent); font-weight: 600; }
+  .mt-sortable th[data-sort] { cursor: pointer; user-select: none; }
+  .mt-sortable th[aria-sort=ascending]::after { content: ' ▲'; font-size: .7em; }
+  .mt-sortable th[aria-sort=descending]::after { content: ' ▼'; font-size: .7em; }
+  .mt-tools { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); align-items: center; }
+  .mt-search { font: inherit; font-size: var(--cds-font-size-body); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-bg); color: var(--color-fg); flex: 1 1 14rem; max-width: 22rem; min-width: 0; }
+  .mt-clear { font: inherit; font-size: var(--cds-font-size-caption); padding: 2px var(--cds-pad-sm); border: 1px solid var(--color-fg); border-radius: 999px; background: transparent; color: var(--color-fg); cursor: pointer; }
+  .mt-flag { color: var(--color-warn); border-color: currentColor; }
+  .mt-mx { display: grid; grid-template-columns: 11rem repeat(4, minmax(12.5rem, 1fr)); gap: var(--cds-gap-sm); min-width: 62rem; }
+  .mt-mx > div { border-radius: var(--cds-radius); padding: var(--cds-pad-sm) var(--cds-pad-md); min-width: 0; }
+  .mt-mx-corner, .mt-mx-ch, .mt-mx-rh { background: color-mix(in srgb, var(--color-fg) 8%, var(--color-panel)); display: flex; flex-direction: column; gap: 2px; }
+  .mt-mx-corner { justify-content: center; font-size: var(--cds-font-size-caption); }
+  .mt-mx-name { font-size: var(--cds-font-size-heading); font-weight: 600; }
+  .mt .mt-mx b { font-weight: 600; }
+  .mt-mx-top { display: flex; justify-content: space-between; align-items: baseline; gap: var(--cds-gap-xs); flex-wrap: wrap; }
+  .mt-mx-sh { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); white-space: nowrap; }
+  .mt-mx-traj { font-size: var(--cds-font-size-body); white-space: nowrap; }
+  .mt-mx-traj .mid { font-weight: 700; }
+  .mt-mx-cell { --heat: 0%; background: color-mix(in srgb, var(--mxc, var(--color-fg)) var(--heat), var(--color-panel)); border: 1px solid var(--color-border-line); display: flex; flex-direction: column; gap: 2px; }
+  .mt-mx-n { font-family: var(--font-anthropic-serif); font-size: var(--cds-font-size-title); line-height: 1.1; }
+  .mt-mx-names { list-style: none; margin: var(--cds-gap-xs) 0 0; padding: var(--cds-pad-xs) 0 0; border-top: 1px solid var(--color-border-line); max-height: 11rem; overflow-y: auto; font-size: var(--cds-font-size-caption); display: flex; flex-direction: column; gap: 1px; }
+  .mt-mx-names li { display: flex; align-items: center; gap: .35rem; white-space: nowrap; }
+  .mt-mx-names .nm-ms { margin-left: auto; color: var(--color-fg-muted); padding-left: .5rem; }
+  .mt-mx-names .nm-ms b { color: var(--color-fg); }
+  .mt-mx-names .dot { width: .45rem; height: .45rem; border-radius: 50%; flex: none; }
+  .mt-head-top { display: flex; justify-content: space-between; align-items: center; gap: var(--cds-gap-sm); flex-wrap: wrap; }
+  .mt-dl { display: inline-flex; align-items: center; gap: .4rem; font-size: var(--cds-font-size-caption); font-weight: 500; color: var(--color-fg); text-decoration: none; border: 1px solid var(--color-fg); border-radius: 999px; padding: 3px var(--cds-pad-sm); }
+  .mt-dl:hover { background: color-mix(in srgb, var(--color-fg) 8%, transparent); }
+  .mt-dl:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+  .mt-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10.5rem), 1fr)); gap: var(--cds-gap-sm); margin-block: var(--cds-gap-sm); }
+  .mt-st { --tc: var(--color-fg); display: flex; flex-direction: column; gap: 2px; padding: var(--cds-pad-md); border-radius: var(--cds-radius); background: var(--color-panel); border: 1px solid var(--color-border-line); border-top: 3px solid var(--tc); min-width: 0; }
+  .mt-st-total { background: var(--color-fg); color: var(--color-bg); border-color: var(--color-fg); }
+  .mt-st-total .mt-st-l, .mt-st-total .mt-st-d { color: color-mix(in srgb, var(--color-bg) 75%, transparent); }
+  .mt-st-sub { border-style: dashed; border-top-style: solid; }
+  .mt-st-l { display: flex; align-items: center; gap: .35rem; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-weight: 500; }
+  .mt-st-l .mt-name { color: var(--color-fg); font-weight: 600; font-size: var(--cds-font-size-body); }
+  .mt-st-n { font-family: var(--font-anthropic-serif); font-size: var(--cds-font-size-title); line-height: 1.15; }
+  .mt-st-n .mt-small { font-family: var(--font-anthropic-sans); }
+  .mt-st-d { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mt .mt-st-d b { font-weight: 600; }
+  .mt-mx-cell { cursor: pointer; transition: box-shadow var(--cds-dur-slow); }
+  .mt-mx-cell:hover { box-shadow: 0 0 0 1px var(--color-fg) inset; }
+  .mt-mx-cell:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+  .mt-mx-cell.is-sel { box-shadow: 0 0 0 2px var(--color-fg) inset; }
+  .mt-mx-cell .mt-mx-hint { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: auto; }
+  .mt-trendbox { margin-top: var(--cds-gap-md); padding: var(--cds-pad-md) var(--cds-pad-lg); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-bg); display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+  .mt-trendbox-h { display: flex; justify-content: space-between; align-items: center; gap: var(--cds-gap-sm); }
+  .mt-trendbox-h h4 { margin: 0; font-size: var(--cds-font-size-body); font-weight: 600; color: var(--color-fg-muted); }
+  .mt-mgrtrend { min-height: 300px; }
+  .mt-mgrtrend svg { display: block; }
+  .mt-mt-head { display: flex; align-items: baseline; gap: var(--cds-gap-sm); flex-wrap: wrap; }
+  .mt-mt-name { font-size: var(--cds-font-size-heading); font-weight: 700; }
+  .mt-mt-sales { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs) var(--cds-gap-lg); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  /* LG look: red accent, neutral grays, bold sans numbers */
+  .mt {
+    --lg-red: color-mix(in srgb, #A50034 82%, var(--color-fg));
+    --lg-red-solid: #A50034;
+    --lg-red-soft: color-mix(in srgb, #A50034 7%, var(--color-panel));
+    --lg-gray-bg: color-mix(in srgb, var(--color-fg) 5%, var(--color-panel));
+    --t-core: var(--lg-red);
+    --t-rising: #EE8A00;
+    --t-swing: #2B7F87;
+    --t-challenge: #5A4FB0;
+    gap: calc(var(--cds-gap-xl) * 1.2);
+  }
+  .mt-head-top { align-items: flex-start; }
+  .mt-head-l { display: flex; flex-direction: column; gap: var(--cds-gap-xs); min-width: 0; }
+  .mt-eyebrow { color: var(--lg-red); font-weight: 700; letter-spacing: .02em; }
+  .mt-title, .mt-en, .mt-big, .mt-kpi-v, .mt-st-n, .mt-mx-n { font-family: var(--font-anthropic-sans); font-weight: 700; letter-spacing: -.01em; }
+  .mt-title { font-size: calc(var(--cds-font-size-title) * 1.25); line-height: 1.2; }
+  .mt-st-n .mt-small { font-weight: 400; }
+  .mt-dlcard { display: inline-flex; align-items: center; gap: var(--cds-gap-sm); padding: var(--cds-pad-sm) var(--cds-pad-lg) var(--cds-pad-sm) var(--cds-pad-md); border-radius: var(--cds-radius); background: var(--lg-red-solid); color: #FFFFFF; text-decoration: none; box-shadow: 0 2px 8px color-mix(in srgb, #A50034 30%, transparent); transition: transform var(--cds-dur-slow), box-shadow var(--cds-dur-slow); }
+  .mt-dlcard:hover { transform: translateY(-1px); box-shadow: 0 4px 14px color-mix(in srgb, #A50034 40%, transparent); }
+  .mt-dlcard:focus-visible { outline: 3px solid var(--color-fg); outline-offset: 2px; }
+  .mt-dl-ic { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: rgba(255, 255, 255, .18); flex: none; }
+  .mt-dl-tx { display: flex; flex-direction: column; line-height: 1.35; }
+  .mt-dl-tx b { font-size: var(--cds-font-size-heading); font-weight: 700; color: #FFFFFF; }
+  .mt-dl-tx span { font-size: var(--cds-font-size-caption); color: rgba(255, 255, 255, .88); }
+  .mt-dl-tx .mt-dl-fmt { font-weight: 600; color: #FFFFFF; }
+  .mt-st { background: var(--lg-gray-bg); border-color: transparent; border-top-width: 4px; }
+  .mt-st-sub { background: var(--color-panel); border-color: var(--color-border-line); border-style: dashed; border-top: 4px solid var(--tc); }
+  .mt-st-total { background: var(--lg-red-solid); border-color: var(--lg-red-solid); color: #FFFFFF; }
+  .mt-st-total .mt-st-l, .mt-st-total .mt-st-d { color: rgba(255, 255, 255, .85); }
+  .mt-st-total .mt-st-n { color: #FFFFFF; }
+  .mt-kpi { border-top: 2px solid var(--color-fg); }
+  .mt-sec-h h2 { display: flex; align-items: center; gap: .5rem; font-weight: 700; }
+  .mt-sec-h h2::before { content: ""; width: .55rem; height: .55rem; border-radius: 2px; background: var(--lg-red); flex: none; }
+  .mt-badge.main { color: var(--lg-red); border-color: var(--lg-red); font-weight: 600; }
+  .mt-card { border-top-width: 4px; }
+  .mt-card .mt-en { color: var(--color-fg); }
+  .mt-pickable.is-sel { box-shadow: 0 0 0 2px var(--lg-red) inset; }
+  .mt-chip.is-sel { background: var(--lg-red-solid); border-color: var(--lg-red-solid); color: #FFFFFF; }
+  .mt-chip.is-sel .mt-sw { outline: 1.5px solid #FFFFFF; }
+  .mt-table thead th { color: var(--color-fg); font-weight: 600; border-bottom: 2px solid var(--color-fg); }
+  .mt-mx-corner, .mt-mx-ch, .mt-mx-rh { background: var(--lg-gray-bg); }
+  .mt-mx-traj .mid, .mt-mx-sh { color: var(--lg-red); }
+  .mt-mx-cell.is-sel { box-shadow: 0 0 0 2px var(--lg-red) inset; }
+  .mt-click tbody tr.is-sel td { background: var(--lg-red-soft); }
+  .mt-clear { border-color: var(--lg-red); color: var(--lg-red); }
+  .mt-note { background: var(--lg-red-soft); border-color: color-mix(in srgb, #A50034 25%, var(--color-border-line)); }
+  @media (max-width: 40rem) { .mt-dlcard { width: 100%; } }
+  [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+</style>
+</head>
+<body>
+<main class="site">
+<div class="mt">
+  <header class="mt-head">
+    <div class="mt-head-top">
+      <div class="mt-head-l">
+        <span class="mt-eyebrow">LG전자 혼매호남팀 · 하이마트 채널 · 2026년 1~9월 실적</span>
+        <h1 class="mt-title" id="top">혼매호남팀 매니저 유형 현황</h1>
+      </div>
+      <div class="mt-dlgroup">
+        <a class="mt-dlcard" href="files/summary.pptx" download="혼매호남팀_매니저유형_요약.pptx" aria-label="요약본 2장 PPT 다운로드">
+          <span class="mt-dl-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 19h16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="mt-dl-tx"><b>요약본 PPT 다운로드</b><span>2장 · ① 유형별 현황 ② 개인 MS 매트릭스</span><span class="mt-dl-fmt">PPTX · 11월 7일 기준</span></span>
+        </a>
+        <a class="mt-dl-alt" href="files/summary.pdf" download="혼매호남팀_매니저유형_요약.pdf">PDF로 받기</a>
+      </div>
+    </div>
+
+    <div class="mt-strip" aria-label="인원과 실적 요약">
+      <div class="mt-st mt-st-total"><span class="mt-st-l">총 매니저</span><span class="mt-st-n"><span data-draw="v" data-source="team" data-field="managers" data-where="scope=team">—</span>명</span><span class="mt-st-d">추가관리 <span data-draw="v" data-source="team" data-field="extra" data-where="scope=team">—</span>명</span><span class="mt-st-d">팀 MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="team" data-field="ms_p3" data-where="scope=team">—</span></span></div>
+      <div class="mt-st mt-pickable" data-tcolor="core" data-pick="core" tabindex="0" role="button" aria-pressed="false"><span class="mt-st-l"><i class="mt-sw" data-tswatch="core"></i><span class="mt-name">Core</span><span class="mt-badge main">메인</span></span><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=core">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=core">—</span></span><span class="mt-st-d">LG 1~9월 <span data-draw="v" data-fmt="mil" data-source="type_share" data-field="lg_total" data-where="type=core">—</span>백만원</span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=core">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=core">—</b></span></div>
+      <div class="mt-st mt-pickable" data-tcolor="rising" data-pick="rising" tabindex="0" role="button" aria-pressed="false"><span class="mt-st-l"><i class="mt-sw" data-tswatch="rising"></i><span class="mt-name">Rising</span><span class="mt-badge main">메인</span></span><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=rising">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=rising">—</span></span><span class="mt-st-d">LG 1~9월 <span data-draw="v" data-fmt="mil" data-source="type_share" data-field="lg_total" data-where="type=rising">—</span>백만원</span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=rising">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=rising">—</b></span></div>
+      <div class="mt-st mt-pickable" data-tcolor="swing" data-pick="swing" tabindex="0" role="button" aria-pressed="false"><span class="mt-st-l"><i class="mt-sw" data-tswatch="swing"></i><span class="mt-name">Swing</span><span class="mt-badge main">메인</span></span><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=swing">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=swing">—</span></span><span class="mt-st-d">LG 1~9월 <span data-draw="v" data-fmt="mil" data-source="type_share" data-field="lg_total" data-where="type=swing">—</span>백만원</span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=swing">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=swing">—</b></span></div>
+      <div class="mt-st mt-pickable" data-tcolor="challenge" data-pick="challenge" tabindex="0" role="button" aria-pressed="false"><span class="mt-st-l"><i class="mt-sw" data-tswatch="challenge"></i><span class="mt-name">Challenge</span><span class="mt-badge main">메인</span></span><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=challenge">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=challenge">—</span></span><span class="mt-st-d">LG 1~9월 <span data-draw="v" data-fmt="mil" data-source="type_share" data-field="lg_total" data-where="type=challenge">—</span>백만원</span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=challenge">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=challenge">—</b></span></div>
+      <div class="mt-st mt-pickable mt-st-sub" data-tcolor="monitoring" data-pick="monitoring" tabindex="0" role="button" aria-pressed="false"><span class="mt-st-l"><i class="mt-sw" data-tswatch="monitoring"></i><span class="mt-name">Monitoring</span><span class="mt-badge">서브</span></span><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=monitoring">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=monitoring">—</span></span><span class="mt-st-d">LG 1~9월 <span data-draw="v" data-fmt="mil" data-source="type_share" data-field="lg_total" data-where="type=monitoring">—</span>백만원</span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=monitoring">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=monitoring">—</b></span></div>
+    </div>
+    <p class="mt-take">팀 MS는 6~7월에 <b data-draw="v" data-fmt="pp" data-source="team" data-field="d21" data-where="scope=team">—</b> 떨어졌다가 8~9월에 <b data-draw="v" data-fmt="pp" data-source="team" data-field="d32" data-where="scope=team">—</b> 반등했습니다. 메인 유형 중 Challenge가 가장 크게 떨어지고(<b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=challenge">—</b>) 가장 크게 반등했으며(<b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=challenge">—</b>), 6~7월에도 MS가 오른 유형은 Rising(<b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=rising">—</b>)뿐입니다.</p>
+  </header>
+
+  <section class="mt-sec" id="main-types">
+    <div class="mt-sec-h"><h2>메인 유형</h2><p>MS = LG ÷ (LG + 삼성), 유형 판매 합으로 계산한 가중 MS · 점선은 팀 전체</p></div>
+    <div class="mt-cards">
+
+      <article class="mt-card mt-pickable" data-tcolor="core" data-pick="core" tabindex="0" role="button" aria-pressed="false" id="type-core">
+        <header class="mt-card-h"><div><h3 class="mt-en">Core</h3><span class="mt-ko">코어</span></div><span class="mt-badge main">메인</span></header>
+        <p class="mt-desc">자사 친화적 성향 검증된 집단</p>
+        <dl class="mt-stats">
+          <div><dt>인원</dt><dd><b data-draw="v" data-source="types" data-field="n" data-where="type=core">—</b>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=core">—</span></dd></div>
+          <div><dt>LG판매 비중 (1~9월)</dt><dd><b data-draw="v" data-fmt="share" data-source="type_share" data-field="lg_share" data-where="type=core">—</b></dd></div>
+        </dl>
+        <div class="mt-ms">
+          <div class="mt-ms-big"><span class="mt-lbl">8~9월 MS</span><span class="mt-big" data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=core">—</span></div>
+          <div class="mt-deltas"><span>6~7월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=core">—</b></span><span>8~9월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=core">—</b></span></div>
+        </div>
+        <div class="mt-spark dash-skeleton" data-draw="spark" data-source="types team" data-type="core"></div>
+        <span class="mt-pick-hint">클릭하면 지점·매니저 현황 보기</span>
+      </article>
+
+      <article class="mt-card mt-pickable" data-tcolor="rising" data-pick="rising" tabindex="0" role="button" aria-pressed="false" id="type-rising">
+        <header class="mt-card-h"><div><h3 class="mt-en">Rising</h3><span class="mt-ko">라이징</span></div><span class="mt-badge main">메인</span></header>
+        <p class="mt-desc">위기의 순간 오히려 상승하는 집단</p>
+        <dl class="mt-stats">
+          <div><dt>인원</dt><dd><b data-draw="v" data-source="types" data-field="n" data-where="type=rising">—</b>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=rising">—</span></dd></div>
+          <div><dt>LG판매 비중 (1~9월)</dt><dd><b data-draw="v" data-fmt="share" data-source="type_share" data-field="lg_share" data-where="type=rising">—</b></dd></div>
+        </dl>
+        <div class="mt-ms">
+          <div class="mt-ms-big"><span class="mt-lbl">8~9월 MS</span><span class="mt-big" data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=rising">—</span></div>
+          <div class="mt-deltas"><span>6~7월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=rising">—</b></span><span>8~9월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=rising">—</b></span></div>
+        </div>
+        <div class="mt-spark dash-skeleton" data-draw="spark" data-source="types team" data-type="rising"></div>
+        <span class="mt-pick-hint">클릭하면 지점·매니저 현황 보기</span>
+      </article>
+
+      <article class="mt-card mt-pickable" data-tcolor="swing" data-pick="swing" tabindex="0" role="button" aria-pressed="false" id="type-swing">
+        <header class="mt-card-h"><div><h3 class="mt-en">Swing</h3><span class="mt-ko">스윙</span></div><span class="mt-badge main">메인</span></header>
+        <p class="mt-desc">급격한 하락이 있었으나 평시수준 회복</p>
+        <dl class="mt-stats">
+          <div><dt>인원</dt><dd><b data-draw="v" data-source="types" data-field="n" data-where="type=swing">—</b>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=swing">—</span></dd></div>
+          <div><dt>LG판매 비중 (1~9월)</dt><dd><b data-draw="v" data-fmt="share" data-source="type_share" data-field="lg_share" data-where="type=swing">—</b></dd></div>
+        </dl>
+        <div class="mt-ms">
+          <div class="mt-ms-big"><span class="mt-lbl">8~9월 MS</span><span class="mt-big" data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=swing">—</span></div>
+          <div class="mt-deltas"><span>6~7월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=swing">—</b></span><span>8~9월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=swing">—</b></span></div>
+        </div>
+        <div class="mt-spark dash-skeleton" data-draw="spark" data-source="types team" data-type="swing"></div>
+        <span class="mt-pick-hint">클릭하면 지점·매니저 현황 보기</span>
+      </article>
+
+      <article class="mt-card mt-pickable" data-tcolor="challenge" data-pick="challenge" tabindex="0" role="button" aria-pressed="false" id="type-challenge">
+        <header class="mt-card-h"><div><h3 class="mt-en">Challenge</h3><span class="mt-ko">챌린지</span></div><span class="mt-badge main">메인</span></header>
+        <p class="mt-desc">하락폭이 가장 깊었던 집단</p>
+        <dl class="mt-stats">
+          <div><dt>인원</dt><dd><b data-draw="v" data-source="types" data-field="n" data-where="type=challenge">—</b>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=challenge">—</span></dd></div>
+          <div><dt>LG판매 비중 (1~9월)</dt><dd><b data-draw="v" data-fmt="share" data-source="type_share" data-field="lg_share" data-where="type=challenge">—</b></dd></div>
+        </dl>
+        <div class="mt-ms">
+          <div class="mt-ms-big"><span class="mt-lbl">8~9월 MS</span><span class="mt-big" data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=challenge">—</span></div>
+          <div class="mt-deltas"><span>6~7월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=challenge">—</b></span><span>8~9월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=challenge">—</b></span></div>
+        </div>
+        <div class="mt-spark dash-skeleton" data-draw="spark" data-source="types team" data-type="challenge"></div>
+        <span class="mt-pick-hint">클릭하면 지점·매니저 현황 보기</span>
+      </article>
+    </div>
+  </section>
+
+  <section class="mt-sec" id="sub-types">
+    <div class="mt-sec-h"><h2>서브 유형</h2><p>메인 4개 유형과 따로 보는 관찰 대상</p></div>
+    <article class="mt-subcard mt-pickable" id="type-monitoring" data-pick="monitoring" tabindex="0" role="button" aria-pressed="false">
+      <div><div class="mt-card-h" style="justify-content:flex-start"><h3 class="mt-en">Monitoring</h3><span class="mt-badge">서브</span></div><span class="mt-ko">모니터링 · 원본 장표에 설명 없음</span></div>
+      <div class="mt-cell"><span class="mt-lbl">인원</span><span><b data-draw="v" data-source="types" data-field="n" data-where="type=monitoring">—</b>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=monitoring">—</span></span></div>
+      <div class="mt-cell"><span class="mt-lbl">추가관리대상</span><span><b data-draw="v" data-source="types" data-field="extra" data-where="type=monitoring">—</b>명 <span class="mt-small">팀 전원</span></span></div>
+      <div class="mt-cell"><span class="mt-lbl">LG판매 비중</span><b data-draw="v" data-fmt="share" data-source="type_share" data-field="lg_share" data-where="type=monitoring">—</b></div>
+      <div class="mt-cell"><span class="mt-lbl">MS 1~5월 → 6~7월 → 8~9월</span><span><b data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p1" data-where="type=monitoring">—</b> → <b data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=monitoring">—</b> → <b data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=monitoring">—</b></span></div>
+      <div class="mt-cell"><span class="mt-lbl">증감</span><span class="mt-small">6~7월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=monitoring">—</b> · 8~9월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=monitoring">—</b></span></div>
+      <span class="mt-cell mt-gcell mt-pick-hint">클릭하면 지점·매니저 현황 보기</span>
+    </article>
+    <p class="mt-small">측정불가 유형(유형 분류 기준 미설명)은 아래 비교 표에만 참고로 넣었습니다.</p>
+  </section>
+
+
+  <section class="mt-sec" id="ms-matrix">
+    <div class="mt-sec-h"><h2>혼매호남팀 개인 MS 매트릭스</h2><p>가로: 6~7월 개인 MS · 세로: 행사 전후 개인 MS 감소폭(1~5월 → 6~7월) · MS는 1~5월 → 6~7월 → 8~9월</p></div>
+    <div class="mt-chips" role="group" aria-label="매트릭스 유형 선택">
+      <button type="button" class="mt-chip" data-mxpick="all" aria-pressed="true">전체</button>
+      <button type="button" class="mt-chip" data-mxpick="core" aria-pressed="false"><i class="mt-sw" data-tswatch="core"></i>Core</button>
+      <button type="button" class="mt-chip" data-mxpick="rising" aria-pressed="false"><i class="mt-sw" data-tswatch="rising"></i>Rising</button>
+      <button type="button" class="mt-chip" data-mxpick="swing" aria-pressed="false"><i class="mt-sw" data-tswatch="swing"></i>Swing</button>
+      <button type="button" class="mt-chip" data-mxpick="challenge" aria-pressed="false"><i class="mt-sw" data-tswatch="challenge"></i>Challenge</button>
+      <button type="button" class="mt-chip mt-chip-sub" data-mxpick="monitoring" aria-pressed="false"><i class="mt-sw" data-tswatch="monitoring"></i>Monitoring</button>
+    </div>
+    <div class="mt-tw">
+      <div class="mt-mx" data-source="ms_matrix managers">
+        <div class="mt-mx-corner"><b>6~7월 개인 MS \ 행사 전후 MS 감소폭</b><span class="mt-small">GAP: 6~7월 MS − 1~5월 MS · 대상 <span class="" data-draw="mx" data-l="all" data-c="all" data-f="n">—</span>명</span></div>
+        <div class="mt-mx-ch"><div class="mt-mx-top"><b class="mt-mx-name">우수</b> <span>(<span class="" data-draw="mx" data-l="all" data-c="A" data-f="n">—</span>명)</span><span class="mt-mx-sh">판매비중 <span class="" data-draw="mx" data-l="all" data-c="A" data-f="share">—</span></span></div><div class="mt-mx-top"><span class="mt-small">개인 MS ≥ 50%</span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="all" data-c="A" data-f="traj">—</span></span></div></div>
+        <div class="mt-mx-ch"><div class="mt-mx-top"><b class="mt-mx-name">양호</b> <span>(<span class="" data-draw="mx" data-l="all" data-c="B" data-f="n">—</span>명)</span><span class="mt-mx-sh">판매비중 <span class="" data-draw="mx" data-l="all" data-c="B" data-f="share">—</span></span></div><div class="mt-mx-top"><span class="mt-small">개인 MS 40~50%</span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="all" data-c="B" data-f="traj">—</span></span></div></div>
+        <div class="mt-mx-ch"><div class="mt-mx-top"><b class="mt-mx-name">미흡</b> <span>(<span class="" data-draw="mx" data-l="all" data-c="C" data-f="n">—</span>명)</span><span class="mt-mx-sh">판매비중 <span class="" data-draw="mx" data-l="all" data-c="C" data-f="share">—</span></span></div><div class="mt-mx-top"><span class="mt-small">개인 MS 30~40%</span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="all" data-c="C" data-f="traj">—</span></span></div></div>
+        <div class="mt-mx-ch"><div class="mt-mx-top"><b class="mt-mx-name">부진</b> <span>(<span class="" data-draw="mx" data-l="all" data-c="D" data-f="n">—</span>명)</span><span class="mt-mx-sh">판매비중 <span class="" data-draw="mx" data-l="all" data-c="D" data-f="share">—</span></span></div><div class="mt-mx-top"><span class="mt-small">개인 MS < 30%</span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="all" data-c="D" data-f="traj">—</span></span></div></div>
+        <div class="mt-mx-rh"><b class="mt-mx-name">Level4</b> <span class="mt-small">(변동성 ↑)</span><span class="mt-small">GAP Δ20%p 이하</span><span class="mt-small"><span class="" data-draw="mx" data-l="L4" data-c="all" data-f="n">—</span>명 · 판매 <span class="" data-draw="mx" data-l="L4" data-c="all" data-f="share">—</span></span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="L4" data-c="all" data-f="traj">—</span></span></div>
+        <div class="mt-mx-cell" data-l="L4" data-c="A" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L4" data-c="A" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L4" data-c="A" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L4" data-c="A" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L4" data-c="B" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L4" data-c="B" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L4" data-c="B" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L4" data-c="B" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L4" data-c="C" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L4" data-c="C" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L4" data-c="C" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L4" data-c="C" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L4" data-c="D" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L4" data-c="D" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L4" data-c="D" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L4" data-c="D" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-rh"><b class="mt-mx-name">Level3</b> <span class="mt-small"></span><span class="mt-small">GAP Δ20 ~ Δ10%p</span><span class="mt-small"><span class="" data-draw="mx" data-l="L3" data-c="all" data-f="n">—</span>명 · 판매 <span class="" data-draw="mx" data-l="L3" data-c="all" data-f="share">—</span></span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="L3" data-c="all" data-f="traj">—</span></span></div>
+        <div class="mt-mx-cell" data-l="L3" data-c="A" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L3" data-c="A" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L3" data-c="A" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L3" data-c="A" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L3" data-c="B" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L3" data-c="B" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L3" data-c="B" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L3" data-c="B" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L3" data-c="C" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L3" data-c="C" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L3" data-c="C" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L3" data-c="C" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L3" data-c="D" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L3" data-c="D" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L3" data-c="D" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L3" data-c="D" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-rh"><b class="mt-mx-name">Level2</b> <span class="mt-small"></span><span class="mt-small">GAP Δ10 ~ 0%p</span><span class="mt-small"><span class="" data-draw="mx" data-l="L2" data-c="all" data-f="n">—</span>명 · 판매 <span class="" data-draw="mx" data-l="L2" data-c="all" data-f="share">—</span></span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="L2" data-c="all" data-f="traj">—</span></span></div>
+        <div class="mt-mx-cell" data-l="L2" data-c="A" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L2" data-c="A" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L2" data-c="A" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L2" data-c="A" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L2" data-c="B" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L2" data-c="B" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L2" data-c="B" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L2" data-c="B" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L2" data-c="C" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L2" data-c="C" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L2" data-c="C" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L2" data-c="C" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L2" data-c="D" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L2" data-c="D" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L2" data-c="D" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L2" data-c="D" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-rh"><b class="mt-mx-name">Level1</b> <span class="mt-small">(변동성 ↓)</span><span class="mt-small">GAP 0%p 이상</span><span class="mt-small"><span class="" data-draw="mx" data-l="L1" data-c="all" data-f="n">—</span>명 · 판매 <span class="" data-draw="mx" data-l="L1" data-c="all" data-f="share">—</span></span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="L1" data-c="all" data-f="traj">—</span></span></div>
+        <div class="mt-mx-cell" data-l="L1" data-c="A" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L1" data-c="A" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L1" data-c="A" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L1" data-c="A" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L1" data-c="B" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L1" data-c="B" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L1" data-c="B" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L1" data-c="B" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L1" data-c="C" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L1" data-c="C" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L1" data-c="C" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L1" data-c="C" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L1" data-c="D" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L1" data-c="D" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L1" data-c="D" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L1" data-c="D" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+      </div>
+    </div>
+    <p class="mt-small">측정불가 유형과 1~5월·6~7월 판매가 없는 매니저는 제외. 판매 비중은 양사(LG+삼성) 1~9월 판매 합 ÷ 팀 전체 303명 양사 판매 합. 칸을 클릭하면 그 칸의 매니저 명단이 아래에 나옵니다.</p>
+    <div class="mt-panel" id="mx-detail">
+      <h3 data-draw="mxsel" data-source="ms_matrix">—</h3>
+      <p id="mx-hint">매트릭스의 칸을 클릭하면 그 칸에 속한 매니저와 개인 MS가 여기에 나옵니다. 같은 칸을 다시 클릭하면 닫힙니다. 명단에서 매니저를 클릭하면 MS 추이를 볼 수 있습니다.</p>
+      <div class="mt-tw mt-scroll" id="mx-tablewrap" hidden>
+        <table class="mt-table mt-click" data-source="managers" data-row-key="id">
+          <thead><tr>
+            <th data-field="manager">매니저</th>
+            <th data-field="branch">지점</th>
+            <th data-field="extra">추가관리</th>
+            <th data-field="ms_p1">MS 1~5월</th>
+            <th data-field="ms_p2">MS 6~7월</th>
+            <th data-field="ms_p3">MS 8~9월</th>
+            <th data-field="d21">GAP 6~7월</th>
+            <th data-field="d32">증감 8~9월</th>
+          </tr></thead>
+          <tbody data-draw="mxlist"></tbody>
+        </table>
+      </div>
+      <div class="mt-trendbox" data-trend-from="mx" hidden>
+        <div class="mt-trendbox-h"><h4>매니저 MS 추이</h4><button type="button" class="mt-clear" data-trend-close>닫기 ×</button></div>
+        <div class="mt-mgrtrend" data-draw="mgrtrend" data-from="mx" data-source="managers types team"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-sec" id="trend">
+    <div class="mt-sec-h"><h2>MS 추이 비교</h2></div>
+    <div class="mt-panel">
+      <h3>유형별 가중 MS</h3>
+      <p>실선은 메인 유형, 회색 파선은 Monitoring, 굵은 점선은 팀 전체. 기간 위에 마우스를 올리면 값이 나옵니다.</p>
+      <div class="mt-trend dash-skeleton" data-draw="trend" data-source="types team"></div>
+    </div>
+  </section>
+
+  <section class="mt-sec" id="compare">
+    <div class="mt-sec-h"><h2>유형별 한눈에 보기</h2><p>판매 단위 백만원</p></div>
+    <div class="mt-panel">
+      <div class="mt-tw">
+        <table class="mt-table" data-source="types" data-row-key="type">
+          <thead><tr>
+            <th data-field="type">유형</th>
+            <th data-field="n">인원</th>
+            <th data-source="type_share" data-field="n_share">인원 비중</th>
+            <th data-field="extra">추가관리</th>
+            <th data-source="type_share" data-field="lg_share">LG판매 비중</th>
+            <th data-field="lg_p1">LG 1~5월</th>
+            <th data-field="lg_p2">LG 6~7월</th>
+            <th data-field="lg_p3">LG 8~9월</th>
+            <th data-field="ms_p1">MS 1~5월</th>
+            <th data-field="ms_p2">MS 6~7월</th>
+            <th data-field="ms_p3">MS 8~9월</th>
+            <th data-field="d21">증감 6~7월</th>
+            <th data-field="d32">증감 8~9월</th>
+          </tr></thead>
+          <tbody data-draw="cmp"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-sec" id="detail">
+    <div class="mt-sec-h"><h2><span data-draw="selname" data-source="types">—</span> · 지점·매니저 현황</h2><p>위의 유형 카드나 비교 표의 행을 클릭해도 바뀝니다</p></div>
+    <div class="mt-chips" role="group" aria-label="유형 선택">
+      <button type="button" class="mt-chip" data-pick="core" aria-pressed="false"><i class="mt-sw" data-tswatch="core"></i>Core</button>
+      <button type="button" class="mt-chip" data-pick="rising" aria-pressed="false"><i class="mt-sw" data-tswatch="rising"></i>Rising</button>
+      <button type="button" class="mt-chip" data-pick="swing" aria-pressed="false"><i class="mt-sw" data-tswatch="swing"></i>Swing</button>
+      <button type="button" class="mt-chip" data-pick="challenge" aria-pressed="false"><i class="mt-sw" data-tswatch="challenge"></i>Challenge</button>
+      <button type="button" class="mt-chip mt-chip-sub" data-pick="monitoring" aria-pressed="false"><i class="mt-sw" data-tswatch="monitoring"></i>Monitoring</button>
+      <button type="button" class="mt-chip mt-chip-sub" data-pick="unmeasured" aria-pressed="false"><i class="mt-sw" data-tswatch="unmeasured"></i>측정불가</button>
+    </div>
+    <div class="mt-selstats">
+      <div><span class="mt-lbl">지점</span><span class="mt-big"><span data-draw="selstat" data-stat="branches" data-source="managers">—</span>곳</span></div>
+      <div><span class="mt-lbl">매니저</span><span class="mt-big"><span data-draw="selstat" data-stat="managers" data-source="managers">—</span>명</span></div>
+      <div><span class="mt-lbl">추가관리대상</span><span class="mt-big"><span data-draw="selstat" data-stat="extra" data-source="managers">—</span>명</span></div>
+      <div><span class="mt-lbl">LG 판매 1~9월</span><span class="mt-big"><span data-draw="selstat" data-stat="lg" data-source="managers">—</span><span class="mt-small"> 백만원</span></span></div>
+    </div>
+
+    <div class="mt-panel">
+      <h3>지점별 현황</h3>
+      <p>선택한 유형의 매니저가 있는 지점. 매니저 수가 많은 순. 지점을 클릭하면 아래 매니저 표가 그 지점만 보여줍니다. MS는 지점 내 이 유형 매니저의 판매 합으로 계산</p>
+      <div class="mt-tw mt-scroll">
+        <table class="mt-table mt-click" data-source="branches" data-row-key="key">
+          <thead><tr>
+            <th data-field="branch">지점</th>
+            <th data-field="capa">CAPA</th>
+            <th data-field="level">지점군</th>
+            <th data-field="n">매니저</th>
+            <th data-field="extra">추가관리</th>
+            <th data-field="lg">LG 1~9월</th>
+            <th data-field="ms_p1">MS 1~5월</th>
+            <th data-field="ms_p2">MS 6~7월</th>
+            <th data-field="ms_p3">MS 8~9월</th>
+            <th data-field="d32">증감 8~9월</th>
+          </tr></thead>
+          <tbody data-draw="branches"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="mt-panel">
+      <h3>매니저 현황</h3>
+      <p>매니저를 클릭하면 MS 추이가 표 아래에 나옵니다. 머리글을 클릭하면 정렬됩니다. 판매 단위 백만원, MS는 개인 기준</p>
+      <div class="mt-tools">
+        <input type="search" id="mt-q" class="mt-search" placeholder="지점·매니저 이름 검색" aria-label="지점·매니저 이름 검색">
+        <button type="button" class="mt-clear" id="mt-clear-branch" hidden><span data-draw="branchname" data-source="managers">—</span> 필터 해제 ×</button>
+        <span class="mt-small"><span data-draw="mgrcount" data-source="managers">—</span>명 표시</span>
+      </div>
+      <div class="mt-tw mt-scroll mt-scroll-lg">
+        <table class="mt-table mt-sortable mt-click" data-source="managers" data-row-key="id">
+          <thead><tr>
+            <th data-field="branch" data-sort="branch" aria-sort="ascending">지점</th>
+            <th data-field="manager" data-sort="manager">매니저</th>
+            <th data-field="extra" data-sort="extra">추가관리</th>
+            <th data-field="level" data-sort="level">지점군</th>
+            <th data-field="lg_p1" data-sort="lg_p1">LG 1~5월</th>
+            <th data-field="lg_p2" data-sort="lg_p2">LG 6~7월</th>
+            <th data-field="lg_p3" data-sort="lg_p3">LG 8~9월</th>
+            <th data-field="ms_p1" data-sort="ms_p1">MS 1~5월</th>
+            <th data-field="ms_p2" data-sort="ms_p2">MS 6~7월</th>
+            <th data-field="ms_p3" data-sort="ms_p3">MS 8~9월</th>
+            <th data-field="d21" data-sort="d21">증감 6~7월</th>
+            <th data-field="d32" data-sort="d32">증감 8~9월</th>
+          </tr></thead>
+          <tbody data-draw="mgrs"></tbody>
+        </table>
+      </div>
+      <div class="mt-trendbox" data-trend-from="mgrs" hidden>
+        <div class="mt-trendbox-h"><h4>매니저 MS 추이</h4><button type="button" class="mt-clear" data-trend-close>닫기 ×</button></div>
+        <div class="mt-mgrtrend" data-draw="mgrtrend" data-from="mgrs" data-source="managers types team"></div>
+      </div>
+    </div>
+  </section>
+
+  <details>
+    <summary>계산 기준과 데이터 확인 사항</summary>
+    <dl>
+      <dt>기간</dt><dd>평시 1~5월(P1), 전시 6~7월(P2), 반격기 8~9월(P3). 10월(P4)은 데이터 없음.</dd>
+      <dt>MS</dt><dd>LG ÷ (LG + 삼성). 유형·팀 MS는 개인 MS 평균이 아니라 판매 합으로 계산한 가중 MS.</dd>
+      <dt>매니저 MS</dt><dd>매니저 개인의 LG ÷ (LG + 삼성). 해당 기간 판매가 없으면 —로 표시.</dd>
+      <dt>LG판매 비중</dt><dd>유형의 1~9월 LG 판매 합 ÷ 전체 LG 판매 합.</dd>
+      <dt>삼성 추정치</dt><dd>삼성 판매 = LG 판매 ÷ MS − LG 판매를 기간 개월 수(5·2·2)로 나눈 값. 원본 삼성 판매가 아니라 역산한 값이라 반올림 오차가 있음.</dd>
+      <dt>유형 설명</dt><dd>유첨 장표 문구만 사용. Monitoring과 측정불가는 장표에 설명 없음.</dd>
+      <dt>원본 오류</dt><dd>MASTER AD열 'MS_P3(10월)'은 P4 오타로 보이며 ×100이 빠져 있고, 10월 데이터가 비어 #DIV/0!이 남. 이 대시보드는 이 열을 쓰지 않음.</dd>
+      <dt>출처</dt><dd>유형 집계는 혼매호남팀_매니저유형_현황.md, 지점·매니저 현황은 하이마트 판매구조분석_1102.xlsx MASTER 시트의 혼매호남팀 303명</dd>
+    </dl>
+  </details>
+</div>
+<p class="site-foot">LG전자 혼매호남팀 · 매니저·지점명은 코드로 표시 · 데이터 기준 2026년 11월 7일 (1~9월 실적, MASTER 시트)</p>
+</main>
+<script src="vendor/d3.min.js"></script>
+<script src="dash-shim.js"></script>
+<script>
+  window.MT = (function () {
+    const ORDER = ['core', 'rising', 'swing', 'challenge', 'monitoring', 'unmeasured'];
+    const MAIN = { core: 0, swing: 1, rising: 2, challenge: 3 };
+    const TCOL = { core: 'var(--t-core)', rising: 'var(--t-rising)', swing: 'var(--t-swing)', challenge: 'var(--t-challenge)' };
+    const colorOf = (t) => TCOL[t] || 'var(--cds-chart-muted)';
+    const GRADES = [
+      { k: 'excellent', ko: '우수', p: 100 },
+      { k: 'good', ko: '양호', p: 70 },
+      { k: 'average', ko: '보통', p: 44 },
+      { k: 'poor', ko: '미흡', p: 22 },
+      { k: 'unmeasured', ko: '측정불가', p: 0 }
+    ];
+    const gColor = (g) => g.p === 0 ? 'var(--cds-chart-muted)' : `color-mix(in srgb, ${dash.colors[0]} ${g.p}%, var(--color-panel))`;
+    const gText = (g) => g.p >= 60 ? 'var(--color-bg)' : 'var(--color-fg)';
+    const F = {
+      int: d3.format(','),
+      mil: d3.format(',.0f'),
+      pct: (v) => d3.format('.1f')(v) + '%',
+      share: d3.format('.1%'),
+      pp: (v) => (v > 0 ? '+' : '') + d3.format('.1f')(v) + '%p'
+    };
+    const GROUP = { main: ['메인', 'main'], sub: ['서브', ''], ref: ['참고', ''] };
+    const ok = (...ids) => ids.every((id) => dash.data(id).status === 'ok');
+    const failed = (...ids) => ids.some((id) => dash.data(id).status === 'error');
+    function failLine(el) {
+      const s = document.createElement('span');
+      s.style.cssText = 'display:flex;align-items:center;justify-content:center;gap:.4rem;height:100%;min-height:inherit;color:var(--color-fg-muted);font-size:var(--cds-font-size-caption)';
+      const dot = document.createElement('i');
+      dot.style.cssText = 'width:.375rem;height:.375rem;border-radius:50%;background:var(--color-bad)';
+      s.append(dot, 'Failed to load');
+      el.replaceChildren(s);
+    }
+    return { ORDER, MAIN, colorOf, GRADES, gColor, gText, F, GROUP, ok, failed, failLine };
+  })();
+
+  document.querySelectorAll('[data-tcolor]').forEach((el) => el.style.setProperty('--tc', MT.colorOf(el.dataset.tcolor)));
+
+  dash.calc('type_share', {
+    inputs: ['types'],
+    title: '유형별 인원·LG판매 비중',
+    description: '유형 인원 ÷ 전체 인원, 유형 1~9월 LG 판매 합(백만원)과 그 합 ÷ 전체 LG 판매 합',
+    fn: (types) => {
+      const lg = (r) => Number(r.lg_p1) + Number(r.lg_p2) + Number(r.lg_p3);
+      const nAll = d3.sum(types, (r) => Number(r.n));
+      const lgAll = d3.sum(types, lg);
+      return types.map((r) => ({ type: r.type, n_share: Number(r.n) / nAll, lg_share: lg(r) / lgAll, lg_total: Math.round(lg(r)) }));
+    }
+  });
+
+  dash.calc('team_samsung', {
+    inputs: ['team'],
+    title: '팀 월평균 판매 (삼성 추정)',
+    description: '삼성 판매 = LG 판매 ÷ MS − LG 판매, 기간 개월 수(5·2·2)로 나눈 추정치',
+    fn: (team) => {
+      const t = team[0];
+      const months = { p1: 5, p2: 2, p3: 2 };
+      return ['p1', 'p2', 'p3'].map((p) => {
+        const lg = Number(t['lg_' + p]);
+        const ms = Number(t['ms_' + p]) / 100;
+        return { period: p, lg_month: lg / months[p], ss_month: (lg / ms - lg) / months[p] };
+      });
+    }
+  });
+
+  dash.draw('v', (el) => {
+    const d = dash.data(el.dataset.source);
+    el.classList.remove('up', 'down', 'flat');
+    if (d.status !== 'ok') { el.textContent = '—'; return; }
+    let rows = d.data || [];
+    if (el.dataset.where) {
+      const i = el.dataset.where.indexOf('=');
+      const k = el.dataset.where.slice(0, i), val = el.dataset.where.slice(i + 1);
+      rows = rows.filter((r) => String(r[k]) === val);
+    }
+    const raw = rows[0] ? rows[0][el.dataset.field] : null;
+    const v = raw == null || raw === '' ? NaN : Number(raw);
+    if (isNaN(v)) { el.textContent = '—'; return; }
+    const f = el.dataset.fmt || 'int';
+    el.textContent = MT.F[f](v);
+    if (f === 'pp') el.classList.add(v > 0 ? 'up' : v < 0 ? 'down' : 'flat');
+  });
+
+  dash.draw('spark', (el) => {
+    el.replaceChildren();
+    if (!MT.ok('types', 'team')) {
+      if (MT.failed('types', 'team')) { el.classList.remove('dash-skeleton'); MT.failLine(el); }
+      return;
+    }
+    el.classList.remove('dash-skeleton');
+    const t = el.dataset.type;
+    const r = dash.data('types').data.find((x) => x.type === t);
+    const tm = dash.data('team').data[0];
+    if (!r || !tm) return;
+    const vals = [r.ms_p1, r.ms_p2, r.ms_p3].map(Number);
+    const tv = [tm.ms_p1, tm.ms_p2, tm.ms_p3].map(Number);
+    const W = Math.max(180, el.clientWidth || 240), H = 106, m = { l: 18, r: 18, t: 18, b: 32 };
+    const P = ['1~5월', '6~7월', '8~9월'];
+    const x = d3.scalePoint(P, [m.l, W - m.r]);
+    const y = d3.scaleLinear([20, 80], [H - m.b, m.t]);
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img')
+      .attr('aria-label', `${r.name_en} MS ${vals.map(MT.F.pct).join(', ')}`);
+    const line = d3.line().x((v, i) => x(P[i])).y((v) => y(v));
+    svg.append('path').attr('d', line(tv)).style('fill', 'none').style('stroke', 'var(--cds-chart-reference)').style('stroke-width', 1.5).style('stroke-dasharray', '2 3');
+    svg.append('path').attr('d', line(vals)).style('fill', 'none').style('stroke', MT.colorOf(t)).style('stroke-width', 2).style('stroke-linecap', 'round').style('stroke-linejoin', 'round');
+    const g = svg.selectAll('g.pt').data(vals).join('g').attr('transform', (v, i) => `translate(${x(P[i])},${y(v)})`);
+    g.append('circle').attr('r', 3.5).style('fill', MT.colorOf(t)).style('stroke', 'var(--color-panel)').style('stroke-width', 1.5);
+    g.append('text').attr('y', (v, i) => (v >= tv[i] ? -7 : 14)).attr('text-anchor', (v, i) => (i === 0 ? 'start' : i === 2 ? 'end' : 'middle'))
+      .attr('dx', (v, i) => (i === 0 ? -4 : i === 2 ? 4 : 0))
+      .style('fill', 'var(--color-fg)').style('font-size', '11px').text((v) => MT.F.pct(v));
+    svg.selectAll('text.ax').data(P).join('text').attr('class', 'ax').attr('x', (p) => x(p)).attr('y', H - 2)
+      .attr('text-anchor', (p, i) => (i === 0 ? 'start' : i === 2 ? 'end' : 'middle')).attr('dx', (p, i) => (i === 0 ? -4 : i === 2 ? 4 : 0))
+      .style('fill', 'var(--color-fg-muted)').style('font-size', '10px').text((p) => p);
+  });
+
+  dash.draw('trend', (el) => {
+    el.replaceChildren();
+    if (!MT.ok('types', 'team')) {
+      if (MT.failed('types', 'team')) { el.classList.remove('dash-skeleton'); MT.failLine(el); }
+      return;
+    }
+    el.classList.remove('dash-skeleton');
+    const types = dash.data('types').data, tm = dash.data('team').data[0];
+    const series = MT.ORDER.filter((t) => t !== 'unmeasured').map((t) => {
+      const r = types.find((x) => x.type === t);
+      return r && { key: t, name: r.name_en, vals: [r.ms_p1, r.ms_p2, r.ms_p3].map(Number), color: MT.colorOf(t), dash: t === 'monitoring' ? '5 4' : null, w: 2 };
+    }).filter(Boolean);
+    series.push({ key: 'team', name: '팀 전체', vals: [tm.ms_p1, tm.ms_p2, tm.ms_p3].map(Number), color: 'var(--color-fg)', dash: '1 4', w: 2.5 });
+
+    const W = Math.max(300, el.clientWidth || 600), H = 300;
+    const narrow = W < 520;
+    const m = { l: 40, r: narrow ? 104 : 140, t: 14, b: 42 };
+    const P = ['1~5월', '6~7월', '8~9월'], PS = ['평시', '전시', '반격기'];
+    const x = d3.scalePoint(P, [m.l + 8, W - m.r]);
+    const y = d3.scaleLinear([20, 80], [H - m.b, m.t]);
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', '유형별 MS 추이');
+
+    const ticks = [20, 30, 40, 50, 60, 70, 80];
+    svg.append('g').selectAll('line').data(ticks).join('line')
+      .attr('x1', m.l).attr('x2', W - m.r + 6).attr('y1', y).attr('y2', y)
+      .style('stroke', 'var(--cds-chart-grid)').style('stroke-width', 1);
+    svg.append('g').selectAll('text').data(ticks).join('text')
+      .attr('x', m.l - 6).attr('y', (d) => y(d) + 4).attr('text-anchor', 'end')
+      .style('fill', 'var(--color-fg-muted)').style('font-size', '11px').text((d) => d + '%');
+    const xl = svg.append('g').selectAll('text').data(P).join('text').attr('x', (p) => x(p)).attr('text-anchor', 'middle').style('font-size', '11px');
+    xl.append('tspan').attr('x', (p) => x(p)).attr('y', H - m.b + 18).style('fill', 'var(--color-fg)').text((p) => p);
+    xl.append('tspan').attr('x', (p) => x(p)).attr('y', H - m.b + 32).style('fill', 'var(--color-fg-muted)').text((p, i) => PS[i]);
+
+    const line = d3.line().x((v, i) => x(P[i])).y((v) => y(v));
+    const lines = svg.append('g').selectAll('g').data(series).join('g');
+    lines.append('path').attr('d', (s) => line(s.vals)).style('fill', 'none').style('stroke', (s) => s.color)
+      .style('stroke-width', (s) => s.w).style('stroke-dasharray', (s) => s.dash).style('stroke-linecap', 'round').style('stroke-linejoin', 'round');
+    lines.selectAll('circle').data((s) => s.vals.map((v, i) => ({ v, i, s }))).join('circle')
+      .attr('cx', (d) => x(P[d.i])).attr('cy', (d) => y(d.v)).attr('r', 3).style('fill', (d) => d.s.color);
+
+    const labels = series.map((s) => ({ s, y: y(s.vals[2]) })).sort((a, b) => a.y - b.y);
+    const gap = 15;
+    for (let i = 1; i < labels.length; i++) if (labels[i].y - labels[i - 1].y < gap) labels[i].y = labels[i - 1].y + gap;
+    const over = labels[labels.length - 1].y - (H - m.b);
+    if (over > 0) labels.forEach((l) => (l.y -= over));
+    for (let i = labels.length - 2; i >= 0; i--) if (labels[i + 1].y - labels[i].y < gap) labels[i].y = labels[i + 1].y - gap;
+    const lx = x(P[2]) + 10;
+    const lab = svg.append('g').selectAll('text').data(labels).join('text').attr('x', lx).attr('y', (l) => l.y + 4).style('font-size', '11px');
+    lab.append('tspan').style('fill', (l) => (l.s.key in MT.MAIN ? l.s.color : 'var(--color-fg)')).style('font-weight', 600).text((l) => l.s.name);
+    lab.append('tspan').attr('dx', 5).style('fill', 'var(--color-fg-muted)').text((l) => MT.F.pct(l.s.vals[2]));
+
+    const tip = document.createElement('div');
+    tip.className = 'mt-tip';
+    tip.hidden = true;
+    el.append(tip);
+    const rule = svg.append('line').attr('y1', m.t).attr('y2', H - m.b).style('stroke', 'var(--cds-chart-axis)').style('stroke-width', 1).style('opacity', 0);
+    const step = x(P[1]) - x(P[0]);
+    svg.append('g').selectAll('rect').data(P).join('rect')
+      .attr('x', (p) => x(p) - step / 2).attr('width', step).attr('y', m.t).attr('height', H - m.t - m.b)
+      .style('fill', 'transparent')
+      .on('mouseenter', function (ev, p) {
+        const i = P.indexOf(p);
+        rule.attr('x1', x(p)).attr('x2', x(p)).style('opacity', 1);
+        tip.replaceChildren();
+        const h = document.createElement('div');
+        h.className = 'mt-tip-h';
+        h.textContent = `${p} ${PS[i]}`;
+        tip.append(h);
+        series.slice().sort((a, b) => b.vals[i] - a.vals[i]).forEach((s) => {
+          const row = document.createElement('div');
+          row.className = 'mt-tip-r';
+          const sw = document.createElement('i');
+          sw.className = 'mt-sw';
+          sw.style.background = s.color;
+          const n = document.createElement('span');
+          n.textContent = s.name;
+          const v = document.createElement('span');
+          v.textContent = MT.F.pct(s.vals[i]);
+          row.append(sw, n, v);
+          tip.append(row);
+        });
+        tip.hidden = false;
+        const scale = el.clientWidth / W;
+        const left = x(p) * scale;
+        const tw = tip.offsetWidth;
+        tip.style.left = Math.max(0, Math.min(el.clientWidth - tw, left + (left + tw + 12 > el.clientWidth ? -tw - 12 : 12))) + 'px';
+        tip.style.top = '8px';
+      })
+      .on('mouseleave', () => { tip.hidden = true; rule.style('opacity', 0); });
+  });
+
+  dash.draw('cmp', (tb) => {
+    tb.replaceChildren();
+    if (!MT.ok('types', 'type_share')) return;
+    const share = dash.data('type_share').data;
+    const rows = dash.data('types').data.slice().sort((a, b) => MT.ORDER.indexOf(a.type) - MT.ORDER.indexOf(b.type));
+    rows.forEach((r) => {
+      const s = share.find((x) => x.type === r.type) || {};
+      const tr = document.createElement('tr');
+      tr.dataset.key = r.type;
+      if (r.group !== 'main') tr.className = r.group;
+      if (r.type === MT.sel) tr.classList.add('is-sel');
+      const td0 = document.createElement('td');
+      const nm = document.createElement('span');
+      nm.className = 'nm';
+      const dot = document.createElement('i');
+      dot.className = 'dot';
+      dot.style.background = MT.colorOf(r.type);
+      const en = document.createElement('span');
+      en.textContent = r.name_en;
+      const ko = document.createElement('span');
+      ko.className = 'ko';
+      ko.textContent = r.name_ko;
+      const badge = document.createElement('span');
+      const gp = MT.GROUP[r.group] || ['', ''];
+      badge.className = 'mt-badge ' + gp[1];
+      badge.textContent = gp[0];
+      nm.append(dot, en, ko, badge);
+      td0.append(nm);
+      tr.append(td0);
+      const cells = [
+        [r.n, 'int'], [s.n_share, 'share'], [r.extra, 'int'], [s.lg_share, 'share'],
+        [r.lg_p1, 'mil'], [r.lg_p2, 'mil'], [r.lg_p3, 'mil'],
+        [r.ms_p1, 'pct'], [r.ms_p2, 'pct'], [r.ms_p3, 'pct'], [r.d21, 'pp'], [r.d32, 'pp']
+      ];
+      cells.forEach(([v, f]) => {
+        const td = document.createElement('td');
+        const n = Number(v);
+        td.textContent = isNaN(n) ? '—' : MT.F[f](n);
+        if (f === 'pp') td.className = n > 0 ? 'up' : n < 0 ? 'down' : 'flat';
+        tr.append(td);
+      });
+      tb.append(tr);
+    });
+  });
+
+  dash.calc('branches', {
+    inputs: ['managers'],
+    title: '유형 × 지점 집계',
+    description: '유형·지점별 매니저 수, 추가관리대상 수, 1~9월 LG 판매 합, 판매 합으로 계산한 가중 MS',
+    fn: (managers) => {
+      const out = [];
+      for (const [type, byBranch] of d3.group(managers, (m) => m.type, (m) => m.branch)) {
+        for (const [branch, ms] of byBranch) {
+          const s = (c) => d3.sum(ms, (m) => Number(m[c]) || 0);
+          const w = (p) => { const l = s('lg_' + p), x = s('ss_' + p); return l + x > 0 ? Math.round((1000 * l) / (l + x)) / 10 : null; };
+          const r = { key: type + '|' + branch, type, branch, capa: ms[0].capa, level: ms[0].level, n: ms.length,
+            extra: ms.filter((m) => m.extra === 'Y').length, lg: Math.round(s('lg_p1') + s('lg_p2') + s('lg_p3')),
+            ms_p1: w('p1'), ms_p2: w('p2'), ms_p3: w('p3') };
+          r.d32 = r.ms_p2 != null && r.ms_p3 != null ? Math.round((r.ms_p3 - r.ms_p2) * 10) / 10 : null;
+          out.push(r);
+        }
+      }
+      return out;
+    }
+  });
+
+  MT.sel = 'core';
+  MT.branch = null;
+  MT.q = '';
+  MT.sort = { k: 'branch', dir: 1 };
+  const cellNum = (v, f) => { const n = v === '' || v == null ? NaN : Number(v); return isNaN(n) ? '—' : MT.F[f](n); };
+  const ppClass = (v) => { const n = v === '' || v == null ? NaN : Number(v); return isNaN(n) ? '' : n > 0 ? 'up' : n < 0 ? 'down' : 'flat'; };
+  const selRows = () => (MT.ok('managers') ? dash.data('managers').data.filter((m) => m.type === MT.sel) : []);
+  const td = (text, cls) => { const c = document.createElement('td'); c.textContent = text; if (cls) c.className = cls; return c; };
+
+  dash.draw('selname', (el) => {
+    if (!MT.ok('types')) { el.textContent = '—'; return; }
+    const r = dash.data('types').data.find((t) => t.type === MT.sel);
+    el.textContent = r ? `${r.name_en} ${r.name_ko}` : '—';
+  });
+
+  dash.draw('selstat', (el) => {
+    if (!MT.ok('managers')) { el.textContent = '—'; return; }
+    const rows = selRows();
+    const k = el.dataset.stat;
+    const v = k === 'branches' ? new Set(rows.map((m) => m.branch)).size
+      : k === 'managers' ? rows.length
+      : k === 'extra' ? rows.filter((m) => m.extra === 'Y').length
+      : Math.round(d3.sum(rows, (m) => (Number(m.lg_p1) || 0) + (Number(m.lg_p2) || 0) + (Number(m.lg_p3) || 0)));
+    el.textContent = MT.F.int(v);
+  });
+
+  dash.draw('branches', (tb) => {
+    tb.replaceChildren();
+    if (!MT.ok('branches')) return;
+    const rows = dash.data('branches').data.filter((b) => b.type === MT.sel)
+      .sort((a, b) => b.n - a.n || b.lg - a.lg || a.branch.localeCompare(b.branch, 'ko'));
+    rows.forEach((b) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = b.key;
+      tr.dataset.branch = b.branch;
+      tr.tabIndex = 0;
+      if (MT.branch === b.branch) tr.className = 'is-sel';
+      tr.append(td(b.branch), td(b.capa || '—'), td(b.level || '—'), td(MT.F.int(b.n)), td(MT.F.int(b.extra)),
+        td(cellNum(b.lg, 'mil')), td(cellNum(b.ms_p1, 'pct')), td(cellNum(b.ms_p2, 'pct')), td(cellNum(b.ms_p3, 'pct')),
+        td(cellNum(b.d32, 'pp'), ppClass(b.d32)));
+      tb.append(tr);
+    });
+  });
+
+  function mgrList() {
+    const q = MT.q.trim().toLowerCase();
+    const { k, dir } = MT.sort;
+    const numeric = !['branch', 'manager', 'extra', 'level'].includes(k);
+    return selRows()
+      .filter((m) => !MT.branch || m.branch === MT.branch)
+      .filter((m) => !q || (m.branch + ' ' + m.manager).toLowerCase().includes(q))
+      .sort((a, b) => {
+        if (numeric) {
+          const x = a[k] === '' ? -Infinity : Number(a[k]), y = b[k] === '' ? -Infinity : Number(b[k]);
+          return x === y ? 0 : (x < y ? -1 : 1) * dir;
+        }
+        return String(a[k] || '').localeCompare(String(b[k] || ''), 'ko') * dir || a.manager.localeCompare(b.manager, 'ko');
+      });
+  }
+
+  dash.draw('mgrs', (tb) => {
+    tb.replaceChildren();
+    if (!MT.ok('managers')) return;
+    mgrList().forEach((m) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = m.id;
+      tr.tabIndex = 0;
+      if (MT.mgrSel && MT.mgrSel.from === 'mgrs' && MT.mgrSel.id === m.id) tr.className = 'is-sel';
+      const ex = document.createElement('td');
+      if (m.extra === 'Y') { const b = document.createElement('span'); b.className = 'mt-badge mt-flag'; b.textContent = 'Y'; ex.append(b); }
+      tr.append(td(m.branch), td(m.manager), ex, td(m.level || '—'),
+        td(cellNum(m.lg_p1, 'mil')), td(cellNum(m.lg_p2, 'mil')), td(cellNum(m.lg_p3, 'mil')),
+        td(cellNum(m.ms_p1, 'pct')), td(cellNum(m.ms_p2, 'pct')), td(cellNum(m.ms_p3, 'pct')),
+        td(cellNum(m.d21, 'pp'), ppClass(m.d21)), td(cellNum(m.d32, 'pp'), ppClass(m.d32)));
+      tb.append(tr);
+    });
+  });
+
+  dash.draw('mgrcount', (el) => { el.textContent = MT.ok('managers') ? MT.F.int(mgrList().length) : '—'; });
+  dash.draw('branchname', (el) => { el.textContent = MT.branch || '—'; });
+
+  function markSel() {
+    document.querySelectorAll('[data-pick]').forEach((el) => {
+      const on = el.dataset.pick === MT.sel;
+      el.classList.toggle('is-sel', on);
+      el.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    document.querySelectorAll('tbody[data-draw="cmp"] tr').forEach((tr) => tr.classList.toggle('is-sel', tr.dataset.key === MT.sel));
+    document.querySelectorAll('#mt-clear-branch').forEach((b) => { b.hidden = !MT.branch; });
+  }
+  function redrawDetail() { ['selname', 'selstat', 'branches', 'mgrs', 'mgrcount', 'branchname'].forEach((n) => dash.draw(n)); markSel(); }
+  function pick(t, scroll) {
+    MT.sel = t;
+    MT.branch = null;
+    clearMgr('mgrs');
+    redrawDetail();
+    if (scroll) document.querySelectorAll('#detail').forEach((s) => s.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  }
+  document.querySelectorAll('[data-pick]').forEach((el) => {
+    el.addEventListener('click', () => pick(el.dataset.pick, !el.classList.contains('mt-chip')));
+    if (el.tagName !== 'BUTTON') el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(el.dataset.pick, true); } });
+  });
+  document.querySelectorAll('[data-tswatch]').forEach((el) => { el.style.background = MT.colorOf(el.dataset.tswatch); });
+  document.querySelectorAll('tbody[data-draw="cmp"]').forEach((tb) => tb.addEventListener('click', (e) => {
+    const tr = e.target.closest('tr[data-key]');
+    if (tr) pick(tr.dataset.key, true);
+  }));
+  const pickBranch = (tr) => { MT.branch = MT.branch === tr.dataset.branch ? null : tr.dataset.branch; redrawDetail(); };
+  document.querySelectorAll('tbody[data-draw="branches"]').forEach((tb) => {
+    tb.addEventListener('click', (e) => { const tr = e.target.closest('tr[data-branch]'); if (tr) pickBranch(tr); });
+    tb.addEventListener('keydown', (e) => { const tr = e.target.closest('tr[data-branch]'); if (tr && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); pickBranch(tr); } });
+  });
+  document.querySelectorAll('#mt-clear-branch').forEach((b) => b.addEventListener('click', () => { MT.branch = null; redrawDetail(); }));
+  document.querySelectorAll('#mt-q').forEach((inp) => inp.addEventListener('input', () => { MT.q = inp.value; dash.draw('mgrs'); dash.draw('mgrcount'); }));
+  document.querySelectorAll('.mt-sortable th[data-sort]').forEach((th) => {
+    th.tabIndex = 0;
+    const go = () => {
+      const k = th.dataset.sort;
+      const textCol = ['branch', 'manager', 'extra', 'level'].includes(k);
+      MT.sort = MT.sort.k === k ? { k, dir: -MT.sort.dir } : { k, dir: textCol ? 1 : -1 };
+      document.querySelectorAll('.mt-sortable th[data-sort]').forEach((h) => {
+        if (h.dataset.sort === MT.sort.k) h.setAttribute('aria-sort', MT.sort.dir > 0 ? 'ascending' : 'descending');
+        else h.removeAttribute('aria-sort');
+      });
+      dash.draw('mgrs');
+    };
+    th.addEventListener('click', go);
+    th.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+  });
+  dash.onData(markSel);
+
+  dash.calc('ms_matrix', {
+    inputs: ['managers'],
+    title: '개인 MS 감소폭 × 6~7월 개인 MS',
+    description: '측정불가 유형·1~5월/6~7월 판매 없는 매니저 제외. 행: 6~7월−1~5월 개인 MS(L4 ≤−20%p, L3 ≤−10, L2 <0, L1 ≥0), 열: 6~7월 개인 MS(A ≥50%, B ≥40, C ≥30, D <30). 판매 비중: 양사 1~9월 판매 ÷ 팀 전체 양사 판매',
+    fn: (managers) => {
+      const v = (m, c) => Number(m[c]) || 0;
+      const ms = (l, s) => (l + s > 0 ? (100 * l) / (l + s) : null);
+      const both = (m) => ['lg_p1', 'lg_p2', 'lg_p3', 'ss_p1', 'ss_p2', 'ss_p3'].reduce((a, c) => a + v(m, c), 0);
+      const total = d3.sum(managers, both);
+      const cells = new Map();
+      for (const m of managers) {
+        if (m.type === 'unmeasured') continue;
+        const m1 = ms(v(m, 'lg_p1'), v(m, 'ss_p1')), m2 = ms(v(m, 'lg_p2'), v(m, 'ss_p2'));
+        if (m1 == null || m2 == null) continue;
+        const g = m2 - m1;
+        const L = g <= -20 ? 'L4' : g <= -10 ? 'L3' : g < 0 ? 'L2' : 'L1';
+        const C = m2 >= 50 ? 'A' : m2 >= 40 ? 'B' : m2 >= 30 ? 'C' : 'D';
+        for (const t of ['all', m.type]) for (const l of [L, 'all']) for (const c of [C, 'all']) {
+          const k = t + '|' + l + '|' + c;
+          if (!cells.has(k)) cells.set(k, []);
+          cells.get(k).push(m);
+        }
+      }
+      return [...cells].map(([key, list]) => {
+        const [type, lv, col] = key.split('|');
+        const s = (c) => d3.sum(list, (m) => v(m, c));
+        const w = (p) => (s('lg_' + p) + s('ss_' + p) > 0 ? Math.round((1000 * s('lg_' + p)) / (s('lg_' + p) + s('ss_' + p))) / 10 : null);
+        return { key, type, lv, col, n: list.length, share: d3.sum(list, both) / total, ms_p1: w('p1'), ms_p2: w('p2'), ms_p3: w('p3') };
+      });
+    }
+  });
+
+  MT.mx = 'all';
+  MT.mxCell = (m) => {
+    const v = (c) => Number(m[c]) || 0;
+    const ms = (l, s) => (l + s > 0 ? (100 * l) / (l + s) : null);
+    if (m.type === 'unmeasured') return null;
+    const m1 = ms(v('lg_p1'), v('ss_p1')), m2 = ms(v('lg_p2'), v('ss_p2'));
+    if (m1 == null || m2 == null) return null;
+    const g = m2 - m1;
+    return { L: g <= -20 ? 'L4' : g <= -10 ? 'L3' : g < 0 ? 'L2' : 'L1', C: m2 >= 50 ? 'A' : m2 >= 40 ? 'B' : m2 >= 30 ? 'C' : 'D' };
+  };
+
+  dash.draw('mx', (el) => {
+    const f = el.dataset.f;
+    if (!MT.ok('ms_matrix')) { el.textContent = '—'; return; }
+    const key = (el.dataset.l === 'all' && el.dataset.c === 'all' ? MT.mx : MT.mx) + '|' + el.dataset.l + '|' + el.dataset.c;
+    const r = dash.data('ms_matrix').data.find((x) => x.key === key);
+    if (f === 'n') {
+      el.textContent = r ? MT.F.int(r.n) : '0';
+      const cellEl = el.closest('.mt-mx-cell');
+      if (cellEl) {
+        cellEl.style.setProperty('--mxc', 'var(--lg-red)');
+        cellEl.style.setProperty('--heat', r ? Math.round(Math.min(1, r.share / 0.12) * 28) + '%' : '0%');
+      }
+      return;
+    }
+    if (f === 'share') { el.textContent = r ? d3.format('.1%')(r.share) : '—'; return; }
+    el.replaceChildren();
+    if (!r) { el.textContent = '—'; return; }
+    const p = (x) => (x == null ? '—' : MT.F.pct(x));
+    const mid = document.createElement('span');
+    mid.className = 'mid';
+    mid.textContent = p(r.ms_p2);
+    el.append(p(r.ms_p1) + ' → ', mid, ' → ' + p(r.ms_p3));
+  });
+
+  MT.mxSel = null;
+  const LNAME = { L4: 'Level4', L3: 'Level3', L2: 'Level2', L1: 'Level1' };
+  const CNAME = { A: '우수', B: '양호', C: '미흡', D: '부진' };
+  const mxMembers = () => {
+    if (!MT.mxSel || !MT.ok('managers')) return [];
+    return dash.data('managers').data.filter((m) => {
+      if (MT.mx !== 'all' && m.type !== MT.mx) return false;
+      const c = MT.mxCell(m);
+      return c && c.L === MT.mxSel.l && c.C === MT.mxSel.c;
+    }).sort((a, b) => Number(b.ms_p2) - Number(a.ms_p2));
+  };
+
+  dash.draw('mxsel', (el) => {
+    if (!MT.mxSel) { el.textContent = '매니저 명단'; return; }
+    let tname = '전체 유형';
+    if (MT.mx !== 'all' && MT.ok('types')) {
+      const r = dash.data('types').data.find((x) => x.type === MT.mx);
+      if (r) tname = r.name_en;
+    }
+    el.textContent = `${LNAME[MT.mxSel.l]} × ${CNAME[MT.mxSel.c]} · ${tname} · ${MT.F.int(mxMembers().length)}명`;
+  });
+
+  dash.draw('mxlist', (tb) => {
+    tb.replaceChildren();
+    mxMembers().forEach((m) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = m.id;
+      tr.tabIndex = 0;
+      if (MT.mgrSel && MT.mgrSel.from === 'mx' && MT.mgrSel.id === m.id) tr.className = 'is-sel';
+      const nm = document.createElement('td');
+      const wrap = document.createElement('span');
+      wrap.className = 'nm';
+      const dot = document.createElement('i');
+      dot.className = 'dot';
+      dot.style.background = MT.colorOf(m.type);
+      const name = document.createElement('span');
+      name.textContent = m.manager;
+      wrap.append(dot, name);
+      nm.append(wrap);
+      const ex = document.createElement('td');
+      if (m.extra === 'Y') { const b = document.createElement('span'); b.className = 'mt-badge mt-flag'; b.textContent = 'Y'; ex.append(b); }
+      const p2 = td(cellNum(m.ms_p2, 'pct'));
+      p2.style.fontWeight = '600';
+      tr.append(nm, td(m.branch), ex, td(cellNum(m.ms_p1, 'pct')), p2, td(cellNum(m.ms_p3, 'pct')),
+        td(cellNum(m.d21, 'pp'), ppClass(m.d21)), td(cellNum(m.d32, 'pp'), ppClass(m.d32)));
+      tb.append(tr);
+    });
+  });
+
+  function setMxSel(l, c) {
+    clearMgr('mx');
+    MT.mxSel = MT.mxSel && MT.mxSel.l === l && MT.mxSel.c === c ? null : { l, c };
+    document.querySelectorAll('.mt-mx-cell').forEach((x) => {
+      const on = !!MT.mxSel && x.dataset.l === MT.mxSel.l && x.dataset.c === MT.mxSel.c;
+      x.classList.toggle('is-sel', on);
+      x.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    document.querySelectorAll('#mx-tablewrap').forEach((w) => { w.hidden = !MT.mxSel; });
+    document.querySelectorAll('#mx-hint').forEach((h) => { h.hidden = !!MT.mxSel; });
+    dash.draw('mxsel');
+    dash.draw('mxlist');
+    if (MT.mxSel) document.querySelectorAll('#mx-detail').forEach((p) => p.scrollIntoView({ behavior: 'smooth', block: 'nearest' }));
+  }
+  document.querySelectorAll('.mt-mx-cell').forEach((cellEl) => {
+    cellEl.addEventListener('click', () => setMxSel(cellEl.dataset.l, cellEl.dataset.c));
+    cellEl.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setMxSel(cellEl.dataset.l, cellEl.dataset.c); } });
+  });
+
+  function markMx() {
+    document.querySelectorAll('[data-mxpick]').forEach((b) => {
+      const on = b.dataset.mxpick === MT.mx;
+      b.classList.toggle('is-sel', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+  document.querySelectorAll('[data-mxpick]').forEach((b) => b.addEventListener('click', () => {
+    MT.mx = b.dataset.mxpick;
+    clearMgr('mx');
+    markMx();
+    dash.draw('mx');
+    dash.draw('mxlist');
+    dash.draw('mxsel');
+  }));
+  markMx();
+
+  MT.mgrSel = null;
+  function clearMgr(from) {
+    if (MT.mgrSel && (!from || MT.mgrSel.from === from)) MT.mgrSel = null;
+    document.querySelectorAll('[data-trend-from]').forEach((b) => { b.hidden = !MT.mgrSel || b.dataset.trendFrom !== MT.mgrSel.from; });
+  }
+  function pickMgr(id, from) {
+    MT.mgrSel = MT.mgrSel && MT.mgrSel.id === id && MT.mgrSel.from === from ? null : { id, from };
+    document.querySelectorAll('[data-trend-from]').forEach((b) => { b.hidden = !MT.mgrSel || b.dataset.trendFrom !== MT.mgrSel.from; });
+    dash.draw('mgrtrend');
+    dash.draw('mgrs');
+    dash.draw('mxlist');
+    if (MT.mgrSel) document.querySelectorAll(`[data-trend-from="${from}"]`).forEach((b) => b.scrollIntoView({ behavior: 'smooth', block: 'nearest' }));
+  }
+  [['tbody[data-draw="mgrs"]', 'mgrs'], ['tbody[data-draw="mxlist"]', 'mx']].forEach(([sel, from]) => {
+    document.querySelectorAll(sel).forEach((tb) => {
+      tb.addEventListener('click', (e) => { const tr = e.target.closest('tr[data-key]'); if (tr) pickMgr(tr.dataset.key, from); });
+      tb.addEventListener('keydown', (e) => { const tr = e.target.closest('tr[data-key]'); if (tr && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); pickMgr(tr.dataset.key, from); } });
+    });
+  });
+  document.querySelectorAll('[data-trend-close]').forEach((b) => b.addEventListener('click', () => { clearMgr(); dash.draw('mgrs'); dash.draw('mxlist'); }));
+
+  dash.draw('mgrtrend', (el) => {
+    el.replaceChildren();
+    const sel = MT.mgrSel;
+    if (!sel || sel.from !== el.dataset.from || !MT.ok('managers', 'types', 'team')) return;
+    const m = dash.data('managers').data.find((x) => x.id === sel.id);
+    if (!m) return;
+    const ty = dash.data('types').data.find((x) => x.type === m.type) || {};
+    const tm = dash.data('team').data[0];
+    const nv = (v) => (v === '' || v == null || isNaN(Number(v)) ? null : Number(v));
+    const P = ['1~5월', '6~7월', '8~9월'], PS = ['평시', '전시', '반격기'];
+    const series = [
+      { name: m.manager, vals: [m.ms_p1, m.ms_p2, m.ms_p3].map(nv), color: 'var(--lg-red, var(--color-fg))', w: 3, dash: null, label: true },
+      { name: `${ty.name_en || ''} 평균`, vals: [ty.ms_p1, ty.ms_p2, ty.ms_p3].map(nv), color: MT.colorOf(m.type), w: 2, dash: '6 4' },
+      { name: '팀 평균', vals: [tm.ms_p1, tm.ms_p2, tm.ms_p3].map(nv), color: 'var(--color-fg-muted)', w: 2, dash: '2 3' }
+    ];
+
+    const head = document.createElement('div');
+    head.className = 'mt-mt-head';
+    const nm = document.createElement('b');
+    nm.className = 'mt-mt-name';
+    nm.textContent = m.manager;
+    const meta = document.createElement('span');
+    meta.className = 'mt-small';
+    meta.textContent = `${m.branch} · ${ty.name_en || ''} ${ty.name_ko || ''} · 지점군 ${m.level || '—'}${m.extra === 'Y' ? ' · 추가관리대상' : ''}`;
+    head.append(nm, meta);
+    el.append(head);
+
+    const W = Math.max(280, el.clientWidth || 560), H = 230;
+    const m0 = { l: 40, r: W < 480 ? 96 : 130, t: 22, b: 40 };
+    const all = series.flatMap((s) => s.vals).filter((v) => v != null);
+    const lo = Math.max(0, Math.floor((d3.min(all) - 8) / 10) * 10), hi = Math.min(100, Math.ceil((d3.max(all) + 8) / 10) * 10);
+    const x = d3.scalePoint(P, [m0.l + 10, W - m0.r]);
+    const y = d3.scaleLinear([lo, hi], [H - m0.b, m0.t]);
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img')
+      .attr('aria-label', `${m.manager} MS 추이 ${series[0].vals.map((v) => (v == null ? '없음' : MT.F.pct(v))).join(', ')}`);
+    const ticks = y.ticks(5);
+    svg.append('g').selectAll('line').data(ticks).join('line').attr('x1', m0.l).attr('x2', W - m0.r + 6).attr('y1', y).attr('y2', y)
+      .style('stroke', 'var(--cds-chart-grid)').style('stroke-width', 1);
+    svg.append('g').selectAll('text').data(ticks).join('text').attr('x', m0.l - 6).attr('y', (v) => y(v) + 4).attr('text-anchor', 'end')
+      .style('fill', 'var(--color-fg-muted)').style('font-size', '11px').text((v) => v + '%');
+    const xl = svg.append('g').selectAll('text').data(P).join('text').attr('text-anchor', 'middle').style('font-size', '11px');
+    xl.append('tspan').attr('x', (p) => x(p)).attr('y', H - m0.b + 18).style('fill', 'var(--color-fg)').text((p) => p);
+    xl.append('tspan').attr('x', (p) => x(p)).attr('y', H - m0.b + 32).style('fill', 'var(--color-fg-muted)').text((p, i) => PS[i]);
+
+    const line = d3.line().defined((v) => v != null).x((v, i) => x(P[i])).y((v) => y(v));
+    series.slice().reverse().forEach((s) => {
+      svg.append('path').attr('d', line(s.vals)).style('fill', 'none').style('stroke', s.color).style('stroke-width', s.w)
+        .style('stroke-dasharray', s.dash).style('stroke-linecap', 'round').style('stroke-linejoin', 'round');
+      s.vals.forEach((v, i) => {
+        if (v == null) return;
+        svg.append('circle').attr('cx', x(P[i])).attr('cy', y(v)).attr('r', s.label ? 4.5 : 3).style('fill', s.color)
+          .style('stroke', 'var(--color-panel)').style('stroke-width', 1.5);
+      });
+    });
+    const me = series[0];
+    me.vals.forEach((v, i) => {
+      if (v == null) return;
+      const others = series.slice(1).map((s) => s.vals[i]).filter((o) => o != null);
+      const above = others.every((o) => v >= o) || v > d3.mean(others);
+      svg.append('text').attr('x', x(P[i])).attr('y', y(v) + (above ? -10 : 18)).attr('text-anchor', 'middle')
+        .style('fill', me.color).style('font-size', '12px').style('font-weight', 700).text(MT.F.pct(v));
+    });
+    const labels = series.map((s) => ({ s, v: s.vals[2] != null ? s.vals[2] : s.vals[1] })).filter((l) => l.v != null)
+      .map((l) => ({ ...l, y: y(l.v) })).sort((a, b) => a.y - b.y);
+    for (let i = 1; i < labels.length; i++) if (labels[i].y - labels[i - 1].y < 15) labels[i].y = labels[i - 1].y + 15;
+    labels.forEach((l) => {
+      svg.append('text').attr('x', x(P[2]) + 12).attr('y', l.y + 4).style('font-size', '11px')
+        .style('fill', l.s.label ? l.s.color : 'var(--color-fg-muted)').style('font-weight', l.s.label ? 700 : 400).text(l.s.name);
+    });
+
+    const sales = document.createElement('div');
+    sales.className = 'mt-mt-sales';
+    const fmt = (v) => (nv(v) == null ? '—' : MT.F.mil(nv(v)));
+    [['LG 판매', ['lg_p1', 'lg_p2', 'lg_p3']], ['삼성 판매', ['ss_p1', 'ss_p2', 'ss_p3']]].forEach(([lbl, cols]) => {
+      const row = document.createElement('span');
+      row.textContent = `${lbl} ${cols.map((c) => fmt(m[c])).join(' → ')}백만원`;
+      sales.append(row);
+    });
+    const gap = document.createElement('span');
+    gap.textContent = `MS 증감 6~7월 ${nv(m.d21) == null ? '—' : MT.F.pp(nv(m.d21))} · 8~9월 ${nv(m.d32) == null ? '—' : MT.F.pp(nv(m.d32))}`;
+    sales.append(gap);
+    el.append(sales);
+  });
+</script>
+</body>
+</html>
