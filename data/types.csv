@@ -1,7 +1,0 @@
-type,name_en,name_ko,group,n,extra,lg_p1,lg_p2,lg_p3,ms_p1,ms_p2,ms_p3,d21,d32
-core,Core,코어,main,37,0,3747,1856,1226,67.9,52.0,69.8,-15.9,17.8
-swing,Swing,스윙,main,37,0,3269,1476,1165,62.3,37.6,65.3,-24.7,27.7
-rising,Rising,라이징,main,46,0,3479,2453,1605,51.3,53.9,67.3,2.6,13.4
-challenge,Challenge,챌린지,main,56,0,6210,2386,2713,53.0,27.2,66.0,-25.8,38.8
-monitoring,Monitoring,모니터링,sub,76,12,4740,2714,2752,36.4,31.7,61.3,-4.8,29.7
-unmeasured,Unmeasurable,측정불가,ref,51,0,405,216,385,58.4,44.4,75.5,-13.9,31.1

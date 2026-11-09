@@ -60,12 +60,15 @@
   document.addEventListener('DOMContentLoaded', function () {
     ready = true;
     runAll();
-    Promise.all(Object.keys(SOURCES).map(function (id) {
-      return fetch(SOURCES[id], { cache: 'no-cache' })
-        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
-        .then(function (txt) { var rows = d3.csvParse(txt.replace(/^﻿/, '')); store[id] = { status: 'ok', data: rows, columns: rows.columns }; })
-        .catch(function (e) { console.error('load ' + id, e); store[id] = { status: 'error', data: [], message: String(e) }; });
-    })).then(function () {
+    Promise.resolve(window.__authReady).then(function () {
+      return Promise.all(Object.keys(SOURCES).map(function (id) {
+        var text = window.__bundle ? Promise.resolve(window.__bundle[id]) : fetch(SOURCES[id], { cache: 'no-cache' })
+          .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); });
+        return text
+          .then(function (txt) { var rows = d3.csvParse(txt.replace(/^\uFEFF/, '')); store[id] = { status: 'ok', data: rows, columns: rows.columns }; })
+          .catch(function (e) { console.error('load ' + id, e); store[id] = { status: 'error', data: [], message: String(e) }; });
+      }));
+    }).then(function () {
       Object.keys(calcs).forEach(function (k) { calcs[k].cache = null; });
       runAll();
     });

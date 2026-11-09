@@ -278,6 +278,17 @@
   .mt-mix .mt-tt:not(.on) b { color: var(--color-fg); font-weight: 600; }
   .mt-mix .mt-tt.on { color: var(--color-fg); font-weight: 700; }
 
+  /* Background illustrations on the type tiles */
+  .mt-st[data-tcolor] { position: relative; overflow: hidden; }
+  .mt-st[data-tcolor] > :not(.mt-st-art) { position: relative; z-index: 1; }
+  .mt-st-art { position: absolute; top: 22px; right: 8px; width: 90px; height: 52px; z-index: 0; pointer-events: none; }
+  .mt-st-art .f { fill: var(--tc); opacity: .2; }
+  .mt-st-art .l { fill: none; stroke: var(--tc); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: .55; }
+  .mt-st-art .b { stroke-width: 6; opacity: .75; }
+  .mt-st-art .d { stroke-dasharray: 3 8; }
+  .mt-st-art .p { fill: var(--tc); opacity: .8; }
+  @media (max-width: 40rem) { .mt-st-art { top: 25px; right: 6px; width: 52px; height: 31px; } }
+
   /* ---------- Phone layout ---------- */
   @media (max-width: 40rem) {
     .mt-title { font-size: 1.55rem; word-break: keep-all; }
@@ -323,6 +334,22 @@
     .mt-selstats { grid-template-columns: 1fr 1fr; gap: 8px; }
     .mt-big { font-size: 1.3rem; }
   }
+</style>
+<style>
+  html.locked .site { display: none; }
+  #login-gate { min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; padding: 16px; box-sizing: border-box; }
+  .login-card { width: 100%; max-width: 22rem; display: flex; flex-direction: column; gap: 12px; padding: 28px 24px; box-sizing: border-box; background: var(--color-panel); border: 1px solid var(--color-border-line); border-top: 4px solid #A50034; border-radius: 10px; }
+  .login-brand { color: #A50034; font-size: 13px; font-weight: 700; }
+  .login-card h1 { margin: 0; font-size: 24px; font-weight: 700; }
+  .login-card p { margin: 0; color: var(--color-fg-muted); font-size: 13px; line-height: 1.5; }
+  .login-card label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; }
+  .login-card input { font: inherit; font-size: 16px; padding: 10px 12px; color: var(--color-fg); background: var(--color-bg); border: 1px solid var(--color-border-line); border-radius: 8px; }
+  .login-card input:focus { outline: 2px solid #A50034; outline-offset: 0; }
+  .login-card button { font: inherit; font-size: 15px; font-weight: 700; padding: 12px; color: #FFFFFF; background: #A50034; border: 0; border-radius: 8px; cursor: pointer; }
+  .login-card button:disabled { opacity: .7; cursor: wait; }
+  .login-err { color: #C2410C; font-size: 13px; font-weight: 600; }
+  @media (prefers-color-scheme: dark) { .login-brand { color: #FF6B9A; } .login-err { color: #FB923C; } }
+  .login-out { font: inherit; color: inherit; background: none; border: 0; padding: 0 0 0 6px; text-decoration: underline; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -590,8 +617,9 @@
     </dl>
   </details>
 </div>
-<p class="site-foot">LG전자 혼매호남팀 · 매니저명은 코드로 표시 · 데이터 기준 2026년 11월 7일 (1~9월 실적, MASTER 시트)</p>
+<p class="site-foot">LG전자 혼매호남팀 내부용 · 데이터 기준 2026년 11월 7일 (1~9월 실적, MASTER 시트)</p>
 </main>
+<script src="auth.js"></script>
 <script src="vendor/d3.min.js"></script>
 <script src="dash-shim.js"></script>
 <script>
@@ -631,6 +659,19 @@
   })();
 
   document.querySelectorAll('[data-tcolor]').forEach((el) => el.style.setProperty('--tc', MT.colorOf(el.dataset.tcolor)));
+  // Background illustration for each type tile, drawn in the type's own color.
+  const TILE_ART = {
+    core: '<path class="f" d="M140 8 L182 22 V62 C182 88 162 104 140 114 C118 104 98 88 98 62 V22 Z"/><path class="l" d="M140 8 L182 22 V62 C182 88 162 104 140 114 C118 104 98 88 98 62 V22 Z"/><path class="l b" d="M120 60 L135 76 L162 44"/>',
+    rising: '<path class="f" d="M10 88 C40 80 60 96 84 90 S130 56 150 40 L184 14 V120 H10 Z"/><path class="l b" d="M10 88 C40 80 60 96 84 90 S130 56 150 40 L184 14"/><path class="l b" d="M160 12 H186 V38"/>',
+    swing: '<path class="l d" d="M10 34 H190"/><path class="f" d="M58 34 L104 98 L150 34 Z"/><path class="l b" d="M10 34 H58 L104 98 L150 34 H190"/><circle class="p" cx="150" cy="34" r="7"/>',
+    challenge: '<path class="f" d="M10 14 C40 14 56 20 72 52 C86 84 96 112 108 112 C122 112 132 82 146 52 C160 24 176 20 192 20 Z"/><path class="l b" d="M10 14 C40 14 56 20 72 52 C86 84 96 112 108 112 C122 112 132 82 146 52 C160 24 176 20 192 20"/><path class="l" d="M108 26 V84 M94 70 L108 86 L122 70"/>',
+    monitoring: '<circle class="f" cx="130" cy="50" r="38"/><circle class="l b" cx="130" cy="50" r="38"/><path class="l b" d="M158 78 L188 110"/><path class="l" d="M106 58 L121 44 L136 58 L153 38"/>'
+  };
+  document.querySelectorAll('.mt-st[data-tcolor]').forEach((el) => {
+    const art = TILE_ART[el.dataset.tcolor];
+    if (!art || el.querySelector('.mt-st-art')) return;
+    el.insertAdjacentHTML('afterbegin', '<svg class="mt-st-art" viewBox="0 0 200 120" preserveAspectRatio="xMaxYMid meet" aria-hidden="true" focusable="false">' + art + '</svg>');
+  });
 
   dash.calc('type_share', {
     inputs: ['types'],
