@@ -9,10 +9,19 @@
   var b64 = function (buf) { return btoa(String.fromCharCode.apply(null, new Uint8Array(buf))); };
   var unb64 = function (s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); };
   var store = {
-    get: function () { try { return sessionStorage.getItem(KEY_SLOT); } catch (e) { return null; } },
-    set: function (v) { try { sessionStorage.setItem(KEY_SLOT, v); } catch (e) {} },
-    clear: function () { try { sessionStorage.removeItem(KEY_SLOT); } catch (e) {} }
+    get: function () { try { return localStorage.getItem(KEY_SLOT); } catch (e) { return null; } },
+    set: function (v) { try { localStorage.setItem(KEY_SLOT, v); } catch (e) {} },
+    clear: function () { try { localStorage.removeItem(KEY_SLOT); } catch (e) {} }
   };
+
+  // One-tap link: "#k=<key>" logs in once and is removed from the address bar.
+  // The part after # is never sent to the server. The device then stays logged in.
+  function keyFromLink() {
+    var m = /^#k=([A-Za-z0-9_-]+)$/.exec(location.hash);
+    if (!m) return null;
+    history.replaceState(null, '', location.pathname + location.search);
+    return m[1].replace(/-/g, '+').replace(/_/g, '/');
+  }
 
   function fetchBytes(url) {
     return fetch(url, { cache: 'no-cache' }).then(function (r) {
@@ -123,7 +132,7 @@
     form.username.focus();
   }
 
-  var saved = store.get();
+  var saved = keyFromLink() || store.get();
   if (saved) {
     crypto.subtle.importKey('raw', unb64(saved), 'AES-GCM', true, ['decrypt']).then(openWith).catch(function () {
       store.clear();
