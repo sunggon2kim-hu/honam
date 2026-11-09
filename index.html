@@ -370,6 +370,57 @@
 
   .mt-ty-pill { flex: none; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 800; line-height: 1.5; color: color-mix(in srgb, var(--tc) 72%, #000000); background: color-mix(in srgb, var(--tc) 18%, #FFFFFF); border: 1px solid color-mix(in srgb, var(--tc) 55%, #FFFFFF); }
 
+  /* Selecting a top card: it springs forward while the others recede */
+  .mt-strip .mt-st[data-pick] { transition: transform .5s cubic-bezier(.2, .9, .25, 1), box-shadow .5s ease, opacity .45s ease, filter .45s ease; }
+  .mt-strip.has-sel .mt-st[data-pick]:not(.is-sel) { opacity: .3; filter: grayscale(.9) blur(.6px); transform: scale(.94); }
+  .mt-strip.has-sel .mt-st[data-pick]:not(.is-sel):hover, .mt-strip.has-sel .mt-st[data-pick]:not(.is-sel):focus-visible { opacity: .92; filter: grayscale(.1); transform: translateY(-3px) scale(.98); }
+  .mt-strip .mt-st-hero > .mt-st-head, .mt-strip .mt-st-hero > .mt-st-body { z-index: 2; }
+  .mt-strip .mt-st.mt-st-hero.is-sel { z-index: 3; transform: translateY(-4px) scale(1.06); box-shadow: 0 24px 52px color-mix(in srgb, var(--tc) 58%, transparent), 0 0 0 1px var(--tc); animation: mt-pick .65s cubic-bezier(.2, .9, .25, 1), mt-ring .85s ease-out .1s; }
+  .mt-strip .mt-st.mt-st-sub.is-sel { z-index: 3; transform: scale(1.02); box-shadow: 0 12px 30px color-mix(in srgb, var(--tc) 50%, transparent), 0 0 0 2px var(--tc); }
+  .mt-st-hero .mt-st-photo { overflow: hidden; transition: transform .8s cubic-bezier(.2, .8, .2, 1); }
+  .mt-st-hero.is-sel .mt-st-photo { transform: scale(1.12); }
+  .mt-st-hero.is-sel .mt-st-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 32%, rgba(255, 255, 255, .7) 50%, transparent 68%); transform: translateX(-130%); animation: mt-sheen .95s ease-out .15s; pointer-events: none; }
+  .mt-st-hero .mt-st-n { transition: color .35s ease; }
+  .mt-st-hero.is-sel .mt-st-n { color: color-mix(in srgb, var(--tc) 82%, #000000); animation: mt-num .6s cubic-bezier(.2, .9, .25, 1) .08s backwards; }
+  .mt-st-hero.is-sel .mt-st-ico { animation: mt-ico .7s cubic-bezier(.2, .9, .25, 1) .1s backwards; }
+  @keyframes mt-pick { 0% { transform: scale(.92); } 55% { transform: translateY(-14px) scale(1.1); } 100% { transform: translateY(-4px) scale(1.06); } }
+  @keyframes mt-ring { 0% { outline-offset: 2px; outline-color: var(--tc); } 100% { outline-offset: 20px; outline-color: transparent; } }
+  @keyframes mt-sheen { from { transform: translateX(-130%); } to { transform: translateX(130%); } }
+  @keyframes mt-num { 0% { transform: scale(.6); opacity: 0; } 60% { transform: scale(1.22); opacity: 1; } 100% { transform: scale(1); } }
+  @keyframes mt-ico { 0% { transform: rotate(-25deg) scale(.5); } 60% { transform: rotate(10deg) scale(1.3); } 100% { transform: rotate(0) scale(1); } }
+  @media (max-width: 40rem) {
+    .mt-strip .mt-st.mt-st-hero.is-sel { transform: translateY(-2px) scale(1.03); }
+    @keyframes mt-pick { 0% { transform: scale(.95); } 55% { transform: translateY(-6px) scale(1.06); } 100% { transform: translateY(-2px) scale(1.03); } }
+    .mt-strip.has-sel .mt-st[data-pick]:not(.is-sel) { transform: scale(.96); }
+  }
+
+  /* Matrix tinted in the chosen type's color */
+  .mt-mx-cell { transition: box-shadow .2s ease, background-color .45s ease var(--d, 0ms); }
+  .mt-mx-corner, .mt-mx-ch, .mt-mx-rh { transition: background-color .45s ease; }
+  .mt-mx-name, .mt-mx-def, .mt-mx-axis, .mt-mx-traj .mid, .mt-mx-sh { transition: color .35s ease; }
+  .mt-mx.is-typed { --mxk: color-mix(in srgb, var(--mxt) 78%, #000000); }
+  .mt-mx.is-typed .mt-mx-corner, .mt-mx.is-typed .mt-mx-ch, .mt-mx.is-typed .mt-mx-rh { background: color-mix(in srgb, var(--mxt) 13%, var(--color-panel)); }
+  .mt-mx.is-typed .mt-mx-name, .mt-mx.is-typed .mt-mx-def, .mt-mx.is-typed .mt-mx-axis, .mt-mx.is-typed .mt-mx-traj .mid, .mt-mx.is-typed .mt-mx-cell .mt-mx-sh { color: var(--mxk); }
+  .mt-mx.is-typed .mt-mx-cell.is-sel { box-shadow: 0 0 0 2px var(--mxt) inset; }
+  .mt-chip[data-mxpick] { transition: background-color .25s ease, border-color .25s ease, color .25s ease; }
+  .mt-chip[data-mxpick].is-sel:not([data-mxpick="all"]) { background: color-mix(in srgb, var(--chipc) 88%, #000000); border-color: color-mix(in srgb, var(--chipc) 88%, #000000); color: #FFFFFF; }
+  @media (prefers-reduced-motion: reduce) {
+    .mt-strip .mt-st.mt-st-hero.is-sel, .mt-st-hero.is-sel .mt-st-photo::after, .mt-st-hero.is-sel .mt-st-n, .mt-st-hero.is-sel .mt-st-ico { animation: none; }
+    .mt-st-hero .mt-st-photo { transition: none; }
+    .mt-strip .mt-st[data-pick], .mt-mx-cell, .mt-mx-corner, .mt-mx-ch, .mt-mx-rh, .mt-chip[data-mxpick] { transition: none; }
+  }
+
+  /* Clickable type counts and type-colored manager cards */
+  .mt-mix { gap: 2px; }
+  .mt-tt-btn { font: inherit; padding: 2px 7px; background: transparent; border: 1px solid transparent; border-radius: 999px; cursor: pointer; transition: background-color .2s ease, border-color .2s ease; }
+  .mt-tt-btn:hover, .mt-tt-btn:focus-visible { background: color-mix(in srgb, var(--tc) 18%, var(--color-panel)); border-color: var(--tc); outline: none; }
+  .mt-tt-btn.on { background: color-mix(in srgb, var(--tc) 14%, var(--color-panel)); border-color: color-mix(in srgb, var(--tc) 45%, var(--color-panel)); }
+  .mt-br-box .mt-br-mgr, .mt-q-res .mt-br-mgr { background: color-mix(in srgb, var(--tc) 13%, var(--color-panel)); border-color: color-mix(in srgb, var(--tc) 28%, var(--color-panel)); transition: border-color .2s ease, background-color .2s ease; }
+  .mt-br-box .mt-br-mgr:hover, .mt-br-box .mt-br-mgr:focus-visible, .mt-q-res .mt-br-mgr:hover, .mt-q-res .mt-br-mgr:focus-visible { border-color: var(--tc); background: color-mix(in srgb, var(--tc) 22%, var(--color-panel)); }
+  .mt-br-box .mt-br-mgr.is-sel { border-color: var(--tc); box-shadow: 0 0 0 1px var(--tc) inset; background: color-mix(in srgb, var(--tc) 24%, var(--color-panel)); }
+  .mt-click tbody[data-draw="branches"] tr.is-sel td { background: color-mix(in srgb, var(--selc) 14%, var(--color-panel)); }
+  .mt-table.mt-mt-table tr.mt-mt-me td { background: color-mix(in srgb, var(--tc, var(--lg-red)) 14%, var(--color-panel)); }
+
   /* Photo cards for the four main types */
   .mt-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .mt-st-total, .mt-st.mt-st-sub { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: center; column-gap: 1.5rem; }
@@ -656,7 +707,7 @@
 
     <div class="mt-panel">
       <h3>지점별/매니저별 현황</h3>
-      <p>선택한 유형의 매니저가 있는 지점. 매니저 수가 많은 순. 지점을 클릭하면 그 지점의 매니저 명단이 바로 아래에 펼쳐지고, 그 유형의 실행방안도 함께 나옵니다. 매니저 이름을 클릭하면 실적 그래프와 데이터, 해당 유형의 실행방안이 나옵니다. MS는 지점 내 이 유형 매니저의 판매 합으로 계산</p>
+      <p>선택한 유형의 매니저가 있는 지점. 매니저 수가 많은 순. 유형별 인원에서 유형을 클릭하면 그 지점의 해당 유형 매니저가 바로 보입니다. 지점을 클릭하면 그 지점의 매니저 명단이 바로 아래에 펼쳐지고, 그 유형의 실행방안도 함께 나옵니다. 매니저 이름을 클릭하면 실적 그래프와 데이터, 해당 유형의 실행방안이 나옵니다. MS는 지점 내 이 유형 매니저의 판매 합으로 계산</p>
       <div class="mt-tools">
         <input type="search" id="mt-q" class="mt-search" placeholder="지점·매니저 이름 검색" aria-label="지점·매니저 이름 검색" autocomplete="off">
       </div>
@@ -1031,6 +1082,7 @@
   dash.draw('branches', (tb) => {
     tb.replaceChildren();
     if (!MT.ok('branches')) return;
+    tb.style.setProperty('--selc', MT.sel === 'all' ? 'var(--lg-red)' : MT.colorOf(MT.sel));
     const rows = dash.data('branches').data.filter((b) => b.type === MT.sel)
       .sort((a, b) => b.n - a.n || b.lg - a.lg || a.branch.localeCompare(b.branch, 'ko'));
     rows.forEach((b) => {
@@ -1043,7 +1095,15 @@
       const mix = td('', 'mt-td-l');
       const wrap = document.createElement('div');
       wrap.className = 'mt-mix';
-      b.mix.forEach(([t, n]) => { const tag = typeTag(t, n); if (t === MT.sel) tag.classList.add('on'); wrap.append(tag); });
+      b.mix.forEach(([t, n]) => {
+        const tag = document.createElement('button');
+        tag.type = 'button';
+        tag.className = 'mt-tt mt-tt-btn' + (t === MT.sel ? ' on' : '');
+        tag.dataset.mixType = t;
+        tag.style.setProperty('--tc', MT.colorOf(t));
+        tag.append(...typeTag(t, n).childNodes);
+        wrap.append(tag);
+      });
       mix.append(wrap);
       tr.append(td(b.branch), td(b.capa || '—'), mix, td(b.level || '—'), td(MT.F.int(b.n)), td(MT.F.int(b.extra)),
         td(cellNum(b.lg, 'mil')), td(cellNum(b.ms_p1, 'pct')), td(cellNum(b.ms_p2, 'pct')), td(cellNum(b.ms_p3, 'pct')),
@@ -1078,6 +1138,7 @@
     const title = document.createElement('div');
     title.className = 'mt-br-title';
     title.textContent = `${b.branch} 매니저 ${list.length}명`;
+    if (MT.sel !== 'all') title.style.color = `color-mix(in srgb, ${MT.colorOf(MT.sel)} 78%, #000000)`;
     const hint = document.createElement('span');
     hint.className = 'mt-small';
     hint.textContent = '이름을 누르면 실적과 실행방안';
@@ -1089,6 +1150,7 @@
       btn.type = 'button';
       btn.className = 'mt-br-mgr';
       btn.dataset.mgr = m.id;
+      btn.style.setProperty('--tc', MT.colorOf(m.type));
       if (MT.mgrSel && MT.mgrSel.from === 'mgrs' && MT.mgrSel.id === m.id) btn.classList.add('is-sel');
       const name = document.createElement('b');
       name.append(typePill(m.type), m.manager);
@@ -1267,6 +1329,7 @@
       el.classList.toggle('is-sel', on);
       el.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
+    document.querySelectorAll('.mt-strip').forEach((s) => s.classList.toggle('has-sel', !!s.querySelector('[data-pick].is-sel')));
     document.querySelectorAll('tbody[data-draw="cmp"] tr').forEach((tr) => tr.classList.toggle('is-sel', tr.dataset.key === MT.sel));
     document.querySelectorAll('#mt-clear-branch').forEach((b) => { b.hidden = !MT.branch; });
   }
@@ -1287,6 +1350,14 @@
     const tr = e.target.closest('tr[data-key]');
     if (tr) pick(tr.dataset.key, true);
   }));
+  // Clicking a type in a branch row opens that branch with that type's managers.
+  function pickBranchType(branch, type) {
+    MT.branch = MT.sel === type && MT.branch === branch ? null : branch;
+    MT.sel = type;
+    clearMgr('mgrs');
+    redrawDetail();
+    document.querySelectorAll('.mt-br-exp').forEach((r) => r.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+  }
   const pickBranch = (tr) => {
     MT.branch = MT.branch === tr.dataset.branch ? null : tr.dataset.branch;
     clearMgr('mgrs');
@@ -1296,12 +1367,14 @@
   document.querySelectorAll('tbody[data-draw="branches"]').forEach((tb) => {
     tb.addEventListener('click', (e) => {
       if (e.target.closest('[data-trend-close]')) { clearMgr(); dash.draw('branches'); return; }
+      const mixBtn = e.target.closest('[data-mix-type]');
+      if (mixBtn) { pickBranchType(mixBtn.closest('tr[data-branch]').dataset.branch, mixBtn.dataset.mixType); return; }
       const b = e.target.closest('[data-mgr]');
       if (b) { pickMgr(b.dataset.mgr, 'mgrs'); return; }
       const tr = e.target.closest('tr[data-branch]');
       if (tr) pickBranch(tr);
     });
-    tb.addEventListener('keydown', (e) => { const tr = e.target.closest('tr[data-branch]'); if (tr && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); pickBranch(tr); } });
+    tb.addEventListener('keydown', (e) => { if (e.target.closest('[data-mix-type]')) return; const tr = e.target.closest('tr[data-branch]'); if (tr && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); pickBranch(tr); } });
   });
   document.querySelectorAll('#mt-clear-branch').forEach((b) => b.addEventListener('click', () => { MT.branch = null; redrawDetail(); }));
   // Search every manager; choosing a result opens that person's performance.
@@ -1326,6 +1399,7 @@
         btn.type = 'button';
         btn.className = 'mt-br-mgr';
         btn.dataset.qmgr = m.id;
+        btn.style.setProperty('--tc', MT.colorOf(m.type));
         const name = document.createElement('b');
         name.append(typePill(m.type), m.manager);
         const info = document.createElement('span');
@@ -1433,8 +1507,13 @@
       el.textContent = r ? MT.F.int(r.n) : '0';
       const cellEl = el.closest('.mt-mx-cell');
       if (cellEl) {
-        cellEl.style.setProperty('--mxc', 'var(--lg-red)');
-        cellEl.style.setProperty('--heat', r ? Math.round(Math.min(1, r.share / 0.12) * 28) + '%' : '0%');
+        cellEl.style.setProperty('--mxc', MT.mx === 'all' ? 'var(--lg-red)' : 'var(--mxt)');
+        let heat = r ? Math.round(Math.min(1, r.share / 0.12) * 28) : 0;
+        if (MT.mx !== 'all') {
+          const max = d3.max(dash.data('ms_matrix').data.filter((x) => x.key.startsWith(MT.mx + '|') && !x.key.includes('|all')), (x) => x.share) || 1;
+          heat = r ? Math.round(8 + (r.share / max) * 32) : 6;
+        }
+        cellEl.style.setProperty('--heat', heat + '%');
       }
       return;
     }
@@ -1518,9 +1597,15 @@
   });
 
   function markMx() {
+    document.querySelectorAll('.mt-mx').forEach((box) => {
+      box.classList.toggle('is-typed', MT.mx !== 'all');
+      if (MT.mx === 'all') box.style.removeProperty('--mxt');
+      else box.style.setProperty('--mxt', MT.colorOf(MT.mx));
+    });
     document.querySelectorAll('[data-mxpick]').forEach((b) => {
       const on = b.dataset.mxpick === MT.mx;
       b.classList.toggle('is-sel', on);
+      if (b.dataset.mxpick !== 'all') b.style.setProperty('--chipc', MT.colorOf(b.dataset.mxpick));
       b.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
   }
@@ -1532,6 +1617,8 @@
     dash.draw('mxlist');
     dash.draw('mxsel');
   }));
+  // Color change sweeps diagonally across the grid.
+  document.querySelectorAll('.mt-mx-cell').forEach((c) => c.style.setProperty('--d', (['L4', 'L3', 'L2', 'L1'].indexOf(c.dataset.l) + 'ABCD'.indexOf(c.dataset.c)) * 35 + 'ms'));
   markMx();
 
   MT.mgrSel = null;
@@ -1668,6 +1755,7 @@
     });
     table.append(thead, body);
     layout.append(table);
+    el.style.setProperty('--tc', MT.colorOf(m.type));
     if (PLAN[m.type]) el.append(planPanel([m.type], m.branch + ' ' + m.manager));
   }
 </script>
