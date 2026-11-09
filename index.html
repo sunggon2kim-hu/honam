@@ -312,6 +312,14 @@
     .mt-plan-tx { font-size: 14px; }
   }
 
+  /* Key management targets in the top band */
+  .mt-st-key { display: inline-flex; align-items: center; flex-wrap: wrap; column-gap: .6rem; padding-left: 1.5rem; border-left: 1px solid rgba(255, 255, 255, .45); }
+  .mt-st-total .mt-st-key .mt-st-l { color: #FFFFFF; font-weight: 700; }
+  .mt-st-total .mt-st-keyl { color: #FFFFFF; font-weight: 600; }
+  @media (max-width: 40rem) {
+    .mt-st-key { flex-basis: 100%; padding: 6px 0 0; margin-top: 4px; border-left: 0; border-top: 1px solid rgba(255, 255, 255, .45); }
+  }
+
   /* Photo cards for the four main types */
   .mt-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .mt-st-total, .mt-st.mt-st-sub { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: center; column-gap: 1.5rem; }
@@ -429,7 +437,7 @@
     </div>
 
     <div class="mt-strip" aria-label="인원과 실적 요약">
-      <div class="mt-st mt-st-total"><span class="mt-st-l">총 매니저</span><span class="mt-st-n"><span data-draw="v" data-source="team" data-field="managers" data-where="scope=team">—</span>명</span><span class="mt-st-d">추가관리 <span data-draw="v" data-source="team" data-field="extra" data-where="scope=team">—</span>명</span><span class="mt-st-d">팀 MS 6~7월 <span data-draw="v" data-fmt="pct" data-source="team" data-field="ms_p2" data-where="scope=team">—</span> <b data-draw="v" data-fmt="pp" data-source="team" data-field="d21" data-where="scope=team">—</b></span><span class="mt-st-d">팀 MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="team" data-field="ms_p3" data-where="scope=team">—</span> <b data-draw="v" data-fmt="pp" data-source="team" data-field="d32" data-where="scope=team">—</b></span></div>
+      <div class="mt-st mt-st-total"><span class="mt-st-l">총 매니저</span><span class="mt-st-n"><span data-draw="v" data-source="team" data-field="managers" data-where="scope=team">—</span>명</span><span class="mt-st-key"><span class="mt-st-l">주요 관리 대상</span><span class="mt-st-n"><span data-draw="keyn" data-f="n" data-source="types">—</span>명</span><span class="mt-st-d"><span data-draw="keyn" data-f="share" data-source="types">—</span></span><span class="mt-st-d mt-st-keyl" data-draw="keyn" data-f="list" data-source="types">—</span></span><span class="mt-st-d">추가관리 <span data-draw="v" data-source="team" data-field="extra" data-where="scope=team">—</span>명</span><span class="mt-st-d">팀 MS 6~7월 <span data-draw="v" data-fmt="pct" data-source="team" data-field="ms_p2" data-where="scope=team">—</span> <b data-draw="v" data-fmt="pp" data-source="team" data-field="d21" data-where="scope=team">—</b></span><span class="mt-st-d">팀 MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="team" data-field="ms_p3" data-where="scope=team">—</span> <b data-draw="v" data-fmt="pp" data-source="team" data-field="d32" data-where="scope=team">—</b></span></div>
       <div class="mt-st mt-st-hero mt-pickable" data-tcolor="core" data-pick="core" tabindex="0" role="button" aria-pressed="false"><div class="mt-st-head"><div class="mt-st-ttl"><span class="mt-name">Core</span><span class="mt-st-ko">코어 <em>메인</em></span></div><svg class="mt-st-ico" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M11 7h18l7 9-16 18L4 16zM4 16h32M15 16l5 18 5-18M15 16l5-9 5 9"/></svg></div><div class="mt-st-photo"></div><div class="mt-st-body"><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=core">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=core">—</span></span><span class="mt-st-d">MS 6~7월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=core">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=core">—</b></span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=core">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=core">—</b></span></div></div>
       <div class="mt-st mt-st-hero mt-pickable" data-tcolor="rising" data-pick="rising" tabindex="0" role="button" aria-pressed="false"><div class="mt-st-head"><div class="mt-st-ttl"><span class="mt-name">Rising</span><span class="mt-st-ko">라이징 <em>메인</em></span></div><svg class="mt-st-ico" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M6 26h6v8H6zM17 20h6v14h-6zM28 14h6v20h-6zM5 18l10-8 6 4L33 4M27 4h6v6"/></svg></div><div class="mt-st-photo"></div><div class="mt-st-body"><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=rising">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=rising">—</span></span><span class="mt-st-d">MS 6~7월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=rising">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=rising">—</b></span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=rising">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=rising">—</b></span></div></div>
       <div class="mt-st mt-st-hero mt-pickable" data-tcolor="swing" data-pick="swing" tabindex="0" role="button" aria-pressed="false"><div class="mt-st-head"><div class="mt-st-ttl"><span class="mt-name">Swing</span><span class="mt-st-ko">스윙 <em>메인</em></span></div><svg class="mt-st-ico" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M33 20a13 13 0 0 1-22.6 8.8M7 20a13 13 0 0 1 22.6-8.8M29.6 5v6.2h-6.2M10.4 35v-6.2h6.2"/></svg></div><div class="mt-st-photo"></div><div class="mt-st-body"><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=swing">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=swing">—</span></span><span class="mt-st-d">MS 6~7월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=swing">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=swing">—</b></span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=swing">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=swing">—</b></span></div></div>
@@ -1116,6 +1124,18 @@
 
   dash.draw('mgrcount', (el) => { el.textContent = MT.ok('managers') ? MT.F.int(mgrList().length) : '—'; });
   dash.draw('branchname', (el) => { el.textContent = MT.branch || '—'; });
+
+  // Top band: the four main types are the key management targets.
+  dash.draw('keyn', (el) => {
+    if (!MT.ok('types')) { el.textContent = '—'; return; }
+    const all = dash.data('types').data;
+    const keys = MT.ORDER.map((t) => all.find((r) => r.type === t)).filter((r) => r && r.group === 'main');
+    const n = d3.sum(keys, (r) => Number(r.n) || 0);
+    const total = d3.sum(all, (r) => Number(r.n) || 0);
+    if (el.dataset.f === 'n') el.textContent = MT.F.int(n);
+    else if (el.dataset.f === 'share') el.textContent = total ? '전체의 ' + (n / total * 100).toFixed(1) + '%' : '—';
+    else el.textContent = keys.map((r) => r.name_en + ' ' + MT.F.int(Number(r.n))).join(' · ');
+  });
 
   // Field action plan written by the team, shown for the selected type.
   const PLAN = {
