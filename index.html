@@ -320,6 +320,20 @@
     .mt-st-key { flex-basis: 100%; padding: 6px 0 0; margin-top: 4px; border-left: 0; border-top: 1px solid rgba(255, 255, 255, .45); }
   }
 
+  /* Manager performance opened under the branch list */
+  .mt-scroll.is-open { max-height: none; }
+  .mt-br-mgr.is-sel { border-color: var(--lg-red); box-shadow: 0 0 0 1px var(--lg-red) inset; }
+  .mt-br-box .mt-trendbox { margin-top: 4px; background: var(--color-panel); }
+  .mt-mt-sum { margin: 6px 0; font-size: 14px; line-height: 1.55; word-break: keep-all; }
+  .mt-mt-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 20px; align-items: center; }
+  .mt-table.mt-mt-table th:first-child, .mt-table.mt-mt-table td:first-child { position: static; text-align: left; white-space: nowrap; width: auto; min-width: 0; max-width: none; box-shadow: none; }
+  .mt-table.mt-mt-table tr, .mt-click tbody .mt-mt-table tr { cursor: default; }
+  .mt-table.mt-mt-table tr.mt-mt-me td { font-weight: 700; background: var(--lg-red-soft); }
+  @media (max-width: 40rem) {
+    .mt-mt-grid { grid-template-columns: 1fr; gap: 10px; }
+    .mt-mt-sum { font-size: 13px; }
+  }
+
   /* Photo cards for the four main types */
   .mt-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .mt-st-total, .mt-st.mt-st-sub { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: center; column-gap: 1.5rem; }
@@ -513,21 +527,6 @@
     </div>
   </section>
 
-  <section class="mt-sec" id="sub-types">
-    <div class="mt-sec-h"><h2>서브 유형</h2><p>메인 4개 유형과 따로 보는 관찰 대상</p></div>
-    <article class="mt-subcard mt-pickable" id="type-monitoring" data-pick="monitoring" tabindex="0" role="button" aria-pressed="false">
-      <div><div class="mt-card-h" style="justify-content:flex-start"><h3 class="mt-en">Monitoring</h3><span class="mt-badge">서브</span></div><span class="mt-ko">모니터링 · 원본 장표에 설명 없음</span></div>
-      <div class="mt-cell"><span class="mt-lbl">인원</span><span><b data-draw="v" data-source="types" data-field="n" data-where="type=monitoring">—</b>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=monitoring">—</span></span></div>
-      <div class="mt-cell"><span class="mt-lbl">추가관리대상</span><span><b data-draw="v" data-source="types" data-field="extra" data-where="type=monitoring">—</b>명 <span class="mt-small">팀 전원</span></span></div>
-      <div class="mt-cell"><span class="mt-lbl">LG판매 비중</span><b data-draw="v" data-fmt="share" data-source="type_share" data-field="lg_share" data-where="type=monitoring">—</b></div>
-      <div class="mt-cell"><span class="mt-lbl">MS 1~5월 → 6~7월 → 8~9월</span><span><b data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p1" data-where="type=monitoring">—</b> → <b data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=monitoring">—</b> → <b data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=monitoring">—</b></span></div>
-      <div class="mt-cell"><span class="mt-lbl">증감</span><span class="mt-small">6~7월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=monitoring">—</b> · 8~9월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=monitoring">—</b></span></div>
-      <span class="mt-cell mt-gcell mt-pick-hint">클릭하면 지점·매니저 현황 보기</span>
-    </article>
-    <p class="mt-small">측정불가 유형(유형 분류 기준 미설명)은 아래 지점·매니저 현황에서 참고로 볼 수 있습니다.</p>
-  </section>
-
-
   <section class="mt-sec" id="ms-matrix">
     <div class="mt-sec-h"><h2>혼매호남팀 개인 MS 매트릭스</h2><p>가로: 6~7월 개인 MS · 세로: 행사 전후 개인 MS 감소폭(1~5월 → 6~7월) · MS는 1~5월 → 6~7월 → 8~9월</p></div>
     <div class="mt-chips" role="group" aria-label="매트릭스 유형 선택">
@@ -585,10 +584,24 @@
         </table>
       </div>
       <div class="mt-trendbox" data-trend-from="mx" hidden>
-        <div class="mt-trendbox-h"><h4>매니저 MS 추이</h4><button type="button" class="mt-clear" data-trend-close>닫기 ×</button></div>
+        <div class="mt-trendbox-h"><h4>매니저 실적</h4><button type="button" class="mt-clear" data-trend-close>닫기 ×</button></div>
         <div class="mt-mgrtrend" data-draw="mgrtrend" data-from="mx" data-source="managers types team"></div>
       </div>
     </div>
+  </section>
+
+  <section class="mt-sec" id="sub-types">
+    <div class="mt-sec-h"><h2>서브 유형</h2><p>메인 4개 유형과 따로 보는 관찰 대상</p></div>
+    <article class="mt-subcard mt-pickable" id="type-monitoring" data-pick="monitoring" tabindex="0" role="button" aria-pressed="false">
+      <div><div class="mt-card-h" style="justify-content:flex-start"><h3 class="mt-en">Monitoring</h3><span class="mt-badge">서브</span></div><span class="mt-ko">모니터링 · 원본 장표에 설명 없음</span></div>
+      <div class="mt-cell"><span class="mt-lbl">인원</span><span><b data-draw="v" data-source="types" data-field="n" data-where="type=monitoring">—</b>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=monitoring">—</span></span></div>
+      <div class="mt-cell"><span class="mt-lbl">추가관리대상</span><span><b data-draw="v" data-source="types" data-field="extra" data-where="type=monitoring">—</b>명 <span class="mt-small">팀 전원</span></span></div>
+      <div class="mt-cell"><span class="mt-lbl">LG판매 비중</span><b data-draw="v" data-fmt="share" data-source="type_share" data-field="lg_share" data-where="type=monitoring">—</b></div>
+      <div class="mt-cell"><span class="mt-lbl">MS 1~5월 → 6~7월 → 8~9월</span><span><b data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p1" data-where="type=monitoring">—</b> → <b data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=monitoring">—</b> → <b data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=monitoring">—</b></span></div>
+      <div class="mt-cell"><span class="mt-lbl">증감</span><span class="mt-small">6~7월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=monitoring">—</b> · 8~9월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=monitoring">—</b></span></div>
+      <span class="mt-cell mt-gcell mt-pick-hint">클릭하면 지점·매니저 현황 보기</span>
+    </article>
+    <p class="mt-small">측정불가 유형(유형 분류 기준 미설명)은 아래 지점·매니저 현황에서 참고로 볼 수 있습니다.</p>
   </section>
 
   <section class="mt-sec" id="detail">
@@ -611,7 +624,7 @@
 
     <div class="mt-panel">
       <h3>지점별/매니저별 현황</h3>
-      <p>선택한 유형의 매니저가 있는 지점. 매니저 수가 많은 순. 지점을 클릭하면 그 지점의 매니저 명단이 바로 아래에 펼쳐지고, 매니저 현황 표도 그 지점만 보여줍니다. MS는 지점 내 이 유형 매니저의 판매 합으로 계산</p>
+      <p>선택한 유형의 매니저가 있는 지점. 매니저 수가 많은 순. 지점을 클릭하면 그 지점의 매니저 명단이 바로 아래에 펼쳐지고, 매니저 이름을 클릭하면 실적 그래프와 데이터가 나옵니다. MS는 지점 내 이 유형 매니저의 판매 합으로 계산</p>
       <div class="mt-tw mt-scroll">
         <table class="mt-table mt-click" data-source="branches" data-row-key="key">
           <thead><tr>
@@ -633,40 +646,6 @@
     </div>
 
     <div class="mt-panel mt-plan" data-draw="plan" data-source="managers types"></div>
-
-    <div class="mt-panel">
-      <h3>매니저 현황</h3>
-      <p>매니저를 클릭하면 MS 추이가 표 아래에 나옵니다. 머리글을 클릭하면 정렬됩니다. 판매 단위 백만원, MS는 개인 기준</p>
-      <div class="mt-tools">
-        <input type="search" id="mt-q" class="mt-search" placeholder="지점·매니저 이름 검색" aria-label="지점·매니저 이름 검색">
-        <button type="button" class="mt-clear" id="mt-clear-branch" hidden><span data-draw="branchname" data-source="managers">—</span> 필터 해제 ×</button>
-        <span class="mt-small"><span data-draw="mgrcount" data-source="managers">—</span>명 표시</span>
-      </div>
-      <div class="mt-tw mt-scroll mt-scroll-lg">
-        <table class="mt-table mt-sortable mt-click" data-source="managers" data-row-key="id">
-          <thead><tr>
-            <th data-field="branch" data-sort="branch" aria-sort="ascending">지점</th>
-            <th data-field="manager" data-sort="manager">매니저</th>
-            <th data-field="type" data-sort="type" class="mt-th-l">유형</th>
-            <th data-field="extra" data-sort="extra">추가관리</th>
-            <th data-field="level" data-sort="level">지점군</th>
-            <th data-field="lg_p1" data-sort="lg_p1">LG 1~5월</th>
-            <th data-field="lg_p2" data-sort="lg_p2">LG 6~7월</th>
-            <th data-field="lg_p3" data-sort="lg_p3">LG 8~9월</th>
-            <th data-field="ms_p1" data-sort="ms_p1">MS 1~5월</th>
-            <th data-field="ms_p2" data-sort="ms_p2">MS 6~7월</th>
-            <th data-field="ms_p3" data-sort="ms_p3">MS 8~9월</th>
-            <th data-field="d21" data-sort="d21">증감 6~7월</th>
-            <th data-field="d32" data-sort="d32">증감 8~9월</th>
-          </tr></thead>
-          <tbody data-draw="mgrs"></tbody>
-        </table>
-      </div>
-      <div class="mt-trendbox" data-trend-from="mgrs" hidden>
-        <div class="mt-trendbox-h"><h4>매니저 MS 추이</h4><button type="button" class="mt-clear" data-trend-close>닫기 ×</button></div>
-        <div class="mt-mgrtrend" data-draw="mgrtrend" data-from="mgrs" data-source="managers types team"></div>
-      </div>
-    </div>
   </section>
 
   <details>
@@ -1036,6 +1015,10 @@
       tb.append(tr);
       if (MT.branch === b.branch) tb.append(branchMgrRow(b));
     });
+    const open = !!(MT.mgrSel && MT.mgrSel.from === 'mgrs');
+    const scroller = tb.closest('.mt-scroll');
+    if (scroller) scroller.classList.toggle('is-open', open);
+    tb.querySelectorAll('.mt-mgrtrend[data-inline]').forEach(renderMgrTrend);
   });
 
   function branchMgrRow(b) {
@@ -1051,7 +1034,7 @@
     title.textContent = `${b.branch} 매니저 ${list.length}명`;
     const hint = document.createElement('span');
     hint.className = 'mt-small';
-    hint.textContent = '이름을 누르면 MS 추이';
+    hint.textContent = '이름을 누르면 실적 그래프와 데이터';
     title.append(' ', hint);
     const grid = document.createElement('div');
     grid.className = 'mt-br-list';
@@ -1060,6 +1043,7 @@
       btn.type = 'button';
       btn.className = 'mt-br-mgr';
       btn.dataset.mgr = m.id;
+      if (MT.mgrSel && MT.mgrSel.from === 'mgrs' && MT.mgrSel.id === m.id) btn.classList.add('is-sel');
       const name = document.createElement('b');
       if (MT.sel === 'all') {
         const dot = document.createElement('i');
@@ -1080,6 +1064,27 @@
       grid.append(btn);
     });
     box.append(title, grid);
+    if (MT.mgrSel && MT.mgrSel.from === 'mgrs' && list.some((m) => m.id === MT.mgrSel.id)) {
+      const tb = document.createElement('div');
+      tb.className = 'mt-trendbox';
+      tb.dataset.trendFrom = 'mgrs';
+      const h = document.createElement('div');
+      h.className = 'mt-trendbox-h';
+      const h4 = document.createElement('h4');
+      h4.textContent = '매니저 실적';
+      const close = document.createElement('button');
+      close.type = 'button';
+      close.className = 'mt-clear';
+      close.dataset.trendClose = '';
+      close.textContent = '닫기 ×';
+      h.append(h4, close);
+      const body = document.createElement('div');
+      body.className = 'mt-mgrtrend';
+      body.dataset.from = 'mgrs';
+      body.dataset.inline = '1';
+      tb.append(h, body);
+      box.append(tb);
+    }
     cell.append(box);
     row.append(cell);
     return row;
@@ -1210,7 +1215,7 @@
     document.querySelectorAll('tbody[data-draw="cmp"] tr').forEach((tr) => tr.classList.toggle('is-sel', tr.dataset.key === MT.sel));
     document.querySelectorAll('#mt-clear-branch').forEach((b) => { b.hidden = !MT.branch; });
   }
-  function redrawDetail() { ['selname', 'selstat', 'branches', 'plan', 'mgrs', 'mgrcount', 'branchname'].forEach((n) => dash.draw(n)); markSel(); }
+  function redrawDetail() { ['selname', 'selstat', 'branches', 'plan'].forEach((n) => dash.draw(n)); markSel(); }
   function pick(t, scroll) {
     MT.sel = t;
     MT.branch = null;
@@ -1229,11 +1234,13 @@
   }));
   const pickBranch = (tr) => {
     MT.branch = MT.branch === tr.dataset.branch ? null : tr.dataset.branch;
+    clearMgr('mgrs');
     redrawDetail();
     document.querySelectorAll('.mt-br-exp').forEach((r) => r.scrollIntoView({ behavior: 'smooth', block: 'nearest' }));
   };
   document.querySelectorAll('tbody[data-draw="branches"]').forEach((tb) => {
     tb.addEventListener('click', (e) => {
+      if (e.target.closest('[data-trend-close]')) { clearMgr(); dash.draw('branches'); return; }
       const b = e.target.closest('[data-mgr]');
       if (b) { pickMgr(b.dataset.mgr, 'mgrs'); return; }
       const tr = e.target.closest('tr[data-branch]');
@@ -1421,7 +1428,7 @@
     MT.mgrSel = MT.mgrSel && MT.mgrSel.id === id && MT.mgrSel.from === from ? null : { id, from };
     document.querySelectorAll('[data-trend-from]').forEach((b) => { b.hidden = !MT.mgrSel || b.dataset.trendFrom !== MT.mgrSel.from; });
     dash.draw('mgrtrend');
-    dash.draw('mgrs');
+    dash.draw('branches');
     dash.draw('mxlist');
     if (MT.mgrSel) document.querySelectorAll(`[data-trend-from="${from}"]`).forEach((b) => b.scrollIntoView({ behavior: 'smooth', block: 'nearest' }));
   }
@@ -1431,9 +1438,10 @@
       tb.addEventListener('keydown', (e) => { const tr = e.target.closest('tr[data-key]'); if (tr && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); pickMgr(tr.dataset.key, from); } });
     });
   });
-  document.querySelectorAll('[data-trend-close]').forEach((b) => b.addEventListener('click', () => { clearMgr(); dash.draw('mgrs'); dash.draw('mxlist'); }));
+  document.querySelectorAll('[data-trend-close]').forEach((b) => b.addEventListener('click', () => { clearMgr(); dash.draw('branches'); dash.draw('mxlist'); }));
 
-  dash.draw('mgrtrend', (el) => {
+  dash.draw('mgrtrend', renderMgrTrend);
+  function renderMgrTrend(el) {
     el.replaceChildren();
     const sel = MT.mgrSel;
     if (!sel || sel.from !== el.dataset.from || !MT.ok('managers', 'types', 'team')) return;
@@ -1460,13 +1468,28 @@
     head.append(nm, meta);
     el.append(head);
 
-    const W = Math.max(280, el.clientWidth || 560), H = 230;
+    const v1 = nv(m.ms_p1), v2 = nv(m.ms_p2), v3 = nv(m.ms_p3);
+    const say = document.createElement('p');
+    say.className = 'mt-mt-sum';
+    const pctOr = (v) => (v == null ? '데이터 없음' : MT.F.pct(v));
+    const ppOr = (v) => (nv(v) == null ? '' : ` (${MT.F.pp(nv(v))})`);
+    let line1 = `MS는 1~5월 ${pctOr(v1)} → 6~7월 ${pctOr(v2)}${ppOr(m.d21)} → 8~9월 ${pctOr(v3)}${ppOr(m.d32)}입니다.`;
+    const ty3 = nv(ty.ms_p3), tm3 = nv(tm.ms_p3);
+    if (v3 != null && ty3 != null && tm3 != null) line1 += ` 8~9월 MS는 ${ty.name_en || ''} 평균 대비 ${MT.F.pp(v3 - ty3)}, 팀 평균 대비 ${MT.F.pp(v3 - tm3)}입니다.`;
+    say.textContent = line1;
+    el.append(say);
+    const layout = document.createElement('div');
+    layout.className = 'mt-mt-grid';
+    const chart = document.createElement('div');
+    layout.append(chart);
+    el.append(layout);
+    const W = Math.max(280, chart.clientWidth || 560), H = 230;
     const m0 = { l: 40, r: W < 480 ? 96 : 130, t: 22, b: 40 };
     const all = series.flatMap((s) => s.vals).filter((v) => v != null);
     const lo = Math.max(0, Math.floor((d3.min(all) - 8) / 10) * 10), hi = Math.min(100, Math.ceil((d3.max(all) + 8) / 10) * 10);
     const x = d3.scalePoint(P, [m0.l + 10, W - m0.r]);
     const y = d3.scaleLinear([lo, hi], [H - m0.b, m0.t]);
-    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img')
+    const svg = d3.select(chart).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img')
       .attr('aria-label', `${m.manager} MS 추이 ${series[0].vals.map((v) => (v == null ? '없음' : MT.F.pct(v))).join(', ')}`);
     const ticks = y.ticks(5);
     svg.append('g').selectAll('line').data(ticks).join('line').attr('x1', m0.l).attr('x2', W - m0.r + 6).attr('y1', y).attr('y2', y)
@@ -1503,19 +1526,34 @@
         .style('fill', l.s.label ? l.s.color : 'var(--color-fg-muted)').style('font-weight', l.s.label ? 700 : 400).text(l.s.name);
     });
 
-    const sales = document.createElement('div');
-    sales.className = 'mt-mt-sales';
+    // Data table beside the chart
     const fmt = (v) => (nv(v) == null ? '—' : MT.F.mil(nv(v)));
-    [['LG 판매', ['lg_p1', 'lg_p2', 'lg_p3']], ['삼성 판매', ['ss_p1', 'ss_p2', 'ss_p3']]].forEach(([lbl, cols]) => {
-      const row = document.createElement('span');
-      row.textContent = `${lbl} ${cols.map((c) => fmt(m[c])).join(' → ')}백만원`;
-      sales.append(row);
+    const pc = (v) => (nv(v) == null ? '—' : MT.F.pct(nv(v)));
+    const pp = (v) => (nv(v) == null ? '—' : MT.F.pp(nv(v)));
+    const table = document.createElement('table');
+    table.className = 'mt-table mt-mt-table';
+    const thead = document.createElement('thead');
+    const hr = document.createElement('tr');
+    ['구분', ...P].forEach((p) => { const th = document.createElement('th'); th.textContent = p; hr.append(th); });
+    thead.append(hr);
+    const body = document.createElement('tbody');
+    [
+      ['LG 판매 (백만원)', [m.lg_p1, m.lg_p2, m.lg_p3].map(fmt)],
+      ['삼성 판매 (백만원)', [m.ss_p1, m.ss_p2, m.ss_p3].map(fmt)],
+      ['개인 MS', [m.ms_p1, m.ms_p2, m.ms_p3].map(pc), 'b'],
+      [`${ty.name_en || ''} 평균 MS`, [ty.ms_p1, ty.ms_p2, ty.ms_p3].map(pc)],
+      ['팀 평균 MS', [tm.ms_p1, tm.ms_p2, tm.ms_p3].map(pc)],
+      ['MS 증감', ['—', pp(m.d21), pp(m.d32)], 'd']
+    ].forEach(([label, vals, kind]) => {
+      const tr = document.createElement('tr');
+      if (kind === 'b') tr.className = 'mt-mt-me';
+      tr.append(td(label));
+      vals.forEach((x, i) => tr.append(td(x, kind === 'd' && i > 0 ? ppClass(i === 1 ? m.d21 : m.d32) : undefined)));
+      body.append(tr);
     });
-    const gap = document.createElement('span');
-    gap.textContent = `MS 증감 6~7월 ${nv(m.d21) == null ? '—' : MT.F.pp(nv(m.d21))} · 8~9월 ${nv(m.d32) == null ? '—' : MT.F.pp(nv(m.d32))}`;
-    sales.append(gap);
-    el.append(sales);
-  });
+    table.append(thead, body);
+    layout.append(table);
+  }
 </script>
 </body>
 </html>
