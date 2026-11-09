@@ -370,28 +370,23 @@
 
   .mt-ty-pill { flex: none; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 800; line-height: 1.5; color: color-mix(in srgb, var(--tc) 72%, #000000); background: color-mix(in srgb, var(--tc) 18%, #FFFFFF); border: 1px solid color-mix(in srgb, var(--tc) 55%, #FFFFFF); }
 
-  /* Selecting a top card: it springs forward while the others recede */
-  .mt-strip .mt-st[data-pick] { transition: transform .5s cubic-bezier(.2, .9, .25, 1), box-shadow .5s ease, opacity .45s ease, filter .45s ease; }
-  .mt-strip.has-sel .mt-st[data-pick]:not(.is-sel) { opacity: .3; filter: grayscale(.9) blur(.6px); transform: scale(.94); }
-  .mt-strip.has-sel .mt-st[data-pick]:not(.is-sel):hover, .mt-strip.has-sel .mt-st[data-pick]:not(.is-sel):focus-visible { opacity: .92; filter: grayscale(.1); transform: translateY(-3px) scale(.98); }
+  /* Selecting a top card: all cards start in full color; a pick gently lifts one */
+  .mt-strip .mt-st[data-pick] { transition: transform .45s cubic-bezier(.2, .9, .25, 1), box-shadow .45s ease, opacity .4s ease, filter .4s ease; }
+  .mt-strip.has-sel .mt-st[data-pick]:not(.is-sel) { opacity: .78; filter: saturate(.75); transform: scale(.985); }
+  .mt-strip.has-sel .mt-st[data-pick]:not(.is-sel):hover, .mt-strip.has-sel .mt-st[data-pick]:not(.is-sel):focus-visible { opacity: 1; filter: none; transform: translateY(-2px); }
   .mt-strip .mt-st-hero > .mt-st-head, .mt-strip .mt-st-hero > .mt-st-body { z-index: 2; }
-  .mt-strip .mt-st.mt-st-hero.is-sel { z-index: 3; transform: translateY(-4px) scale(1.06); box-shadow: 0 24px 52px color-mix(in srgb, var(--tc) 58%, transparent), 0 0 0 1px var(--tc); animation: mt-pick .65s cubic-bezier(.2, .9, .25, 1), mt-ring .85s ease-out .1s; }
-  .mt-strip .mt-st.mt-st-sub.is-sel { z-index: 3; transform: scale(1.02); box-shadow: 0 12px 30px color-mix(in srgb, var(--tc) 50%, transparent), 0 0 0 2px var(--tc); }
-  .mt-st-hero .mt-st-photo { overflow: hidden; transition: transform .8s cubic-bezier(.2, .8, .2, 1); }
-  .mt-st-hero.is-sel .mt-st-photo { transform: scale(1.12); }
-  .mt-st-hero.is-sel .mt-st-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 32%, rgba(255, 255, 255, .7) 50%, transparent 68%); transform: translateX(-130%); animation: mt-sheen .95s ease-out .15s; pointer-events: none; }
-  .mt-st-hero .mt-st-n { transition: color .35s ease; }
-  .mt-st-hero.is-sel .mt-st-n { color: color-mix(in srgb, var(--tc) 82%, #000000); animation: mt-num .6s cubic-bezier(.2, .9, .25, 1) .08s backwards; }
-  .mt-st-hero.is-sel .mt-st-ico { animation: mt-ico .7s cubic-bezier(.2, .9, .25, 1) .1s backwards; }
-  @keyframes mt-pick { 0% { transform: scale(.92); } 55% { transform: translateY(-14px) scale(1.1); } 100% { transform: translateY(-4px) scale(1.06); } }
-  @keyframes mt-ring { 0% { outline-offset: 2px; outline-color: var(--tc); } 100% { outline-offset: 20px; outline-color: transparent; } }
+  .mt-strip.has-sel .mt-st.mt-st-hero.is-sel { z-index: 3; transform: translateY(-4px) scale(1.025); box-shadow: 0 12px 28px color-mix(in srgb, var(--tc) 38%, transparent); animation: mt-pick .5s cubic-bezier(.2, .9, .25, 1); }
+  .mt-strip.has-sel .mt-st.mt-st-sub.is-sel { z-index: 3; transform: scale(1.008); box-shadow: 0 8px 20px color-mix(in srgb, var(--tc) 35%, transparent), 0 0 0 2px var(--tc); }
+  .mt-st-hero .mt-st-photo { overflow: hidden; transition: transform .7s cubic-bezier(.2, .8, .2, 1); }
+  .mt-strip.has-sel .mt-st-hero.is-sel .mt-st-photo { transform: scale(1.05); }
+  .mt-strip.has-sel .mt-st-hero.is-sel .mt-st-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, .42) 50%, transparent 65%); transform: translateX(-130%); animation: mt-sheen .9s ease-out .12s; pointer-events: none; }
+  .mt-strip.has-sel .mt-st-hero.is-sel .mt-st-n { animation: mt-num .45s cubic-bezier(.2, .9, .25, 1) .06s backwards; }
+  @keyframes mt-pick { 0% { transform: scale(.985); } 60% { transform: translateY(-7px) scale(1.04); } 100% { transform: translateY(-4px) scale(1.025); } }
   @keyframes mt-sheen { from { transform: translateX(-130%); } to { transform: translateX(130%); } }
-  @keyframes mt-num { 0% { transform: scale(.6); opacity: 0; } 60% { transform: scale(1.22); opacity: 1; } 100% { transform: scale(1); } }
-  @keyframes mt-ico { 0% { transform: rotate(-25deg) scale(.5); } 60% { transform: rotate(10deg) scale(1.3); } 100% { transform: rotate(0) scale(1); } }
+  @keyframes mt-num { 0% { transform: scale(.9); } 60% { transform: scale(1.08); } 100% { transform: scale(1); } }
   @media (max-width: 40rem) {
-    .mt-strip .mt-st.mt-st-hero.is-sel { transform: translateY(-2px) scale(1.03); }
-    @keyframes mt-pick { 0% { transform: scale(.95); } 55% { transform: translateY(-6px) scale(1.06); } 100% { transform: translateY(-2px) scale(1.03); } }
-    .mt-strip.has-sel .mt-st[data-pick]:not(.is-sel) { transform: scale(.96); }
+    .mt-strip.has-sel .mt-st.mt-st-hero.is-sel { transform: translateY(-2px) scale(1.015); }
+    @keyframes mt-pick { 0% { transform: scale(.985); } 60% { transform: translateY(-4px) scale(1.03); } 100% { transform: translateY(-2px) scale(1.015); } }
   }
 
   /* Matrix tinted in the chosen type's color */
@@ -405,7 +400,7 @@
   .mt-chip[data-mxpick] { transition: background-color .25s ease, border-color .25s ease, color .25s ease; }
   .mt-chip[data-mxpick].is-sel:not([data-mxpick="all"]) { background: color-mix(in srgb, var(--chipc) 88%, #000000); border-color: color-mix(in srgb, var(--chipc) 88%, #000000); color: #FFFFFF; }
   @media (prefers-reduced-motion: reduce) {
-    .mt-strip .mt-st.mt-st-hero.is-sel, .mt-st-hero.is-sel .mt-st-photo::after, .mt-st-hero.is-sel .mt-st-n, .mt-st-hero.is-sel .mt-st-ico { animation: none; }
+    .mt-strip.has-sel .mt-st.mt-st-hero.is-sel, .mt-strip.has-sel .mt-st-hero.is-sel .mt-st-photo::after, .mt-strip.has-sel .mt-st-hero.is-sel .mt-st-n { animation: none; }
     .mt-st-hero .mt-st-photo { transition: none; }
     .mt-strip .mt-st[data-pick], .mt-mx-cell, .mt-mx-corner, .mt-mx-ch, .mt-mx-rh, .mt-chip[data-mxpick] { transition: none; }
   }
@@ -1329,12 +1324,13 @@
       el.classList.toggle('is-sel', on);
       el.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
-    document.querySelectorAll('.mt-strip').forEach((s) => s.classList.toggle('has-sel', !!s.querySelector('[data-pick].is-sel')));
+    document.querySelectorAll('.mt-strip').forEach((s) => s.classList.toggle('has-sel', !!MT.picked && !!s.querySelector('[data-pick].is-sel')));
     document.querySelectorAll('tbody[data-draw="cmp"] tr').forEach((tr) => tr.classList.toggle('is-sel', tr.dataset.key === MT.sel));
     document.querySelectorAll('#mt-clear-branch').forEach((b) => { b.hidden = !MT.branch; });
   }
   function redrawDetail() { ['selname', 'selstat', 'branches', 'plan'].forEach((n) => dash.draw(n)); markSel(); }
   function pick(t, scroll) {
+    MT.picked = true;
     MT.sel = t;
     MT.branch = null;
     clearMgr('mgrs');
@@ -1352,6 +1348,7 @@
   }));
   // Clicking a type in a branch row opens that branch with that type's managers.
   function pickBranchType(branch, type) {
+    MT.picked = true;
     MT.branch = MT.sel === type && MT.branch === branch ? null : branch;
     MT.sel = type;
     clearMgr('mgrs');
@@ -1413,6 +1410,7 @@
   function openFromSearch(id) {
     const m = dash.data('managers').data.find((x) => x.id === id);
     if (!m) return;
+    MT.picked = true;
     if (MT.sel !== 'all') MT.sel = m.type;
     MT.branch = m.branch;
     MT.mgrSel = { id, from: 'mgrs' };
