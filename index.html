@@ -416,6 +416,18 @@
   .mt-click tbody[data-draw="branches"] tr.is-sel td { background: color-mix(in srgb, var(--selc) 14%, var(--color-panel)); }
   .mt-table.mt-mt-table tr.mt-mt-me td { background: color-mix(in srgb, var(--tc, var(--lg-red)) 14%, var(--color-panel)); }
 
+  /* Selected type summary, joined to the type cards above */
+  .mt-selbar { display: flex; flex-direction: column; gap: 12px; padding: 14px 18px; background: var(--color-panel); border: 1px solid var(--color-border-line); border-left: 4px solid var(--tc, var(--lg-red)); border-radius: var(--cds-radius); scroll-margin-top: 12px; transition: border-color .3s ease; }
+  .mt-selbar-h { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 10px; row-gap: 6px; }
+  .mt-selbar-l { font-size: 13px; font-weight: 700; color: var(--color-fg-muted); }
+  .mt-selbar-n { font-size: 1.3rem; font-weight: 800; color: color-mix(in srgb, var(--tc, var(--lg-red)) 80%, #000000); transition: color .3s ease; }
+  .mt-selbar-h .mt-chips { margin-left: auto; align-self: center; }
+  @media (max-width: 40rem) {
+    .mt-selbar { padding: 10px 12px; }
+    .mt-selbar-n { font-size: 1.08rem; }
+    .mt-selbar-h .mt-chips { margin-left: 0; width: 100%; }
+  }
+
   /* Photo cards for the four main types */
   .mt-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .mt-st-total, .mt-st.mt-st-sub { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: center; column-gap: 1.5rem; }
@@ -606,7 +618,7 @@
   </section>
 
   <section class="mt-sec" id="main-types">
-    <div class="mt-sec-h"><h2>메인 유형</h2><p>MS = LG ÷ (LG + 삼성), 유형 판매 합으로 계산한 가중 MS · 점선은 팀 전체</p></div>
+    <div class="mt-sec-h"><h2>유형별 현황</h2><p>MS = LG ÷ (LG + 삼성), 유형 판매 합으로 계산한 가중 MS · 점선은 팀 전체</p></div>
     <p class="mt-take">팀 MS는 6~7월에 <b data-draw="v" data-fmt="pp" data-source="team" data-field="d21" data-where="scope=team">—</b> 떨어졌다가 8~9월에 <b data-draw="v" data-fmt="pp" data-source="team" data-field="d32" data-where="scope=team">—</b> 반등했습니다. 메인 유형 중 Challenge가 가장 크게 떨어지고(<b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=challenge">—</b>) 가장 크게 반등했으며(<b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=challenge">—</b>), 6~7월에도 MS가 오른 유형은 Rising(<b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=rising">—</b>)뿐입니다.</p>
     <div class="mt-cards">
 
@@ -666,10 +678,6 @@
         <span class="mt-pick-hint">클릭하면 지점·매니저 현황 보기</span>
       </article>
     </div>
-  </section>
-
-  <section class="mt-sec" id="sub-types">
-    <div class="mt-sec-h"><h2>서브 유형</h2><p>메인 4개 유형과 따로 보는 관찰 대상</p></div>
     <article class="mt-subcard mt-pickable" id="type-monitoring" data-pick="monitoring" tabindex="0" role="button" aria-pressed="false">
       <div><div class="mt-card-h" style="justify-content:flex-start"><h3 class="mt-en">Monitoring</h3><span class="mt-badge">서브</span></div><span class="mt-ko">모니터링 · 원본 장표에 설명 없음</span></div>
       <div class="mt-cell"><span class="mt-lbl">인원</span><span><b data-draw="v" data-source="types" data-field="n" data-where="type=monitoring">—</b>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=monitoring">—</span></span></div>
@@ -680,19 +688,23 @@
       <span class="mt-cell mt-gcell mt-pick-hint">클릭하면 지점·매니저 현황 보기</span>
     </article>
     <p class="mt-small">측정불가 유형(유형 분류 기준 미설명)은 아래 지점·매니저 현황에서 참고로 볼 수 있습니다.</p>
-  </section>
 
-  <section class="mt-sec" id="detail">
-    <div class="mt-sec-h"><h2><span><span data-draw="selname" data-source="types">—</span> · 지점·매니저 현황</span></h2><p>위의 유형 카드를 클릭하면 바뀝니다</p></div>
+    <div class="mt-selbar" id="detail">
+      <div class="mt-selbar-h">
+        <span class="mt-selbar-l">선택 유형</span>
+        <b class="mt-selbar-n"><span data-draw="selname" data-source="types">—</span></b>
+        <span class="mt-small">위의 유형 카드를 클릭하면 바뀝니다</span>
     <div class="mt-chips" role="group" aria-label="유형 선택">
       <button type="button" class="mt-chip" data-pick="all" aria-pressed="false">총 매니저</button>
       <button type="button" class="mt-chip mt-chip-sub" data-pick="unmeasured" aria-pressed="false"><i class="mt-sw" data-tswatch="unmeasured"></i>측정불가</button>
     </div>
+      </div>
     <div class="mt-selstats">
       <div><span class="mt-lbl">지점</span><span class="mt-big"><span data-draw="selstat" data-stat="branches" data-source="managers">—</span>곳</span></div>
       <div><span class="mt-lbl">매니저</span><span class="mt-big"><span data-draw="selstat" data-stat="managers" data-source="managers">—</span>명</span></div>
       <div><span class="mt-lbl">추가관리대상</span><span class="mt-big"><span data-draw="selstat" data-stat="extra" data-source="managers">—</span>명</span></div>
       <div><span class="mt-lbl">LG 판매 1~9월</span><span class="mt-big"><span data-draw="selstat" data-stat="lg" data-source="managers">—</span><span class="mt-small"> 백만원</span></span></div>
+    </div>
     </div>
 
     <div class="mt-panel">
@@ -1319,6 +1331,7 @@
       el.classList.toggle('is-sel', on);
       el.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
+    document.querySelectorAll('.mt-selbar').forEach((s) => s.style.setProperty('--tc', MT.sel === 'all' ? 'var(--lg-red)' : MT.colorOf(MT.sel)));
     document.querySelectorAll('.mt-strip').forEach((s) => s.classList.toggle('has-sel', !!MT.picked && !!s.querySelector('[data-pick].is-sel')));
     document.querySelectorAll('tbody[data-draw="cmp"] tr').forEach((tr) => tr.classList.toggle('is-sel', tr.dataset.key === MT.sel));
     document.querySelectorAll('#mt-clear-branch').forEach((b) => { b.hidden = !MT.branch; });
