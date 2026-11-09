@@ -258,6 +258,16 @@
   @media (max-width: 40rem) { .mt-dlcard { width: 100%; } }
   [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
 
+  /* Manager list opened under a clicked branch */
+  .mt-table tr.mt-br-exp, .mt-click tbody tr.mt-br-exp { cursor: default; }
+  .mt-table tr.mt-br-exp > td, .mt-click tbody tr.mt-br-exp:hover > td { position: static; text-align: left; white-space: normal; padding: var(--cds-pad-sm); background: var(--color-panel); box-shadow: none; }
+  .mt-br-box { position: sticky; left: 0; display: flex; flex-direction: column; gap: var(--cds-gap-xs); max-width: min(100%, calc(100vw - 4rem)); }
+  .mt-br-title { font-weight: 600; font-size: var(--cds-font-size-body); }
+  .mt-br-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr)); gap: var(--cds-gap-xs); }
+  .mt-br-mgr { display: flex; flex-direction: column; gap: 2px; text-align: left; font: inherit; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); padding: var(--cds-pad-xs) var(--cds-pad-sm); background: var(--lg-red-soft); border: 1px solid transparent; border-radius: var(--cds-radius); cursor: pointer; }
+  .mt-br-mgr:hover, .mt-br-mgr:focus-visible { border-color: var(--lg-red); outline: none; }
+  .mt-br-mgr b { display: flex; align-items: center; gap: .35rem; font-size: var(--cds-font-size-body); font-weight: 700; color: var(--color-fg); }
+
   /* ---------- Phone layout ---------- */
   @media (max-width: 40rem) {
     .mt-title { font-size: 1.55rem; word-break: keep-all; }
@@ -526,7 +536,7 @@
 
     <div class="mt-panel">
       <h3>지점별 현황</h3>
-      <p>선택한 유형의 매니저가 있는 지점. 매니저 수가 많은 순. 지점을 클릭하면 아래 매니저 표가 그 지점만 보여줍니다. MS는 지점 내 이 유형 매니저의 판매 합으로 계산</p>
+      <p>선택한 유형의 매니저가 있는 지점. 매니저 수가 많은 순. 지점을 클릭하면 그 지점의 매니저 명단이 바로 아래에 펼쳐지고, 매니저 현황 표도 그 지점만 보여줍니다. MS는 지점 내 이 유형 매니저의 판매 합으로 계산</p>
       <div class="mt-tw mt-scroll">
         <table class="mt-table mt-click" data-source="branches" data-row-key="key">
           <thead><tr>
@@ -908,13 +918,62 @@
       tr.dataset.key = b.key;
       tr.dataset.branch = b.branch;
       tr.tabIndex = 0;
+      tr.setAttribute('aria-expanded', MT.branch === b.branch ? 'true' : 'false');
       if (MT.branch === b.branch) tr.className = 'is-sel';
       tr.append(td(b.branch), td(b.capa || '—'), td(b.level || '—'), td(MT.F.int(b.n)), td(MT.F.int(b.extra)),
         td(cellNum(b.lg, 'mil')), td(cellNum(b.ms_p1, 'pct')), td(cellNum(b.ms_p2, 'pct')), td(cellNum(b.ms_p3, 'pct')),
         td(cellNum(b.d32, 'pp'), ppClass(b.d32)));
       tb.append(tr);
+      if (MT.branch === b.branch) tb.append(branchMgrRow(b));
     });
   });
+
+  function branchMgrRow(b) {
+    const list = selRows().filter((m) => m.branch === b.branch).sort((x, y) => x.manager.localeCompare(y.manager, 'ko'));
+    const row = document.createElement('tr');
+    row.className = 'mt-br-exp';
+    const cell = document.createElement('td');
+    cell.colSpan = 10;
+    const box = document.createElement('div');
+    box.className = 'mt-br-box';
+    const title = document.createElement('div');
+    title.className = 'mt-br-title';
+    title.textContent = `${b.branch} 매니저 ${list.length}명`;
+    const hint = document.createElement('span');
+    hint.className = 'mt-small';
+    hint.textContent = '이름을 누르면 MS 추이';
+    title.append(' ', hint);
+    const grid = document.createElement('div');
+    grid.className = 'mt-br-list';
+    list.forEach((m) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mt-br-mgr';
+      btn.dataset.mgr = m.id;
+      const name = document.createElement('b');
+      if (MT.sel === 'all') {
+        const dot = document.createElement('i');
+        dot.className = 'mt-sw';
+        dot.style.background = MT.colorOf(m.type);
+        name.append(dot);
+      }
+      name.append(m.manager);
+      if (m.extra === 'Y') {
+        const flag = document.createElement('span');
+        flag.className = 'mt-badge mt-flag';
+        flag.textContent = '추가관리';
+        name.append(flag);
+      }
+      const ms = document.createElement('span');
+      ms.textContent = `MS 6~7월 ${cellNum(m.ms_p2, 'pct')} · 8~9월 ${cellNum(m.ms_p3, 'pct')}`;
+      btn.append(name, ms);
+      grid.append(btn);
+    });
+    box.append(title, grid);
+    cell.append(box);
+    row.append(cell);
+    return row;
+  }
 
   function mgrList() {
     const q = MT.q.trim().toLowerCase();
@@ -979,9 +1038,18 @@
     const tr = e.target.closest('tr[data-key]');
     if (tr) pick(tr.dataset.key, true);
   }));
-  const pickBranch = (tr) => { MT.branch = MT.branch === tr.dataset.branch ? null : tr.dataset.branch; redrawDetail(); };
+  const pickBranch = (tr) => {
+    MT.branch = MT.branch === tr.dataset.branch ? null : tr.dataset.branch;
+    redrawDetail();
+    document.querySelectorAll('.mt-br-exp').forEach((r) => r.scrollIntoView({ behavior: 'smooth', block: 'nearest' }));
+  };
   document.querySelectorAll('tbody[data-draw="branches"]').forEach((tb) => {
-    tb.addEventListener('click', (e) => { const tr = e.target.closest('tr[data-branch]'); if (tr) pickBranch(tr); });
+    tb.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-mgr]');
+      if (b) { pickMgr(b.dataset.mgr, 'mgrs'); return; }
+      const tr = e.target.closest('tr[data-branch]');
+      if (tr) pickBranch(tr);
+    });
     tb.addEventListener('keydown', (e) => { const tr = e.target.closest('tr[data-branch]'); if (tr && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); pickBranch(tr); } });
   });
   document.querySelectorAll('#mt-clear-branch').forEach((b) => b.addEventListener('click', () => { MT.branch = null; redrawDetail(); }));
