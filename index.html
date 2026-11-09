@@ -268,6 +268,16 @@
   .mt-br-mgr:hover, .mt-br-mgr:focus-visible { border-color: var(--lg-red); outline: none; }
   .mt-br-mgr b { display: flex; align-items: center; gap: .35rem; font-size: var(--cds-font-size-body); font-weight: 700; color: var(--color-fg); }
 
+  /* Type labels in the branch and manager tables */
+  .mt-table th.mt-th-l, .mt-table td.mt-td-l { text-align: left; }
+  .mt-mix { display: flex; gap: var(--cds-gap-sm); white-space: nowrap; }
+  .mt-tt { display: inline-flex; align-items: center; gap: .25rem; white-space: nowrap; }
+  .mt-tt .mt-sw { flex: none; }
+  .mt-tt b { font-weight: 700; }
+  .mt-mix .mt-tt:not(.on) { color: var(--color-fg-muted); }
+  .mt-mix .mt-tt:not(.on) b { color: var(--color-fg); font-weight: 600; }
+  .mt-mix .mt-tt.on { color: var(--color-fg); font-weight: 700; }
+
   /* ---------- Phone layout ---------- */
   @media (max-width: 40rem) {
     .mt-title { font-size: 1.55rem; word-break: keep-all; }
@@ -542,6 +552,7 @@
           <thead><tr>
             <th data-field="branch">지점</th>
             <th data-field="capa">CAPA</th>
+            <th data-field="type_mix" class="mt-th-l">유형별 인원</th>
             <th data-field="level">지점군</th>
             <th data-field="n">매니저</th>
             <th data-field="extra">추가관리</th>
@@ -569,6 +580,7 @@
           <thead><tr>
             <th data-field="branch" data-sort="branch" aria-sort="ascending">지점</th>
             <th data-field="manager" data-sort="manager">매니저</th>
+            <th data-field="type" data-sort="type" class="mt-th-l">유형</th>
             <th data-field="extra" data-sort="extra">추가관리</th>
             <th data-field="level" data-sort="level">지점군</th>
             <th data-field="lg_p1" data-sort="lg_p1">LG 1~5월</th>
@@ -859,18 +871,24 @@
     });
   });
 
+  MT.TLABEL = { core: 'Core', rising: 'Rising', swing: 'Swing', challenge: 'Challenge', monitoring: 'Monitoring', unmeasured: '측정불가' };
   dash.calc('branches', {
     inputs: ['managers'],
     title: '유형 × 지점 집계',
-    description: '유형·지점별(type=all은 전체 유형) 매니저 수, 추가관리대상 수, 1~9월 LG 판매 합, 판매 합으로 계산한 가중 MS',
+    description: '유형·지점별(type=all은 전체 유형) 매니저 수, 지점의 유형별 인원, 추가관리대상 수, 1~9월 LG 판매 합, 판매 합으로 계산한 가중 MS',
     fn: (managers) => {
       const out = [];
+      const mixOf = new Map();
+      for (const [branch, ms] of d3.group(managers, (m) => m.branch)) {
+        const counts = d3.rollup(ms, (v) => v.length, (m) => m.type);
+        mixOf.set(branch, MT.ORDER.filter((t) => counts.has(t)).map((t) => [t, counts.get(t)]));
+      }
       const groups = [...d3.group(managers, (m) => m.type, (m) => m.branch), ['all', d3.group(managers, (m) => m.branch)]];
       for (const [type, byBranch] of groups) {
         for (const [branch, ms] of byBranch) {
           const s = (c) => d3.sum(ms, (m) => Number(m[c]) || 0);
           const w = (p) => { const l = s('lg_' + p), x = s('ss_' + p); return l + x > 0 ? Math.round((1000 * l) / (l + x)) / 10 : null; };
-          const r = { key: type + '|' + branch, type, branch, capa: ms[0].capa, level: ms[0].level, n: ms.length,
+          const r = { key: type + '|' + branch, type, branch, mix: mixOf.get(branch), type_mix: mixOf.get(branch).map(([t, n]) => MT.TLABEL[t] + ' ' + n).join(' · '), capa: ms[0].capa, level: ms[0].level, n: ms.length,
             extra: ms.filter((m) => m.extra === 'Y').length, lg: Math.round(s('lg_p1') + s('lg_p2') + s('lg_p3')),
             ms_p1: w('p1'), ms_p2: w('p2'), ms_p3: w('p3') };
           r.d32 = r.ms_p2 != null && r.ms_p3 != null ? Math.round((r.ms_p3 - r.ms_p2) * 10) / 10 : null;
@@ -881,6 +899,16 @@
     }
   });
 
+  const typeTag = (t, n) => {
+    const s = document.createElement('span');
+    s.className = 'mt-tt';
+    const dot = document.createElement('i');
+    dot.className = 'mt-sw';
+    dot.style.background = MT.colorOf(t);
+    s.append(dot, MT.TLABEL[t] || t);
+    if (n != null) { const b = document.createElement('b'); b.textContent = n; s.append(' ', b); }
+    return s;
+  };
   MT.sel = 'core';
   MT.branch = null;
   MT.q = '';
@@ -920,7 +948,12 @@
       tr.tabIndex = 0;
       tr.setAttribute('aria-expanded', MT.branch === b.branch ? 'true' : 'false');
       if (MT.branch === b.branch) tr.className = 'is-sel';
-      tr.append(td(b.branch), td(b.capa || '—'), td(b.level || '—'), td(MT.F.int(b.n)), td(MT.F.int(b.extra)),
+      const mix = td('', 'mt-td-l');
+      const wrap = document.createElement('div');
+      wrap.className = 'mt-mix';
+      b.mix.forEach(([t, n]) => { const tag = typeTag(t, n); if (t === MT.sel) tag.classList.add('on'); wrap.append(tag); });
+      mix.append(wrap);
+      tr.append(td(b.branch), td(b.capa || '—'), mix, td(b.level || '—'), td(MT.F.int(b.n)), td(MT.F.int(b.extra)),
         td(cellNum(b.lg, 'mil')), td(cellNum(b.ms_p1, 'pct')), td(cellNum(b.ms_p2, 'pct')), td(cellNum(b.ms_p3, 'pct')),
         td(cellNum(b.d32, 'pp'), ppClass(b.d32)));
       tb.append(tr);
@@ -933,7 +966,7 @@
     const row = document.createElement('tr');
     row.className = 'mt-br-exp';
     const cell = document.createElement('td');
-    cell.colSpan = 10;
+    cell.colSpan = 11;
     const box = document.createElement('div');
     box.className = 'mt-br-box';
     const title = document.createElement('div');
@@ -978,7 +1011,7 @@
   function mgrList() {
     const q = MT.q.trim().toLowerCase();
     const { k, dir } = MT.sort;
-    const numeric = !['branch', 'manager', 'extra', 'level'].includes(k);
+    const numeric = !['branch', 'manager', 'type', 'extra', 'level'].includes(k);
     return selRows()
       .filter((m) => !MT.branch || m.branch === MT.branch)
       .filter((m) => !q || (m.branch + ' ' + m.manager).toLowerCase().includes(q))
@@ -987,6 +1020,7 @@
           const x = a[k] === '' ? -Infinity : Number(a[k]), y = b[k] === '' ? -Infinity : Number(b[k]);
           return x === y ? 0 : (x < y ? -1 : 1) * dir;
         }
+        if (k === 'type') return (MT.ORDER.indexOf(a.type) - MT.ORDER.indexOf(b.type)) * dir || a.manager.localeCompare(b.manager, 'ko');
         return String(a[k] || '').localeCompare(String(b[k] || ''), 'ko') * dir || a.manager.localeCompare(b.manager, 'ko');
       });
   }
@@ -1001,7 +1035,9 @@
       if (MT.mgrSel && MT.mgrSel.from === 'mgrs' && MT.mgrSel.id === m.id) tr.className = 'is-sel';
       const ex = document.createElement('td');
       if (m.extra === 'Y') { const b = document.createElement('span'); b.className = 'mt-badge mt-flag'; b.textContent = 'Y'; ex.append(b); }
-      tr.append(td(m.branch), td(m.manager), ex, td(m.level || '—'),
+      const ty = td('', 'mt-td-l');
+      ty.append(typeTag(m.type));
+      tr.append(td(m.branch), td(m.manager), ty, ex, td(m.level || '—'),
         td(cellNum(m.lg_p1, 'mil')), td(cellNum(m.lg_p2, 'mil')), td(cellNum(m.lg_p3, 'mil')),
         td(cellNum(m.ms_p1, 'pct')), td(cellNum(m.ms_p2, 'pct')), td(cellNum(m.ms_p3, 'pct')),
         td(cellNum(m.d21, 'pp'), ppClass(m.d21)), td(cellNum(m.d32, 'pp'), ppClass(m.d32)));
@@ -1058,7 +1094,7 @@
     th.tabIndex = 0;
     const go = () => {
       const k = th.dataset.sort;
-      const textCol = ['branch', 'manager', 'extra', 'level'].includes(k);
+      const textCol = ['branch', 'manager', 'type', 'extra', 'level'].includes(k);
       MT.sort = MT.sort.k === k ? { k, dir: -MT.sort.dir } : { k, dir: textCol ? 1 : -1 };
       document.querySelectorAll('.mt-sortable th[data-sort]').forEach((h) => {
         if (h.dataset.sort === MT.sort.k) h.setAttribute('aria-sort', MT.sort.dir > 0 ? 'ascending' : 'descending');
