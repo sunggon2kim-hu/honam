@@ -240,8 +240,11 @@
   .mt-st-total .mt-st-n { color: #FFFFFF; }
   .mt-st-total .mt-st-d b, .mt-st-total .mt-st-d b * { color: #FFFFFF !important; font-weight: 700; }
   .mt-kpi { border-top: 2px solid var(--color-fg); }
-  .mt-sec-h h2 { display: flex; align-items: center; gap: .5rem; font-weight: 700; }
-  .mt-sec-h h2::before { content: ""; width: .55rem; height: .55rem; border-radius: 2px; background: var(--lg-red); flex: none; }
+  #mx-detail[hidden] { display: none; }
+  .mt-sec-h { padding-bottom: .6rem; border-bottom: 2px solid transparent; border-image: linear-gradient(90deg, var(--lg-red) 0 7rem, var(--color-border-line) 7rem) 1; }
+  .mt-sec-h h2 { display: flex; align-items: center; gap: .6rem; font-size: 1.6rem; font-weight: 800; line-height: 1.25; letter-spacing: -.02em; word-break: keep-all; }
+  .mt-sec-h h2::before { content: ""; width: .4rem; height: 1.15em; border-radius: 2px; background: var(--lg-red); flex: none; }
+  .mt-panel > h3, .mt-panel > * > h3 { font-size: 1.2rem; font-weight: 800; letter-spacing: -.01em; color: var(--lg-red); }
   .mt-badge.main { color: var(--lg-red); border-color: var(--lg-red); font-weight: 600; }
   .mt-card { border-top-width: 4px; }
   .mt-card .mt-en { color: var(--color-fg); }
@@ -302,6 +305,8 @@
     .mt-st-d { font-size: 11.5px; }
     .mt-st-l .mt-name { font-size: 13px; }
     .mt-st-l .mt-badge { font-size: 10px; padding: 0 4px; }
+    .mt-sec-h h2 { font-size: 1.3rem; }
+    .mt-panel > h3, .mt-panel > * > h3 { font-size: 1.08rem; }
     .mt-sec-h p { font-size: 12px; }
     .mt-card { padding: 14px; gap: 10px; }
     .mt-panel { padding: 12px; }
@@ -501,10 +506,8 @@
         <div class="mt-mx-cell" data-l="L1" data-c="D" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L1" data-c="D" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L1" data-c="D" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L1" data-c="D" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
       </div>
     </div>
-    <p class="mt-small">측정불가 유형과 1~5월·6~7월 판매가 없는 매니저는 제외. 판매 비중은 양사(LG+삼성) 1~9월 판매 합 ÷ 팀 전체 303명 양사 판매 합. 칸을 클릭하면 그 칸의 매니저 명단이 아래에 나옵니다.</p>
-    <div class="mt-panel" id="mx-detail">
+    <div class="mt-panel" id="mx-detail" hidden>
       <h3 data-draw="mxsel" data-source="ms_matrix">—</h3>
-      <p id="mx-hint">매트릭스의 칸을 클릭하면 그 칸에 속한 매니저와 개인 MS가 여기에 나옵니다. 같은 칸을 다시 클릭하면 닫힙니다. 명단에서 매니저를 클릭하면 MS 추이를 볼 수 있습니다.</p>
       <div class="mt-tw mt-scroll" id="mx-tablewrap" hidden>
         <table class="mt-table mt-click" data-source="managers" data-row-key="id">
           <thead><tr>
@@ -528,7 +531,7 @@
   </section>
 
   <section class="mt-sec" id="detail">
-    <div class="mt-sec-h"><h2><span data-draw="selname" data-source="types">—</span> · 지점·매니저 현황</h2><p>위의 유형 카드를 클릭해도 바뀝니다</p></div>
+    <div class="mt-sec-h"><h2><span><span data-draw="selname" data-source="types">—</span> · 지점·매니저 현황</span></h2><p>위의 유형 카드를 클릭해도 바뀝니다</p></div>
     <div class="mt-chips" role="group" aria-label="유형 선택">
       <button type="button" class="mt-chip" data-pick="all" aria-pressed="false">총 매니저</button>
       <button type="button" class="mt-chip" data-pick="core" aria-pressed="false"><i class="mt-sw" data-tswatch="core"></i>Core</button>
@@ -1247,7 +1250,7 @@
       x.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
     document.querySelectorAll('#mx-tablewrap').forEach((w) => { w.hidden = !MT.mxSel; });
-    document.querySelectorAll('#mx-hint').forEach((h) => { h.hidden = !!MT.mxSel; });
+    document.querySelectorAll('#mx-detail').forEach((p) => { p.hidden = !MT.mxSel; });
     dash.draw('mxsel');
     dash.draw('mxlist');
     if (MT.mxSel) document.querySelectorAll('#mx-detail').forEach((p) => p.scrollIntoView({ behavior: 'smooth', block: 'nearest' }));
