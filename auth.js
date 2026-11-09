@@ -102,7 +102,7 @@
     gate.innerHTML =
       '<form class="login-card" autocomplete="on">' +
       '<div class="login-brand">LG전자 혼매호남팀</div>' +
-      '<h1>매니저 유형 현황</h1>' +
+      '<h1>키맨 관리현황</h1>' +
       '<p>내부용 페이지입니다. 아이디와 비밀번호를 입력해 주세요.</p>' +
       '<label>아이디<input name="username" autocomplete="username" autocapitalize="off" spellcheck="false" required></label>' +
       '<label>비밀번호<input name="password" type="password" autocomplete="current-password" required></label>' +
