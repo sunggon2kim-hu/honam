@@ -431,7 +431,7 @@
       <div class="mt-cell"><span class="mt-lbl">증감</span><span class="mt-small">6~7월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=monitoring">—</b> · 8~9월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=monitoring">—</b></span></div>
       <span class="mt-cell mt-gcell mt-pick-hint">클릭하면 지점·매니저 현황 보기</span>
     </article>
-    <p class="mt-small">측정불가 유형(유형 분류 기준 미설명)은 아래 비교 표에만 참고로 넣었습니다.</p>
+    <p class="mt-small">측정불가 유형(유형 분류 기준 미설명)은 아래 지점·매니저 현황에서 참고로 볼 수 있습니다.</p>
   </section>
 
 
@@ -500,34 +500,8 @@
     </div>
   </section>
 
-  <section class="mt-sec" id="compare">
-    <div class="mt-sec-h"><h2>유형별 한눈에 보기</h2><p>판매 단위 백만원</p></div>
-    <div class="mt-panel">
-      <div class="mt-tw">
-        <table class="mt-table" data-source="types" data-row-key="type">
-          <thead><tr>
-            <th data-field="type">유형</th>
-            <th data-field="n">인원</th>
-            <th data-source="type_share" data-field="n_share">인원 비중</th>
-            <th data-field="extra">추가관리</th>
-            <th data-source="type_share" data-field="lg_share">LG판매 비중</th>
-            <th data-field="lg_p1">LG 1~5월</th>
-            <th data-field="lg_p2">LG 6~7월</th>
-            <th data-field="lg_p3">LG 8~9월</th>
-            <th data-field="ms_p1">MS 1~5월</th>
-            <th data-field="ms_p2">MS 6~7월</th>
-            <th data-field="ms_p3">MS 8~9월</th>
-            <th data-field="d21">증감 6~7월</th>
-            <th data-field="d32">증감 8~9월</th>
-          </tr></thead>
-          <tbody data-draw="cmp"></tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
   <section class="mt-sec" id="detail">
-    <div class="mt-sec-h"><h2><span data-draw="selname" data-source="types">—</span> · 지점·매니저 현황</h2><p>위의 유형 카드나 비교 표의 행을 클릭해도 바뀝니다</p></div>
+    <div class="mt-sec-h"><h2><span data-draw="selname" data-source="types">—</span> · 지점·매니저 현황</h2><p>위의 유형 카드를 클릭해도 바뀝니다</p></div>
     <div class="mt-chips" role="group" aria-label="유형 선택">
       <button type="button" class="mt-chip" data-pick="all" aria-pressed="false">총 매니저</button>
       <button type="button" class="mt-chip" data-pick="core" aria-pressed="false"><i class="mt-sw" data-tswatch="core"></i>Core</button>
