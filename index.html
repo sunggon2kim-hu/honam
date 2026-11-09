@@ -334,6 +334,11 @@
     .mt-mt-sum { font-size: 13px; }
   }
 
+  /* Manager search above the branch table */
+  .mt-q-res { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border: 1px solid var(--color-border-line); border-radius: 10px; background: var(--color-bg); }
+  .mt-q-res[hidden] { display: none; }
+  .mt-q-res .mt-br-mgr { background: var(--color-panel); border-color: var(--color-border-line); }
+
   /* Photo cards for the four main types */
   .mt-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .mt-st-total, .mt-st.mt-st-sub { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: center; column-gap: 1.5rem; }
@@ -461,6 +466,69 @@
     <p class="mt-take">팀 MS는 6~7월에 <b data-draw="v" data-fmt="pp" data-source="team" data-field="d21" data-where="scope=team">—</b> 떨어졌다가 8~9월에 <b data-draw="v" data-fmt="pp" data-source="team" data-field="d32" data-where="scope=team">—</b> 반등했습니다. 메인 유형 중 Challenge가 가장 크게 떨어지고(<b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=challenge">—</b>) 가장 크게 반등했으며(<b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=challenge">—</b>), 6~7월에도 MS가 오른 유형은 Rising(<b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=rising">—</b>)뿐입니다.</p>
   </header>
 
+  <section class="mt-sec" id="ms-matrix">
+    <div class="mt-sec-h"><h2>혼매호남팀 개인 MS 매트릭스</h2><p>가로: 6~7월 개인 MS · 세로: 행사 전후 개인 MS 감소폭(1~5월 → 6~7월) · MS는 1~5월 → 6~7월 → 8~9월</p></div>
+    <div class="mt-chips" role="group" aria-label="매트릭스 유형 선택">
+      <button type="button" class="mt-chip" data-mxpick="all" aria-pressed="true">전체</button>
+      <button type="button" class="mt-chip" data-mxpick="core" aria-pressed="false"><i class="mt-sw" data-tswatch="core"></i>Core</button>
+      <button type="button" class="mt-chip" data-mxpick="rising" aria-pressed="false"><i class="mt-sw" data-tswatch="rising"></i>Rising</button>
+      <button type="button" class="mt-chip" data-mxpick="swing" aria-pressed="false"><i class="mt-sw" data-tswatch="swing"></i>Swing</button>
+      <button type="button" class="mt-chip" data-mxpick="challenge" aria-pressed="false"><i class="mt-sw" data-tswatch="challenge"></i>Challenge</button>
+      <button type="button" class="mt-chip mt-chip-sub" data-mxpick="monitoring" aria-pressed="false"><i class="mt-sw" data-tswatch="monitoring"></i>Monitoring</button>
+    </div>
+    <div class="mt-tw">
+      <div class="mt-mx" data-source="ms_matrix managers">
+        <div class="mt-mx-corner"><b>6~7월 개인 MS / 행사 전후 MS 감소폭</b><span class="mt-small">GAP: 6~7월 MS − 1~5월 MS · 대상 <span class="" data-draw="mx" data-l="all" data-c="all" data-f="n">—</span>명</span></div>
+        <div class="mt-mx-ch"><div class="mt-mx-top"><b class="mt-mx-name">우수</b> <span>(<span class="" data-draw="mx" data-l="all" data-c="A" data-f="n">—</span>명)</span><span class="mt-mx-sh">판매비중 <span class="" data-draw="mx" data-l="all" data-c="A" data-f="share">—</span></span></div><div class="mt-mx-top"><span class="mt-small">개인 MS ≥ 50%</span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="all" data-c="A" data-f="traj">—</span></span></div></div>
+        <div class="mt-mx-ch"><div class="mt-mx-top"><b class="mt-mx-name">양호</b> <span>(<span class="" data-draw="mx" data-l="all" data-c="B" data-f="n">—</span>명)</span><span class="mt-mx-sh">판매비중 <span class="" data-draw="mx" data-l="all" data-c="B" data-f="share">—</span></span></div><div class="mt-mx-top"><span class="mt-small">개인 MS 40~50%</span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="all" data-c="B" data-f="traj">—</span></span></div></div>
+        <div class="mt-mx-ch"><div class="mt-mx-top"><b class="mt-mx-name">미흡</b> <span>(<span class="" data-draw="mx" data-l="all" data-c="C" data-f="n">—</span>명)</span><span class="mt-mx-sh">판매비중 <span class="" data-draw="mx" data-l="all" data-c="C" data-f="share">—</span></span></div><div class="mt-mx-top"><span class="mt-small">개인 MS 30~40%</span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="all" data-c="C" data-f="traj">—</span></span></div></div>
+        <div class="mt-mx-ch"><div class="mt-mx-top"><b class="mt-mx-name">부진</b> <span>(<span class="" data-draw="mx" data-l="all" data-c="D" data-f="n">—</span>명)</span><span class="mt-mx-sh">판매비중 <span class="" data-draw="mx" data-l="all" data-c="D" data-f="share">—</span></span></div><div class="mt-mx-top"><span class="mt-small">개인 MS < 30%</span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="all" data-c="D" data-f="traj">—</span></span></div></div>
+        <div class="mt-mx-rh"><b class="mt-mx-name">Level4</b> <span class="mt-small">(변동성 ↑)</span><span class="mt-small">GAP Δ20%p 이하</span><span class="mt-small"><span class="" data-draw="mx" data-l="L4" data-c="all" data-f="n">—</span>명 · 판매 <span class="" data-draw="mx" data-l="L4" data-c="all" data-f="share">—</span></span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="L4" data-c="all" data-f="traj">—</span></span></div>
+        <div class="mt-mx-cell" data-l="L4" data-c="A" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L4" data-c="A" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L4" data-c="A" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L4" data-c="A" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L4" data-c="B" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L4" data-c="B" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L4" data-c="B" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L4" data-c="B" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L4" data-c="C" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L4" data-c="C" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L4" data-c="C" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L4" data-c="C" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L4" data-c="D" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L4" data-c="D" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L4" data-c="D" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L4" data-c="D" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-rh"><b class="mt-mx-name">Level3</b> <span class="mt-small"></span><span class="mt-small">GAP Δ20 ~ Δ10%p</span><span class="mt-small"><span class="" data-draw="mx" data-l="L3" data-c="all" data-f="n">—</span>명 · 판매 <span class="" data-draw="mx" data-l="L3" data-c="all" data-f="share">—</span></span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="L3" data-c="all" data-f="traj">—</span></span></div>
+        <div class="mt-mx-cell" data-l="L3" data-c="A" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L3" data-c="A" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L3" data-c="A" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L3" data-c="A" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L3" data-c="B" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L3" data-c="B" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L3" data-c="B" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L3" data-c="B" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L3" data-c="C" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L3" data-c="C" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L3" data-c="C" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L3" data-c="C" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L3" data-c="D" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L3" data-c="D" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L3" data-c="D" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L3" data-c="D" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-rh"><b class="mt-mx-name">Level2</b> <span class="mt-small"></span><span class="mt-small">GAP Δ10 ~ 0%p</span><span class="mt-small"><span class="" data-draw="mx" data-l="L2" data-c="all" data-f="n">—</span>명 · 판매 <span class="" data-draw="mx" data-l="L2" data-c="all" data-f="share">—</span></span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="L2" data-c="all" data-f="traj">—</span></span></div>
+        <div class="mt-mx-cell" data-l="L2" data-c="A" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L2" data-c="A" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L2" data-c="A" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L2" data-c="A" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L2" data-c="B" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L2" data-c="B" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L2" data-c="B" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L2" data-c="B" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L2" data-c="C" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L2" data-c="C" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L2" data-c="C" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L2" data-c="C" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L2" data-c="D" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L2" data-c="D" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L2" data-c="D" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L2" data-c="D" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-rh"><b class="mt-mx-name">Level1</b> <span class="mt-small">(변동성 ↓)</span><span class="mt-small">GAP 0%p 이상</span><span class="mt-small"><span class="" data-draw="mx" data-l="L1" data-c="all" data-f="n">—</span>명 · 판매 <span class="" data-draw="mx" data-l="L1" data-c="all" data-f="share">—</span></span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="L1" data-c="all" data-f="traj">—</span></span></div>
+        <div class="mt-mx-cell" data-l="L1" data-c="A" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L1" data-c="A" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L1" data-c="A" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L1" data-c="A" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L1" data-c="B" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L1" data-c="B" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L1" data-c="B" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L1" data-c="B" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L1" data-c="C" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L1" data-c="C" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L1" data-c="C" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L1" data-c="C" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+        <div class="mt-mx-cell" data-l="L1" data-c="D" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L1" data-c="D" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L1" data-c="D" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L1" data-c="D" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
+      </div>
+    </div>
+    <div class="mt-panel" id="mx-detail" hidden>
+      <h3 data-draw="mxsel" data-source="ms_matrix">—</h3>
+      <div class="mt-tw mt-scroll" id="mx-tablewrap" hidden>
+        <table class="mt-table mt-click" data-source="managers" data-row-key="id">
+          <thead><tr>
+            <th data-field="manager">매니저</th>
+            <th data-field="branch">지점</th>
+            <th data-field="extra">추가관리</th>
+            <th data-field="ms_p1">MS 1~5월</th>
+            <th data-field="ms_p2">MS 6~7월</th>
+            <th data-field="ms_p3">MS 8~9월</th>
+            <th data-field="d21">GAP 6~7월</th>
+            <th data-field="d32">증감 8~9월</th>
+          </tr></thead>
+          <tbody data-draw="mxlist"></tbody>
+        </table>
+      </div>
+      <div class="mt-trendbox" data-trend-from="mx" hidden>
+        <div class="mt-trendbox-h"><h4>매니저 실적</h4><button type="button" class="mt-clear" data-trend-close>닫기 ×</button></div>
+        <div class="mt-mgrtrend" data-draw="mgrtrend" data-from="mx" data-source="managers types team"></div>
+      </div>
+    </div>
+  </section>
+
   <section class="mt-sec" id="main-types">
     <div class="mt-sec-h"><h2>메인 유형</h2><p>MS = LG ÷ (LG + 삼성), 유형 판매 합으로 계산한 가중 MS · 점선은 팀 전체</p></div>
     <div class="mt-cards">
@@ -527,69 +595,6 @@
     </div>
   </section>
 
-  <section class="mt-sec" id="ms-matrix">
-    <div class="mt-sec-h"><h2>혼매호남팀 개인 MS 매트릭스</h2><p>가로: 6~7월 개인 MS · 세로: 행사 전후 개인 MS 감소폭(1~5월 → 6~7월) · MS는 1~5월 → 6~7월 → 8~9월</p></div>
-    <div class="mt-chips" role="group" aria-label="매트릭스 유형 선택">
-      <button type="button" class="mt-chip" data-mxpick="all" aria-pressed="true">전체</button>
-      <button type="button" class="mt-chip" data-mxpick="core" aria-pressed="false"><i class="mt-sw" data-tswatch="core"></i>Core</button>
-      <button type="button" class="mt-chip" data-mxpick="rising" aria-pressed="false"><i class="mt-sw" data-tswatch="rising"></i>Rising</button>
-      <button type="button" class="mt-chip" data-mxpick="swing" aria-pressed="false"><i class="mt-sw" data-tswatch="swing"></i>Swing</button>
-      <button type="button" class="mt-chip" data-mxpick="challenge" aria-pressed="false"><i class="mt-sw" data-tswatch="challenge"></i>Challenge</button>
-      <button type="button" class="mt-chip mt-chip-sub" data-mxpick="monitoring" aria-pressed="false"><i class="mt-sw" data-tswatch="monitoring"></i>Monitoring</button>
-    </div>
-    <div class="mt-tw">
-      <div class="mt-mx" data-source="ms_matrix managers">
-        <div class="mt-mx-corner"><b>6~7월 개인 MS / 행사 전후 MS 감소폭</b><span class="mt-small">GAP: 6~7월 MS − 1~5월 MS · 대상 <span class="" data-draw="mx" data-l="all" data-c="all" data-f="n">—</span>명</span></div>
-        <div class="mt-mx-ch"><div class="mt-mx-top"><b class="mt-mx-name">우수</b> <span>(<span class="" data-draw="mx" data-l="all" data-c="A" data-f="n">—</span>명)</span><span class="mt-mx-sh">판매비중 <span class="" data-draw="mx" data-l="all" data-c="A" data-f="share">—</span></span></div><div class="mt-mx-top"><span class="mt-small">개인 MS ≥ 50%</span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="all" data-c="A" data-f="traj">—</span></span></div></div>
-        <div class="mt-mx-ch"><div class="mt-mx-top"><b class="mt-mx-name">양호</b> <span>(<span class="" data-draw="mx" data-l="all" data-c="B" data-f="n">—</span>명)</span><span class="mt-mx-sh">판매비중 <span class="" data-draw="mx" data-l="all" data-c="B" data-f="share">—</span></span></div><div class="mt-mx-top"><span class="mt-small">개인 MS 40~50%</span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="all" data-c="B" data-f="traj">—</span></span></div></div>
-        <div class="mt-mx-ch"><div class="mt-mx-top"><b class="mt-mx-name">미흡</b> <span>(<span class="" data-draw="mx" data-l="all" data-c="C" data-f="n">—</span>명)</span><span class="mt-mx-sh">판매비중 <span class="" data-draw="mx" data-l="all" data-c="C" data-f="share">—</span></span></div><div class="mt-mx-top"><span class="mt-small">개인 MS 30~40%</span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="all" data-c="C" data-f="traj">—</span></span></div></div>
-        <div class="mt-mx-ch"><div class="mt-mx-top"><b class="mt-mx-name">부진</b> <span>(<span class="" data-draw="mx" data-l="all" data-c="D" data-f="n">—</span>명)</span><span class="mt-mx-sh">판매비중 <span class="" data-draw="mx" data-l="all" data-c="D" data-f="share">—</span></span></div><div class="mt-mx-top"><span class="mt-small">개인 MS < 30%</span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="all" data-c="D" data-f="traj">—</span></span></div></div>
-        <div class="mt-mx-rh"><b class="mt-mx-name">Level4</b> <span class="mt-small">(변동성 ↑)</span><span class="mt-small">GAP Δ20%p 이하</span><span class="mt-small"><span class="" data-draw="mx" data-l="L4" data-c="all" data-f="n">—</span>명 · 판매 <span class="" data-draw="mx" data-l="L4" data-c="all" data-f="share">—</span></span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="L4" data-c="all" data-f="traj">—</span></span></div>
-        <div class="mt-mx-cell" data-l="L4" data-c="A" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L4" data-c="A" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L4" data-c="A" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L4" data-c="A" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
-        <div class="mt-mx-cell" data-l="L4" data-c="B" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L4" data-c="B" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L4" data-c="B" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L4" data-c="B" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
-        <div class="mt-mx-cell" data-l="L4" data-c="C" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L4" data-c="C" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L4" data-c="C" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L4" data-c="C" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
-        <div class="mt-mx-cell" data-l="L4" data-c="D" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L4" data-c="D" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L4" data-c="D" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L4" data-c="D" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
-        <div class="mt-mx-rh"><b class="mt-mx-name">Level3</b> <span class="mt-small"></span><span class="mt-small">GAP Δ20 ~ Δ10%p</span><span class="mt-small"><span class="" data-draw="mx" data-l="L3" data-c="all" data-f="n">—</span>명 · 판매 <span class="" data-draw="mx" data-l="L3" data-c="all" data-f="share">—</span></span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="L3" data-c="all" data-f="traj">—</span></span></div>
-        <div class="mt-mx-cell" data-l="L3" data-c="A" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L3" data-c="A" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L3" data-c="A" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L3" data-c="A" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
-        <div class="mt-mx-cell" data-l="L3" data-c="B" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L3" data-c="B" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L3" data-c="B" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L3" data-c="B" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
-        <div class="mt-mx-cell" data-l="L3" data-c="C" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L3" data-c="C" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L3" data-c="C" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L3" data-c="C" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
-        <div class="mt-mx-cell" data-l="L3" data-c="D" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L3" data-c="D" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L3" data-c="D" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L3" data-c="D" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
-        <div class="mt-mx-rh"><b class="mt-mx-name">Level2</b> <span class="mt-small"></span><span class="mt-small">GAP Δ10 ~ 0%p</span><span class="mt-small"><span class="" data-draw="mx" data-l="L2" data-c="all" data-f="n">—</span>명 · 판매 <span class="" data-draw="mx" data-l="L2" data-c="all" data-f="share">—</span></span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="L2" data-c="all" data-f="traj">—</span></span></div>
-        <div class="mt-mx-cell" data-l="L2" data-c="A" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L2" data-c="A" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L2" data-c="A" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L2" data-c="A" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
-        <div class="mt-mx-cell" data-l="L2" data-c="B" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L2" data-c="B" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L2" data-c="B" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L2" data-c="B" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
-        <div class="mt-mx-cell" data-l="L2" data-c="C" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L2" data-c="C" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L2" data-c="C" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L2" data-c="C" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
-        <div class="mt-mx-cell" data-l="L2" data-c="D" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L2" data-c="D" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L2" data-c="D" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L2" data-c="D" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
-        <div class="mt-mx-rh"><b class="mt-mx-name">Level1</b> <span class="mt-small">(변동성 ↓)</span><span class="mt-small">GAP 0%p 이상</span><span class="mt-small"><span class="" data-draw="mx" data-l="L1" data-c="all" data-f="n">—</span>명 · 판매 <span class="" data-draw="mx" data-l="L1" data-c="all" data-f="share">—</span></span><span class="mt-mx-traj"><span class="" data-draw="mx" data-l="L1" data-c="all" data-f="traj">—</span></span></div>
-        <div class="mt-mx-cell" data-l="L1" data-c="A" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L1" data-c="A" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L1" data-c="A" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L1" data-c="A" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
-        <div class="mt-mx-cell" data-l="L1" data-c="B" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L1" data-c="B" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L1" data-c="B" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L1" data-c="B" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
-        <div class="mt-mx-cell" data-l="L1" data-c="C" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L1" data-c="C" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L1" data-c="C" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L1" data-c="C" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
-        <div class="mt-mx-cell" data-l="L1" data-c="D" tabindex="0" role="button" aria-pressed="false"><div class="mt-mx-top"><span class="mt-mx-n"><span class="" data-draw="mx" data-l="L1" data-c="D" data-f="n">—</span>명</span><span class="mt-mx-sh">판매 <span class="" data-draw="mx" data-l="L1" data-c="D" data-f="share">—</span></span></div><div class="mt-mx-traj"><span class="" data-draw="mx" data-l="L1" data-c="D" data-f="traj">—</span></div><span class="mt-mx-hint">클릭하면 명단 보기</span></div>
-      </div>
-    </div>
-    <div class="mt-panel" id="mx-detail" hidden>
-      <h3 data-draw="mxsel" data-source="ms_matrix">—</h3>
-      <div class="mt-tw mt-scroll" id="mx-tablewrap" hidden>
-        <table class="mt-table mt-click" data-source="managers" data-row-key="id">
-          <thead><tr>
-            <th data-field="manager">매니저</th>
-            <th data-field="branch">지점</th>
-            <th data-field="extra">추가관리</th>
-            <th data-field="ms_p1">MS 1~5월</th>
-            <th data-field="ms_p2">MS 6~7월</th>
-            <th data-field="ms_p3">MS 8~9월</th>
-            <th data-field="d21">GAP 6~7월</th>
-            <th data-field="d32">증감 8~9월</th>
-          </tr></thead>
-          <tbody data-draw="mxlist"></tbody>
-        </table>
-      </div>
-      <div class="mt-trendbox" data-trend-from="mx" hidden>
-        <div class="mt-trendbox-h"><h4>매니저 실적</h4><button type="button" class="mt-clear" data-trend-close>닫기 ×</button></div>
-        <div class="mt-mgrtrend" data-draw="mgrtrend" data-from="mx" data-source="managers types team"></div>
-      </div>
-    </div>
-  </section>
-
   <section class="mt-sec" id="sub-types">
     <div class="mt-sec-h"><h2>서브 유형</h2><p>메인 4개 유형과 따로 보는 관찰 대상</p></div>
     <article class="mt-subcard mt-pickable" id="type-monitoring" data-pick="monitoring" tabindex="0" role="button" aria-pressed="false">
@@ -625,6 +630,10 @@
     <div class="mt-panel">
       <h3>지점별/매니저별 현황</h3>
       <p>선택한 유형의 매니저가 있는 지점. 매니저 수가 많은 순. 지점을 클릭하면 그 지점의 매니저 명단이 바로 아래에 펼쳐지고, 매니저 이름을 클릭하면 실적 그래프와 데이터가 나옵니다. MS는 지점 내 이 유형 매니저의 판매 합으로 계산</p>
+      <div class="mt-tools">
+        <input type="search" id="mt-q" class="mt-search" placeholder="지점·매니저 이름 검색" aria-label="지점·매니저 이름 검색" autocomplete="off">
+      </div>
+      <div class="mt-q-res" id="mt-q-res" hidden></div>
       <div class="mt-tw mt-scroll">
         <table class="mt-table mt-click" data-source="branches" data-row-key="key">
           <thead><tr>
@@ -1249,7 +1258,71 @@
     tb.addEventListener('keydown', (e) => { const tr = e.target.closest('tr[data-branch]'); if (tr && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); pickBranch(tr); } });
   });
   document.querySelectorAll('#mt-clear-branch').forEach((b) => b.addEventListener('click', () => { MT.branch = null; redrawDetail(); }));
-  document.querySelectorAll('#mt-q').forEach((inp) => inp.addEventListener('input', () => { MT.q = inp.value; dash.draw('mgrs'); dash.draw('mgrcount'); }));
+  // Search every manager; choosing a result opens that person's performance.
+  const Q_LIMIT = 20;
+  function renderSearch() {
+    document.querySelectorAll('#mt-q-res').forEach((box) => {
+      box.replaceChildren();
+      const q = MT.q.trim().toLowerCase();
+      box.hidden = !q;
+      if (!q || !MT.ok('managers') || !MT.ok('types')) return;
+      const types = dash.data('types').data;
+      const hits = dash.data('managers').data.filter((m) => (m.branch + ' ' + m.manager).toLowerCase().includes(q))
+        .sort((a, b) => a.branch.localeCompare(b.branch, 'ko') || a.manager.localeCompare(b.manager, 'ko'));
+      const head = document.createElement('div');
+      head.className = 'mt-small';
+      head.textContent = hits.length ? `검색 결과 ${MT.F.int(hits.length)}명${hits.length > Q_LIMIT ? ` · 앞의 ${Q_LIMIT}명만 표시, 이름을 더 입력해 주세요` : ''}` : '검색 결과가 없습니다.';
+      box.append(head);
+      if (!hits.length) return;
+      const grid = document.createElement('div');
+      grid.className = 'mt-br-list';
+      hits.slice(0, Q_LIMIT).forEach((m) => {
+        const r = types.find((x) => x.type === m.type);
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'mt-br-mgr';
+        btn.dataset.qmgr = m.id;
+        const name = document.createElement('b');
+        const dot = document.createElement('i');
+        dot.className = 'mt-sw';
+        dot.style.background = MT.colorOf(m.type);
+        name.append(dot, m.manager);
+        const info = document.createElement('span');
+        info.textContent = `${m.branch} · ${r ? r.name_en : m.type} · MS 8~9월 ${cellNum(m.ms_p3, 'pct')}`;
+        btn.append(name, info);
+        grid.append(btn);
+      });
+      box.append(grid);
+    });
+  }
+  function openFromSearch(id) {
+    const m = dash.data('managers').data.find((x) => x.id === id);
+    if (!m) return;
+    if (MT.sel !== 'all') MT.sel = m.type;
+    MT.branch = m.branch;
+    MT.mgrSel = { id, from: 'mgrs' };
+    MT.q = '';
+    document.querySelectorAll('#mt-q').forEach((i) => { i.value = ''; });
+    renderSearch();
+    document.querySelectorAll('[data-trend-from]').forEach((b) => { b.hidden = b.dataset.trendFrom !== 'mgrs'; });
+    redrawDetail();
+    dash.draw('mgrtrend');
+    dash.draw('mxlist');
+    document.querySelectorAll('.mt-br-exp').forEach((r) => r.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+  }
+  document.querySelectorAll('#mt-q').forEach((inp) => {
+    inp.addEventListener('input', () => { MT.q = inp.value; renderSearch(); });
+    inp.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter') return;
+      e.preventDefault();
+      const first = document.querySelector('#mt-q-res [data-qmgr]');
+      if (first) openFromSearch(first.dataset.qmgr);
+    });
+  });
+  document.querySelectorAll('#mt-q-res').forEach((box) => box.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-qmgr]');
+    if (b) openFromSearch(b.dataset.qmgr);
+  }));
   document.querySelectorAll('.mt-sortable th[data-sort]').forEach((th) => {
     th.tabIndex = 0;
     const go = () => {
