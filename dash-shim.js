@@ -1,7 +1,7 @@
 // Standalone runtime for the dashboard page: loads the CSV files in data/
 // and provides the small `dash` API the page script uses.
 (function () {
-  var SOURCES = { types: 'data/types.csv', team: 'data/team.csv', managers: 'data/managers.csv', owners: 'data/owners.csv' };
+  var SOURCES = { types: 'data/types.csv', team: 'data/team.csv', managers: 'data/managers.csv', owners: 'data/owners.csv', decks: 'data/decks.csv' };
   var store = {};
   var calcs = {};
   var draws = new Map();
