@@ -1370,7 +1370,7 @@
     const main = d3.sum(all.filter((r) => r.group === 'main'), (r) => Number(r.n) || 0);
     // Extra-management people outside the four main types, so nobody is counted twice.
     const extra = d3.sum(all.filter((r) => r.group !== 'main'), (r) => Number(r.extra) || 0);
-    el.textContent = el.dataset.f === 'n' ? MT.F.int(main + extra) : `(4가지 유형 ${MT.F.int(main)}명, 추가관리대상 ${MT.F.int(extra)}명)`;
+    el.textContent = el.dataset.f === 'n' ? MT.F.int(main + extra) : `(메인유형 ${MT.F.int(main)}명 + 추가관리대상 ${MT.F.int(extra)}명)`;
   });
 
   // Field action plan written by the team, shown for the selected type.
