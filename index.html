@@ -433,7 +433,7 @@
   .mt-owners:empty { display: none; }
   .mt-own-g { --oc: var(--mk); display: flex; flex-direction: column; border-radius: 14px; overflow: hidden; background: color-mix(in srgb, var(--oc) 7%, var(--color-panel)); border: 1px solid color-mix(in srgb, var(--oc) 30%, var(--color-panel)); box-shadow: 0 4px 14px color-mix(in srgb, var(--oc) 14%, transparent); }
   .mt-own-g.mt-own-field_mgr { --oc: var(--fm); }
-  .mt-own-l { display: flex; align-items: center; gap: 10px; padding: 14px 18px; color: #fff; background: linear-gradient(120deg, var(--oc), color-mix(in srgb, var(--oc) 70%, #000)); }
+  .mt-own-l { display: flex; align-items: center; gap: 10px; padding: 14px 18px; color: #fff; background: linear-gradient(120deg, color-mix(in srgb, var(--oc) 80%, #9AA0AA), color-mix(in srgb, var(--oc) 72%, #3A3F4A)); }
   .mt-own-ico { width: 40px; height: 40px; flex: none; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; opacity: .95; }
   .mt-own-lt { display: flex; flex-direction: column; line-height: 1.25; }
   .mt-own-lt b { font-size: 21px; font-weight: 800; letter-spacing: -.01em; }
@@ -472,7 +472,7 @@
   @media (max-width: 40rem) { .mt-dlbox, .mt-dlpick { width: 100%; } }
 
   /* Section titles as solid banners, matching the 마케터/현장관리자 headers */
-  .mt-sec-h { align-items: center; row-gap: 2px; column-gap: 14px; padding: 14px 18px; border: 0; border-image: none; border-radius: 14px; color: #fff; background: linear-gradient(120deg, #A50034, #6E0023); box-shadow: 0 4px 14px rgba(165, 0, 52, .2); }
+  .mt-sec-h { align-items: center; row-gap: 2px; column-gap: 14px; padding: 14px 18px; border: 0; border-image: none; border-radius: 14px; color: #fff; background: linear-gradient(120deg, #A63A57, #7C2A44); box-shadow: 0 4px 14px rgba(124, 42, 68, .16); }
   .mt-sec-h h2 { color: #fff; font-size: 21px; }
   .mt-sec-h h2::before { background: #fff; opacity: .9; }
   .mt-sec-h p { color: rgba(255, 255, 255, .85); font-size: 13px; }
@@ -486,7 +486,7 @@
   .mt-focus[data-role="marketer"] { --oc: #1F4FA3; }
   .mt-focus[data-role="field_mgr"] { --oc: #0E7A5F; }
   .mt-focus[hidden] { display: none; }
-  .mt-focus-h { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding: 16px 20px; color: #fff; background: linear-gradient(120deg, var(--oc), color-mix(in srgb, var(--oc) 70%, #000)); }
+  .mt-focus-h { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding: 16px 20px; color: #fff; background: linear-gradient(120deg, color-mix(in srgb, var(--oc) 80%, #9AA0AA), color-mix(in srgb, var(--oc) 72%, #3A3F4A)); }
   .mt-focus-h h3 { margin: 0; display: flex; flex-direction: column; gap: 3px; font-size: 24px; font-weight: 800; letter-spacing: -.01em; color: #fff; line-height: 1.2; }
   .mt-focus-h h3 em { font-style: normal; font-weight: 600; font-size: 14.5px; opacity: .88; }
   .mt-focus-n { padding: 6px 16px; border-radius: 999px; background: #fff; color: var(--oc); font-size: 15px; font-weight: 700; white-space: nowrap; }
@@ -611,8 +611,8 @@
   .mt .mt-title { font-size: calc(var(--cds-font-size-title) * 1.625); font-weight: 800; letter-spacing: -.025em; line-height: 1.15; color: #1F2430; }
   .mt .mt-title-acc { background: linear-gradient(90deg, #A50034, #D4436B); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .mt .mt-title::after { content: ""; display: block; width: 56px; height: 4px; border-radius: 2px; margin-top: 12px; background: linear-gradient(90deg, #A50034, rgba(165,0,52,0)); }
-  .mt-strip .mt-st.mt-st-total { background: linear-gradient(135deg, #232834 0%, #343B4A 100%); border: 0; border-left: 5px solid #C4164F; box-shadow: 0 6px 18px rgba(20,24,33,.12); }
-  .mt-strip .mt-st-total > .mt-st-d b { color: #FFB8CB !important; }
+  .mt-strip .mt-st.mt-st-total { background: linear-gradient(120deg, #A63A57, #7C2A44); border: 0; box-shadow: 0 4px 14px rgba(124, 42, 68, .18); }
+  .mt-strip .mt-st-total > .mt-st-d b { color: #FFFFFF !important; }
   .mt-strip .mt-st-total .mt-st-key { border-color: rgba(255,255,255,.18) !important; }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mt .mt-title { color: #F2F3F5; } :root:not([data-theme="light"]) .mt .mt-eyebrow { color: #FF8FAE; background: rgba(255,143,174,.1); border-color: rgba(255,143,174,.25); } :root:not([data-theme="light"]) .mt .mt-title-acc { background-image: linear-gradient(90deg, #FF6F96, #FF9DB7); } }
   :root[data-theme="dark"] .mt .mt-title { color: #F2F3F5; }
