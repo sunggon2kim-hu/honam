@@ -619,6 +619,9 @@
   :root[data-theme="dark"] .mt .mt-eyebrow { color: #FF8FAE; background: rgba(255,143,174,.1); border-color: rgba(255,143,174,.25); }
   :root[data-theme="dark"] .mt .mt-title-acc { background-image: linear-gradient(90deg, #FF6F96, #FF9DB7); }
   @media (max-width: 40rem) { .mt .mt-title { font-size: 2rem; } .mt .mt-eyebrow { font-size: 11px; } }
+
+  .mt .mt-eyebrow, :root .mt .mt-eyebrow { background: none !important; border: 0 !important; padding: 0 !important; border-radius: 0; }
+  .mt .mt-eyebrow::before { display: none; }
 </style>
 <style>
   html.locked .site { display: none; }
