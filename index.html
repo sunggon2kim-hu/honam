@@ -471,6 +471,13 @@
   .mt-dlpick-n { font-size: 12px; color: var(--color-fg-muted); }
   @media (max-width: 40rem) { .mt-dlbox, .mt-dlpick { width: 100%; } }
 
+  /* Section titles as solid banners, matching the 마케터/현장관리자 headers */
+  .mt-sec-h { align-items: center; row-gap: 2px; column-gap: 14px; padding: 14px 18px; border: 0; border-image: none; border-radius: 14px; color: #fff; background: linear-gradient(120deg, #A50034, #6E0023); box-shadow: 0 4px 14px rgba(165, 0, 52, .2); }
+  .mt-sec-h h2 { color: #fff; font-size: 21px; }
+  .mt-sec-h h2::before { background: #fff; opacity: .9; }
+  .mt-sec-h p { color: rgba(255, 255, 255, .85); font-size: 13px; }
+  @media (max-width: 40rem) { .mt-sec-h { padding: 12px 14px; } .mt-sec-h h2 { font-size: 18px; } .mt-sec-h p { font-size: 12px; } }
+
   /* Photo cards for the four main types */
   .mt-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .mt-st-total, .mt-st.mt-st-sub { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: center; column-gap: 1.5rem; }
