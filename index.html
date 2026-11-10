@@ -486,17 +486,17 @@
   .mt-focus[data-role="marketer"] { --oc: #1F4FA3; }
   .mt-focus[data-role="field_mgr"] { --oc: #0E7A5F; }
   .mt-focus[hidden] { display: none; }
-  .mt-focus-h { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 14px; padding: 12px 18px; background: color-mix(in srgb, var(--oc) 10%, var(--color-panel)); border-bottom: 1px solid color-mix(in srgb, var(--oc) 25%, transparent); }
-  .mt-focus-h h3 { margin: 0; font-size: 19px; font-weight: 800; color: var(--oc); }
-  .mt-focus-h h3 em { font-style: normal; color: var(--color-fg); font-weight: 700; font-size: 16px; margin-left: 6px; }
-  .mt-focus-n { font-size: 15px; color: var(--color-fg-muted); }
-  .mt-focus-n b { font-size: 22px; color: var(--lg-red); margin-right: 2px; }
+  .mt-focus-h { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding: 16px 20px; color: #fff; background: linear-gradient(120deg, var(--oc), color-mix(in srgb, var(--oc) 70%, #000)); }
+  .mt-focus-h h3 { margin: 0; display: flex; flex-direction: column; gap: 3px; font-size: 24px; font-weight: 800; letter-spacing: -.01em; color: #fff; line-height: 1.2; }
+  .mt-focus-h h3 em { font-style: normal; font-weight: 600; font-size: 14.5px; opacity: .88; }
+  .mt-focus-n { padding: 6px 16px; border-radius: 999px; background: #fff; color: var(--oc); font-size: 15px; font-weight: 700; white-space: nowrap; }
+  .mt-focus-n b { font-size: 24px; color: var(--lg-red); margin: 0 2px 0 4px; }
   .mt-focus-rule { margin: 0; padding: 8px 18px 0; font-size: 12.5px; color: var(--color-fg-muted); }
   .mt-focus-tw { max-height: min(30rem, 60vh); overflow: auto; padding: 6px 12px 12px; }
   .mt-focus table { width: 100%; border-collapse: collapse; font-size: 14px; }
   .mt-focus th { position: sticky; top: 0; z-index: 1; background: var(--color-panel); text-align: right; font-size: 12.5px; font-weight: 700; color: var(--color-fg-muted); padding: 8px 8px; border-bottom: 1.5px solid var(--color-border-line); white-space: nowrap; }
   .mt-focus th.l, .mt-focus td.l { text-align: left; }
-  .mt-focus td { text-align: right; padding: 8px 8px; border-bottom: 1px solid var(--color-border-line); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .mt-focus td { text-align: right; padding: 9px 10px; font-size: 15px; border-bottom: 1px solid var(--color-border-line); white-space: nowrap; font-variant-numeric: tabular-nums; }
   .mt-focus tbody tr { cursor: pointer; }
   .mt-focus tbody tr:hover td { background: color-mix(in srgb, var(--oc) 7%, transparent); }
   .mt-focus td.mgr { font-weight: 700; }
@@ -1600,11 +1600,11 @@
     n.className = 'mt-focus-n';
     const nb = document.createElement('b');
     nb.textContent = list.length;
-    n.append(nb, '명');
+    n.append('대상', nb, '명');
     h.append(h3, n);
     const rule = document.createElement('p');
     rule.className = 'mt-focus-rule';
-    rule.textContent = '기준: 10월 개인 MS가 8~9월보다 하락하고, 10월 LG 판매가 8~9월 월평균보다 감소한 매니저 + 10월 판매가 없는 매니저. MS 하락폭 큰 순. 원본 음수 판매로 MS가 0~100%를 벗어난 매니저는 제외. 이름을 누르면 아래에서 실적을 엽니다.';
+    rule.textContent = '기준: 8~9월 대비 10월 개인 MS 하락 + LG 판매 감소(8~9월 월평균 대비), 또는 10월 판매 없음 · MS 하락폭 큰 순 · 행을 누르면 매니저 실적이 열립니다';
     el.append(h, rule);
     if (!list.length) { const e = document.createElement('p'); e.className = 'mt-focus-empty'; e.textContent = '해당 매니저 없음'; el.append(e); return; }
     const tw = document.createElement('div');
@@ -1612,7 +1612,7 @@
     const tb = document.createElement('table');
     const th = document.createElement('thead');
     const hr = document.createElement('tr');
-    [['유형', 'l'], ['지점명', 'l'], ['매니저명', 'l'], ['사유', 'l'], ['MS 8~9월', ''], ['MS 10월', ''], ['MS 증감', ''], ['LG 월평균 8~9월', ''], ['LG 10월', ''], ['LG 증감', '']].forEach(([x, c]) => {
+    [['유형', 'l'], ['지점명', 'l'], ['매니저명', 'l'], ['사유', 'l']].forEach(([x, c]) => {
       const e = document.createElement('th'); e.textContent = x; if (c) e.className = c; hr.append(e);
     });
     th.append(hr);
@@ -1627,10 +1627,7 @@
       if (r.m.extra === 'Y') { const f = document.createElement('span'); f.className = 'mt-badge mt-flag'; f.textContent = '추가관리'; mg.append(' ', f); }
       const why = r.none ? '8~9월엔 판매했으나 10월 판매 없음' : 'MS ' + Math.abs(r.d).toFixed(1) + '%p 하락 · LG 판매 ' + d3.format('.0%')(Math.abs(r.lgc)) + ' 감소' + (r.ms4 < 40 ? ' · 10월 MS 40% 미만' : '');
       const wy = td('', 'l why'); const wt = document.createElement('span'); wt.className = 'mt-focus-tag'; wt.textContent = why; wy.append(wt);
-      tr.append(ty, td(MT.brLabel(r.m), 'l'), mg, wy, td(pct(r.ms3)), td(pct(r.ms4)),
-        td(r.d == null ? '—' : MT.F.pp(r.d), r.d != null && r.d < 0 ? 'down' : ''),
-        td(MT.F.mil(r.lg3)), td(MT.F.mil(r.lg4)),
-        td(r.lgc == null ? '—' : d3.format('+.0%')(r.lgc).replace('-', '−'), r.lgc != null && r.lgc < 0 ? 'down' : ''));
+      tr.append(ty, td(MT.brLabel(r.m), 'l'), mg, wy);
       body.append(tr);
     });
     tb.append(th, body);
