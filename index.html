@@ -428,6 +428,23 @@
   .mt-br-box > .mt-plan-in { margin-top: 2px; box-shadow: 0 1px 3px rgba(0, 0, 0, .08); }
   @media (max-width: 40rem) { .mt-br-box { padding: 10px; } }
 
+  /* 담당 마케터 / 현장관리자 selector under the photo cards */
+  .mt-owners { display: grid; gap: 8px; margin-top: var(--cds-gap-sm); padding: 12px 14px; border: 1px solid var(--color-border-line); border-radius: 12px; background: var(--color-panel); }
+  .mt-owners:empty { display: none; }
+  .mt-own-g { display: grid; grid-template-columns: 6.5rem 1fr; gap: 8px; align-items: start; }
+  .mt-own-l { font-size: 13px; font-weight: 800; color: var(--lg-red); padding-top: 8px; }
+  .mt-own-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .mt-own { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 1px; padding: 6px 12px; border: 1px solid var(--color-border-line); border-radius: 10px; background: var(--color-bg); color: var(--color-fg); font: inherit; cursor: pointer; text-align: left; transition: border-color .2s ease, background-color .2s ease, transform .2s ease; }
+  .mt-own b { font-size: 14px; font-weight: 800; }
+  .mt-own span { font-size: 11.5px; color: var(--color-fg-muted); }
+  .mt-own:hover, .mt-own:focus-visible { border-color: var(--lg-red); transform: translateY(-1px); }
+  .mt-own.is-sel { background: var(--lg-red); border-color: var(--lg-red); color: #fff; }
+  .mt-own.is-sel span { color: rgba(255, 255, 255, .85); }
+  .mt-ownbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-block: 8px; padding: 10px 14px; border-radius: 10px; border-left: 5px solid var(--lg-red); background: color-mix(in srgb, var(--lg-red) 9%, var(--color-panel)); font-size: 14px; }
+  .mt-ownbar[hidden] { display: none; }
+  .mt-own-x { padding: 5px 12px; border: 1px solid var(--lg-red); border-radius: 999px; background: var(--color-panel); color: var(--lg-red); font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
+  @media (max-width: 40rem) { .mt-own-g { grid-template-columns: 1fr; } .mt-own-l { padding-top: 0; } }
+
   /* Photo cards for the four main types */
   .mt-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .mt-st-total, .mt-st.mt-st-sub { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: center; column-gap: 1.5rem; }
@@ -552,6 +569,7 @@
       <div class="mt-st mt-st-hero mt-pickable" data-tcolor="challenge" data-pick="challenge" tabindex="0" role="button" aria-pressed="false"><div class="mt-st-head"><div class="mt-st-ttl"><span class="mt-name">Challenge</span><span class="mt-st-ko">챌린지 <em>메인</em></span></div><svg class="mt-st-ico" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M4 35 20 11l16 24zM20 11V3l9 3-9 3M14 20l4 3 2-2 3 2 3-3"/></svg></div><div class="mt-st-photo"></div><div class="mt-st-body"><span class="mt-st-desc">하락폭이 가장 깊었던 집단</span><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=challenge">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=challenge">—</span></span><span class="mt-st-d">MS 6~7월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=challenge">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=challenge">—</b></span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=challenge">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=challenge">—</b></span></div></div>
       <div class="mt-st mt-pickable mt-st-sub" data-tcolor="monitoring" data-pick="monitoring" tabindex="0" role="button" aria-pressed="false"><span class="mt-st-l"><i class="mt-sw" data-tswatch="monitoring"></i><span class="mt-name">Monitoring</span><span class="mt-badge">서브</span></span><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=monitoring">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=monitoring">—</span></span><span class="mt-st-d mt-st-inc">추가관리대상 <span data-draw="v" data-source="types" data-field="extra" data-where="type=monitoring">—</span>명 포함</span><span class="mt-st-d">MS 6~7월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=monitoring">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=monitoring">—</b></span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=monitoring">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=monitoring">—</b></span></div>
     </div>
+    <div class="mt-owners" id="owners" data-draw="owners" data-source="owners managers" role="group" aria-label="담당자별 보기"></div>
   </header>
 
   <section class="mt-sec" id="ms-matrix">
@@ -701,6 +719,7 @@
       <button type="button" class="mt-chip mt-chip-sub" data-pick="monitoring" aria-pressed="false"><i class="mt-sw" data-tswatch="monitoring"></i>Monitoring</button>
       <button type="button" class="mt-chip mt-chip-sub" data-pick="unmeasured" aria-pressed="false"><i class="mt-sw" data-tswatch="unmeasured"></i>측정불가</button>
     </div>
+    <div class="mt-ownbar" id="ownbar" data-draw="ownbar" data-source="owners" hidden></div>
     <div class="mt-selstats">
       <div><span class="mt-lbl">지점</span><span class="mt-big"><span data-draw="selstat" data-stat="branches" data-source="managers">—</span>곳</span></div>
       <div><span class="mt-lbl">매니저</span><span class="mt-big"><span data-draw="selstat" data-stat="managers" data-source="managers">—</span>명</span></div>
@@ -1061,7 +1080,17 @@
   MT.sort = { k: 'branch', dir: 1 };
   const cellNum = (v, f) => { const n = v === '' || v == null ? NaN : Number(v); return isNaN(n) ? '—' : MT.F[f](n); };
   const ppClass = (v) => { const n = v === '' || v == null ? NaN : Number(v); return isNaN(n) ? '' : n > 0 ? 'up' : n < 0 ? 'down' : 'flat'; };
-  const selRows = () => (MT.ok('managers') ? dash.data('managers').data.filter((m) => MT.sel === 'all' || m.type === MT.sel) : []);
+  MT.owner = null;
+  // Branches looked after by the chosen 마케터 or 현장관리자 (지점 마스터).
+  MT.ownerSet = () => {
+    if (!MT.owner || !MT.ok('owners')) return null;
+    return new Set(dash.data('owners').data.filter((o) => o[MT.owner.role] === MT.owner.name).map((o) => o.branch));
+  };
+  const selRows = () => {
+    if (!MT.ok('managers')) return [];
+    const os = MT.ownerSet();
+    return dash.data('managers').data.filter((m) => (MT.sel === 'all' || m.type === MT.sel) && (!os || os.has(m.branch)));
+  };
   const td = (text, cls) => { const c = document.createElement('td'); c.textContent = text; if (cls) c.className = cls; return c; };
 
   dash.draw('selname', (el) => {
@@ -1086,7 +1115,8 @@
     tb.replaceChildren();
     if (!MT.ok('branches')) return;
     tb.style.setProperty('--selc', MT.sel === 'all' ? 'var(--lg-red)' : MT.colorOf(MT.sel));
-    const rows = dash.data('branches').data.filter((b) => b.type === MT.sel)
+    const os = MT.ownerSet();
+    const rows = dash.data('branches').data.filter((b) => b.type === MT.sel && (!os || os.has(b.branch)))
       .sort((a, b) => b.n - a.n || b.lg - a.lg || a.branch.localeCompare(b.branch, 'ko'));
     rows.forEach((b) => {
       const tr = document.createElement('tr');
@@ -1337,7 +1367,76 @@
     document.querySelectorAll('tbody[data-draw="cmp"] tr').forEach((tr) => tr.classList.toggle('is-sel', tr.dataset.key === MT.sel));
     document.querySelectorAll('#mt-clear-branch').forEach((b) => { b.hidden = !MT.branch; });
   }
-  function redrawDetail() { ['selname', 'selstat', 'branches', 'plan'].forEach((n) => dash.draw(n)); markSel(); }
+  function redrawDetail() { ['selname', 'selstat', 'branches', 'plan', 'ownbar', 'owners'].forEach((n) => dash.draw(n)); markSel(); }
+  const OWNER_ROLES = [['marketer', '담당 마케터'], ['field_mgr', '현장관리자']];
+  dash.draw('owners', (el) => {
+    el.replaceChildren();
+    if (!MT.ok('owners') || !MT.ok('managers')) return;
+    const own = dash.data('owners').data, mgr = dash.data('managers').data;
+    OWNER_ROLES.forEach(([role, label]) => {
+      const g = document.createElement('div');
+      g.className = 'mt-own-g';
+      const h = document.createElement('span');
+      h.className = 'mt-own-l';
+      h.textContent = label;
+      const list = document.createElement('div');
+      list.className = 'mt-own-list';
+      const names = [...new Set(own.map((o) => o[role]).filter(Boolean))];
+      const stat = names.map((name) => {
+        const br = new Set(own.filter((o) => o[role] === name).map((o) => o.branch));
+        return { name, br: br.size, n: mgr.filter((m) => br.has(m.branch)).length };
+      }).sort((a, b) => b.br - a.br || a.name.localeCompare(b.name, 'ko'));
+      stat.forEach((s) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'mt-own';
+        const on = !!MT.owner && MT.owner.role === role && MT.owner.name === s.name;
+        b.classList.toggle('is-sel', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        b.dataset.ownRole = role;
+        b.dataset.ownName = s.name;
+        const nm = document.createElement('b');
+        nm.textContent = s.name;
+        const sub = document.createElement('span');
+        sub.textContent = '지점 ' + s.br + '곳 · 매니저 ' + MT.F.int(s.n) + '명';
+        b.append(nm, sub);
+        list.append(b);
+      });
+      g.append(h, list);
+      el.append(g);
+    });
+  });
+  dash.draw('ownbar', (el) => {
+    el.replaceChildren();
+    const os = MT.ownerSet();
+    el.hidden = !os;
+    if (!os) return;
+    const label = (OWNER_ROLES.find(([r]) => r === MT.owner.role) || [])[1] || '';
+    const tx = document.createElement('span');
+    const nm = document.createElement('b');
+    nm.textContent = MT.owner.name;
+    tx.append(label + ' ', nm, ' 담당 지점 ' + os.size + '곳만 보는 중');
+    const x = document.createElement('button');
+    x.type = 'button';
+    x.className = 'mt-own-x';
+    x.dataset.ownClear = '1';
+    x.textContent = '전체 지점 보기 ✕';
+    el.append(tx, x);
+  });
+  function pickOwner(role, name) {
+    const same = MT.owner && MT.owner.role === role && MT.owner.name === name;
+    MT.owner = same ? null : { role, name };
+    if (!same) { MT.sel = 'all'; MT.picked = false; }
+    MT.branch = null;
+    clearMgr('mgrs');
+    redrawDetail();
+    if (!same) document.querySelectorAll('#detail').forEach((s) => s.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  }
+  document.querySelectorAll('[data-draw="owners"], [data-draw="ownbar"]').forEach((box) => box.addEventListener('click', (e) => {
+    if (e.target.closest('[data-own-clear]')) { MT.owner = null; MT.branch = null; redrawDetail(); return; }
+    const b = e.target.closest('[data-own-role]');
+    if (b) pickOwner(b.dataset.ownRole, b.dataset.ownName);
+  }));
   function pick(t, scroll) {
     MT.picked = true;
     MT.sel = t;
