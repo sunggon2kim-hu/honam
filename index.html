@@ -478,6 +478,8 @@
   .mt-sec-h p { color: rgba(255, 255, 255, .85); font-size: 13px; }
   @media (max-width: 40rem) { .mt-sec-h { padding: 12px 14px; } .mt-sec-h h2 { font-size: 18px; } .mt-sec-h p { font-size: 12px; } }
 
+  .mt-mx-traj { font-size: 12px; letter-spacing: -.02em; }
+  .mt-st-hero .mt-st-p4 { font-weight: 600; }
   /* Photo cards for the four main types */
   .mt-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .mt-st-total, .mt-st.mt-st-sub { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: center; column-gap: 1.5rem; }
@@ -582,7 +584,7 @@
   <header class="mt-head">
     <div class="mt-head-top">
       <div class="mt-head-l">
-        <span class="mt-eyebrow">LG전자 혼매호남팀 · 하이마트 채널 · 2026년 1~9월 실적</span>
+        <span class="mt-eyebrow">LG전자 혼매호남팀 · 하이마트 채널 · 2026년 1~10월 실적</span>
         <h1 class="mt-title" id="top">혼매호남팀 키맨 관리현황</h1>
       </div>
       <div class="mt-dlbox" id="downloads">
@@ -602,18 +604,18 @@
     </div>
 
     <div class="mt-strip" aria-label="인원과 실적 요약">
-      <div class="mt-st mt-st-total"><span class="mt-st-l">총 매니저</span><span class="mt-st-n"><span data-draw="v" data-source="team" data-field="managers" data-where="scope=team">—</span>명</span><span class="mt-st-key"><span class="mt-st-l">총 관리 대상</span><span class="mt-st-n"><span data-draw="keyn" data-f="n" data-source="types">—</span>명</span><span class="mt-st-d mt-st-keyl" data-draw="keyn" data-f="list" data-source="types">—</span></span><span class="mt-st-d">팀 MS 6~7월 <span data-draw="v" data-fmt="pct" data-source="team" data-field="ms_p2" data-where="scope=team">—</span> <b data-draw="v" data-fmt="pp" data-source="team" data-field="d21" data-where="scope=team">—</b></span><span class="mt-st-d">팀 MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="team" data-field="ms_p3" data-where="scope=team">—</span> <b data-draw="v" data-fmt="pp" data-source="team" data-field="d32" data-where="scope=team">—</b></span></div>
-      <div class="mt-st mt-st-hero mt-pickable" data-tcolor="core" data-pick="core" tabindex="0" role="button" aria-pressed="false"><div class="mt-st-head"><div class="mt-st-ttl"><span class="mt-name">Core</span><span class="mt-st-ko">코어 <em>메인</em></span></div><svg class="mt-st-ico" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M11 7h18l7 9-16 18L4 16zM4 16h32M15 16l5 18 5-18M15 16l5-9 5 9"/></svg></div><div class="mt-st-photo"></div><div class="mt-st-body"><span class="mt-st-desc">자사 친화적 성향 검증된 집단</span><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=core">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=core">—</span></span><span class="mt-st-d">MS 6~7월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=core">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=core">—</b></span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=core">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=core">—</b></span></div></div>
-      <div class="mt-st mt-st-hero mt-pickable" data-tcolor="rising" data-pick="rising" tabindex="0" role="button" aria-pressed="false"><div class="mt-st-head"><div class="mt-st-ttl"><span class="mt-name">Rising</span><span class="mt-st-ko">라이징 <em>메인</em></span></div><svg class="mt-st-ico" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M6 26h6v8H6zM17 20h6v14h-6zM28 14h6v20h-6zM5 18l10-8 6 4L33 4M27 4h6v6"/></svg></div><div class="mt-st-photo"></div><div class="mt-st-body"><span class="mt-st-desc">위기의 순간 오히려 상승하는 집단</span><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=rising">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=rising">—</span></span><span class="mt-st-d">MS 6~7월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=rising">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=rising">—</b></span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=rising">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=rising">—</b></span></div></div>
-      <div class="mt-st mt-st-hero mt-pickable" data-tcolor="swing" data-pick="swing" tabindex="0" role="button" aria-pressed="false"><div class="mt-st-head"><div class="mt-st-ttl"><span class="mt-name">Swing</span><span class="mt-st-ko">스윙 <em>메인</em></span></div><svg class="mt-st-ico" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M33 20a13 13 0 0 1-22.6 8.8M7 20a13 13 0 0 1 22.6-8.8M29.6 5v6.2h-6.2M10.4 35v-6.2h6.2"/></svg></div><div class="mt-st-photo"></div><div class="mt-st-body"><span class="mt-st-desc">급격한 하락이 있었으나 평시수준 회복</span><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=swing">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=swing">—</span></span><span class="mt-st-d">MS 6~7월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=swing">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=swing">—</b></span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=swing">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=swing">—</b></span></div></div>
-      <div class="mt-st mt-st-hero mt-pickable" data-tcolor="challenge" data-pick="challenge" tabindex="0" role="button" aria-pressed="false"><div class="mt-st-head"><div class="mt-st-ttl"><span class="mt-name">Challenge</span><span class="mt-st-ko">챌린지 <em>메인</em></span></div><svg class="mt-st-ico" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M4 35 20 11l16 24zM20 11V3l9 3-9 3M14 20l4 3 2-2 3 2 3-3"/></svg></div><div class="mt-st-photo"></div><div class="mt-st-body"><span class="mt-st-desc">하락폭이 가장 깊었던 집단</span><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=challenge">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=challenge">—</span></span><span class="mt-st-d">MS 6~7월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=challenge">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=challenge">—</b></span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=challenge">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=challenge">—</b></span></div></div>
-      <div class="mt-st mt-pickable mt-st-sub" data-tcolor="monitoring" data-pick="monitoring" tabindex="0" role="button" aria-pressed="false"><span class="mt-st-l"><i class="mt-sw" data-tswatch="monitoring"></i><span class="mt-name">Monitoring</span><span class="mt-badge">서브</span></span><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=monitoring">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=monitoring">—</span></span><span class="mt-st-d mt-st-inc">추가관리대상 <span data-draw="v" data-source="types" data-field="extra" data-where="type=monitoring">—</span>명 포함</span><span class="mt-st-d">MS 6~7월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=monitoring">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=monitoring">—</b></span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=monitoring">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=monitoring">—</b></span></div>
+      <div class="mt-st mt-st-total"><span class="mt-st-l">총 매니저</span><span class="mt-st-n"><span data-draw="v" data-source="team" data-field="managers" data-where="scope=team">—</span>명</span><span class="mt-st-key"><span class="mt-st-l">총 관리 대상</span><span class="mt-st-n"><span data-draw="keyn" data-f="n" data-source="types">—</span>명</span><span class="mt-st-d mt-st-keyl" data-draw="keyn" data-f="list" data-source="types">—</span></span><span class="mt-st-d">팀 MS 6~7월 <span data-draw="v" data-fmt="pct" data-source="team" data-field="ms_p2" data-where="scope=team">—</span> <b data-draw="v" data-fmt="pp" data-source="team" data-field="d21" data-where="scope=team">—</b></span><span class="mt-st-d">팀 MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="team" data-field="ms_p3" data-where="scope=team">—</span> <b data-draw="v" data-fmt="pp" data-source="team" data-field="d32" data-where="scope=team">—</b></span><span class="mt-st-d mt-st-p4">팀 MS 10월 <span data-draw="v" data-fmt="pct" data-source="team" data-field="ms_p4" data-where="scope=team">—</span> <b data-draw="v" data-fmt="pp" data-source="team" data-field="d43" data-where="scope=team">—</b></span></div>
+      <div class="mt-st mt-st-hero mt-pickable" data-tcolor="core" data-pick="core" tabindex="0" role="button" aria-pressed="false"><div class="mt-st-head"><div class="mt-st-ttl"><span class="mt-name">Core</span><span class="mt-st-ko">코어 <em>메인</em></span></div><svg class="mt-st-ico" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M11 7h18l7 9-16 18L4 16zM4 16h32M15 16l5 18 5-18M15 16l5-9 5 9"/></svg></div><div class="mt-st-photo"></div><div class="mt-st-body"><span class="mt-st-desc">자사 친화적 성향 검증된 집단</span><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=core">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=core">—</span></span><span class="mt-st-d">MS 6~7월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=core">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=core">—</b></span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=core">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=core">—</b></span><span class="mt-st-d mt-st-p4">MS 10월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p4" data-where="type=core">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d43" data-where="type=core">—</b></span></div></div>
+      <div class="mt-st mt-st-hero mt-pickable" data-tcolor="rising" data-pick="rising" tabindex="0" role="button" aria-pressed="false"><div class="mt-st-head"><div class="mt-st-ttl"><span class="mt-name">Rising</span><span class="mt-st-ko">라이징 <em>메인</em></span></div><svg class="mt-st-ico" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M6 26h6v8H6zM17 20h6v14h-6zM28 14h6v20h-6zM5 18l10-8 6 4L33 4M27 4h6v6"/></svg></div><div class="mt-st-photo"></div><div class="mt-st-body"><span class="mt-st-desc">위기의 순간 오히려 상승하는 집단</span><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=rising">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=rising">—</span></span><span class="mt-st-d">MS 6~7월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=rising">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=rising">—</b></span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=rising">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=rising">—</b></span><span class="mt-st-d mt-st-p4">MS 10월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p4" data-where="type=rising">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d43" data-where="type=rising">—</b></span></div></div>
+      <div class="mt-st mt-st-hero mt-pickable" data-tcolor="swing" data-pick="swing" tabindex="0" role="button" aria-pressed="false"><div class="mt-st-head"><div class="mt-st-ttl"><span class="mt-name">Swing</span><span class="mt-st-ko">스윙 <em>메인</em></span></div><svg class="mt-st-ico" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M33 20a13 13 0 0 1-22.6 8.8M7 20a13 13 0 0 1 22.6-8.8M29.6 5v6.2h-6.2M10.4 35v-6.2h6.2"/></svg></div><div class="mt-st-photo"></div><div class="mt-st-body"><span class="mt-st-desc">급격한 하락이 있었으나 평시수준 회복</span><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=swing">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=swing">—</span></span><span class="mt-st-d">MS 6~7월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=swing">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=swing">—</b></span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=swing">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=swing">—</b></span><span class="mt-st-d mt-st-p4">MS 10월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p4" data-where="type=swing">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d43" data-where="type=swing">—</b></span></div></div>
+      <div class="mt-st mt-st-hero mt-pickable" data-tcolor="challenge" data-pick="challenge" tabindex="0" role="button" aria-pressed="false"><div class="mt-st-head"><div class="mt-st-ttl"><span class="mt-name">Challenge</span><span class="mt-st-ko">챌린지 <em>메인</em></span></div><svg class="mt-st-ico" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M4 35 20 11l16 24zM20 11V3l9 3-9 3M14 20l4 3 2-2 3 2 3-3"/></svg></div><div class="mt-st-photo"></div><div class="mt-st-body"><span class="mt-st-desc">하락폭이 가장 깊었던 집단</span><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=challenge">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=challenge">—</span></span><span class="mt-st-d">MS 6~7월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=challenge">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=challenge">—</b></span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=challenge">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=challenge">—</b></span><span class="mt-st-d mt-st-p4">MS 10월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p4" data-where="type=challenge">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d43" data-where="type=challenge">—</b></span></div></div>
+      <div class="mt-st mt-pickable mt-st-sub" data-tcolor="monitoring" data-pick="monitoring" tabindex="0" role="button" aria-pressed="false"><span class="mt-st-l"><i class="mt-sw" data-tswatch="monitoring"></i><span class="mt-name">Monitoring</span><span class="mt-badge">서브</span></span><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=monitoring">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=monitoring">—</span></span><span class="mt-st-d mt-st-inc">추가관리대상 <span data-draw="v" data-source="types" data-field="extra" data-where="type=monitoring">—</span>명 포함</span><span class="mt-st-d">MS 6~7월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=monitoring">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=monitoring">—</b></span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=monitoring">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=monitoring">—</b></span><span class="mt-st-d mt-st-p4">MS 10월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p4" data-where="type=monitoring">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d43" data-where="type=monitoring">—</b></span></div>
     </div>
     <div class="mt-owners" id="owners" data-draw="owners" data-source="owners managers" role="group" aria-label="담당자별 보기"></div>
   </header>
 
   <section class="mt-sec" id="ms-matrix">
-    <div class="mt-sec-h"><h2>혼매호남팀 개인 MS 매트릭스</h2><p>가로: 6~7월 개인 MS · 세로: 행사 전후 개인 MS 감소폭(1~5월 → 6~7월) · MS는 1~5월 → 6~7월 → 8~9월</p></div>
+    <div class="mt-sec-h"><h2>혼매호남팀 개인 MS 매트릭스</h2><p>가로: 6~7월 개인 MS · 세로: 행사 전후 개인 MS 감소폭(1~5월 → 6~7월) · MS는 1~5월 → 6~7월 → 8~9월 → 10월</p></div>
     <div class="mt-chips" role="group" aria-label="매트릭스 유형 선택">
       <button type="button" class="mt-chip" data-mxpick="all" aria-pressed="true">전체</button>
       <button type="button" class="mt-chip" data-mxpick="core" aria-pressed="false"><i class="mt-sw" data-tswatch="core"></i>Core</button>
@@ -662,8 +664,10 @@
             <th data-field="ms_p1">MS 1~5월</th>
             <th data-field="ms_p2">MS 6~7월</th>
             <th data-field="ms_p3">MS 8~9월</th>
+            <th data-field="ms_p4">MS 10월</th>
             <th data-field="d21">GAP 6~7월</th>
             <th data-field="d32">증감 8~9월</th>
+            <th data-field="d43">증감 10월</th>
           </tr></thead>
           <tbody data-draw="mxlist"></tbody>
         </table>
@@ -677,18 +681,18 @@
 
   <section class="mt-sec" id="main-types">
     <div class="mt-sec-h"><h2>메인 유형</h2><p>MS = LG ÷ (LG + 삼성), 유형 판매 합으로 계산한 가중 MS · 점선은 팀 전체</p></div>
-    <p class="mt-take">팀 MS는 6~7월에 <b data-draw="v" data-fmt="pp" data-source="team" data-field="d21" data-where="scope=team">—</b> 떨어졌다가 8~9월에 <b data-draw="v" data-fmt="pp" data-source="team" data-field="d32" data-where="scope=team">—</b> 반등했습니다. 메인 유형 중 Challenge가 가장 크게 떨어지고(<b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=challenge">—</b>) 가장 크게 반등했으며(<b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=challenge">—</b>), 6~7월에도 MS가 오른 유형은 Rising(<b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=rising">—</b>)뿐입니다.</p>
+    <p class="mt-take">팀 MS는 6~7월에 <b data-draw="v" data-fmt="pp" data-source="team" data-field="d21" data-where="scope=team">—</b> 떨어졌다가 8~9월에 <b data-draw="v" data-fmt="pp" data-source="team" data-field="d32" data-where="scope=team">—</b> 반등했습니다. 메인 유형 중 Challenge가 가장 크게 떨어지고(<b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=challenge">—</b>) 가장 크게 반등했으며(<b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=challenge">—</b>), 6~7월에도 MS가 오른 유형은 Rising(<b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=rising">—</b>)뿐입니다. 10월에는 팀 MS가 <b data-draw="v" data-fmt="pp" data-source="team" data-field="d43" data-where="scope=team">—</b> 떨어졌고 모든 유형이 하락했으며, 메인 유형 중 Challenge 하락폭이 가장 큽니다(<b data-draw="v" data-fmt="pp" data-source="types" data-field="d43" data-where="type=challenge">—</b>).</p>
     <div class="mt-cards">
 
       <article class="mt-card mt-pickable" data-tcolor="core" data-pick="core" tabindex="0" role="button" aria-pressed="false" id="type-core">
         <header class="mt-card-h"><div><h3 class="mt-en">Core</h3><span class="mt-ko">코어</span></div><span class="mt-badge main">메인</span></header>
         <dl class="mt-stats">
           <div><dt>인원</dt><dd><b data-draw="v" data-source="types" data-field="n" data-where="type=core">—</b>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=core">—</span></dd></div>
-          <div><dt>LG판매 비중 (1~9월)</dt><dd><b data-draw="v" data-fmt="share" data-source="type_share" data-field="lg_share" data-where="type=core">—</b></dd></div>
+          <div><dt>LG판매 비중 (1~10월)</dt><dd><b data-draw="v" data-fmt="share" data-source="type_share" data-field="lg_share" data-where="type=core">—</b></dd></div>
         </dl>
         <div class="mt-ms">
-          <div class="mt-ms-big"><span class="mt-lbl">8~9월 MS</span><span class="mt-big" data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=core">—</span></div>
-          <div class="mt-deltas"><span>6~7월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=core">—</b></span><span>8~9월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=core">—</b></span></div>
+          <div class="mt-ms-big"><span class="mt-lbl">10월 MS</span><span class="mt-big" data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p4" data-where="type=core">—</span></div>
+          <div class="mt-deltas"><span>6~7월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=core">—</b></span><span>8~9월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=core">—</b></span><span>10월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d43" data-where="type=core">—</b></span></div>
         </div>
         <div class="mt-spark dash-skeleton" data-draw="spark" data-source="types team" data-type="core"></div>
         <span class="mt-pick-hint">클릭하면 지점·매니저 현황 보기</span>
@@ -698,11 +702,11 @@
         <header class="mt-card-h"><div><h3 class="mt-en">Rising</h3><span class="mt-ko">라이징</span></div><span class="mt-badge main">메인</span></header>
         <dl class="mt-stats">
           <div><dt>인원</dt><dd><b data-draw="v" data-source="types" data-field="n" data-where="type=rising">—</b>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=rising">—</span></dd></div>
-          <div><dt>LG판매 비중 (1~9월)</dt><dd><b data-draw="v" data-fmt="share" data-source="type_share" data-field="lg_share" data-where="type=rising">—</b></dd></div>
+          <div><dt>LG판매 비중 (1~10월)</dt><dd><b data-draw="v" data-fmt="share" data-source="type_share" data-field="lg_share" data-where="type=rising">—</b></dd></div>
         </dl>
         <div class="mt-ms">
-          <div class="mt-ms-big"><span class="mt-lbl">8~9월 MS</span><span class="mt-big" data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=rising">—</span></div>
-          <div class="mt-deltas"><span>6~7월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=rising">—</b></span><span>8~9월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=rising">—</b></span></div>
+          <div class="mt-ms-big"><span class="mt-lbl">10월 MS</span><span class="mt-big" data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p4" data-where="type=rising">—</span></div>
+          <div class="mt-deltas"><span>6~7월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=rising">—</b></span><span>8~9월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=rising">—</b></span><span>10월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d43" data-where="type=rising">—</b></span></div>
         </div>
         <div class="mt-spark dash-skeleton" data-draw="spark" data-source="types team" data-type="rising"></div>
         <span class="mt-pick-hint">클릭하면 지점·매니저 현황 보기</span>
@@ -712,11 +716,11 @@
         <header class="mt-card-h"><div><h3 class="mt-en">Swing</h3><span class="mt-ko">스윙</span></div><span class="mt-badge main">메인</span></header>
         <dl class="mt-stats">
           <div><dt>인원</dt><dd><b data-draw="v" data-source="types" data-field="n" data-where="type=swing">—</b>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=swing">—</span></dd></div>
-          <div><dt>LG판매 비중 (1~9월)</dt><dd><b data-draw="v" data-fmt="share" data-source="type_share" data-field="lg_share" data-where="type=swing">—</b></dd></div>
+          <div><dt>LG판매 비중 (1~10월)</dt><dd><b data-draw="v" data-fmt="share" data-source="type_share" data-field="lg_share" data-where="type=swing">—</b></dd></div>
         </dl>
         <div class="mt-ms">
-          <div class="mt-ms-big"><span class="mt-lbl">8~9월 MS</span><span class="mt-big" data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=swing">—</span></div>
-          <div class="mt-deltas"><span>6~7월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=swing">—</b></span><span>8~9월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=swing">—</b></span></div>
+          <div class="mt-ms-big"><span class="mt-lbl">10월 MS</span><span class="mt-big" data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p4" data-where="type=swing">—</span></div>
+          <div class="mt-deltas"><span>6~7월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=swing">—</b></span><span>8~9월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=swing">—</b></span><span>10월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d43" data-where="type=swing">—</b></span></div>
         </div>
         <div class="mt-spark dash-skeleton" data-draw="spark" data-source="types team" data-type="swing"></div>
         <span class="mt-pick-hint">클릭하면 지점·매니저 현황 보기</span>
@@ -726,11 +730,11 @@
         <header class="mt-card-h"><div><h3 class="mt-en">Challenge</h3><span class="mt-ko">챌린지</span></div><span class="mt-badge main">메인</span></header>
         <dl class="mt-stats">
           <div><dt>인원</dt><dd><b data-draw="v" data-source="types" data-field="n" data-where="type=challenge">—</b>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=challenge">—</span></dd></div>
-          <div><dt>LG판매 비중 (1~9월)</dt><dd><b data-draw="v" data-fmt="share" data-source="type_share" data-field="lg_share" data-where="type=challenge">—</b></dd></div>
+          <div><dt>LG판매 비중 (1~10월)</dt><dd><b data-draw="v" data-fmt="share" data-source="type_share" data-field="lg_share" data-where="type=challenge">—</b></dd></div>
         </dl>
         <div class="mt-ms">
-          <div class="mt-ms-big"><span class="mt-lbl">8~9월 MS</span><span class="mt-big" data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=challenge">—</span></div>
-          <div class="mt-deltas"><span>6~7월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=challenge">—</b></span><span>8~9월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=challenge">—</b></span></div>
+          <div class="mt-ms-big"><span class="mt-lbl">10월 MS</span><span class="mt-big" data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p4" data-where="type=challenge">—</span></div>
+          <div class="mt-deltas"><span>6~7월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=challenge">—</b></span><span>8~9월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=challenge">—</b></span><span>10월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d43" data-where="type=challenge">—</b></span></div>
         </div>
         <div class="mt-spark dash-skeleton" data-draw="spark" data-source="types team" data-type="challenge"></div>
         <span class="mt-pick-hint">클릭하면 지점·매니저 현황 보기</span>
@@ -741,8 +745,8 @@
       <div class="mt-cell"><span class="mt-lbl">인원</span><span><b data-draw="v" data-source="types" data-field="n" data-where="type=monitoring">—</b>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=monitoring">—</span></span></div>
       <div class="mt-cell"><span class="mt-lbl">추가관리대상</span><span><b data-draw="v" data-source="types" data-field="extra" data-where="type=monitoring">—</b>명 <span class="mt-small">팀 전원</span></span></div>
       <div class="mt-cell"><span class="mt-lbl">LG판매 비중</span><b data-draw="v" data-fmt="share" data-source="type_share" data-field="lg_share" data-where="type=monitoring">—</b></div>
-      <div class="mt-cell"><span class="mt-lbl">MS 1~5월 → 6~7월 → 8~9월</span><span><b data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p1" data-where="type=monitoring">—</b> → <b data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=monitoring">—</b> → <b data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=monitoring">—</b></span></div>
-      <div class="mt-cell"><span class="mt-lbl">증감</span><span class="mt-small">6~7월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=monitoring">—</b> · 8~9월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=monitoring">—</b></span></div>
+      <div class="mt-cell"><span class="mt-lbl">MS 1~5월 → 6~7월 → 8~9월 → 10월</span><span><b data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p1" data-where="type=monitoring">—</b> → <b data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=monitoring">—</b> → <b data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=monitoring">—</b> → <b data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p4" data-where="type=monitoring">—</b></span></div>
+      <div class="mt-cell"><span class="mt-lbl">증감</span><span class="mt-small">6~7월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=monitoring">—</b> · 8~9월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=monitoring">—</b> · 10월 <b data-draw="v" data-fmt="pp" data-source="types" data-field="d43" data-where="type=monitoring">—</b></span></div>
       <span class="mt-cell mt-gcell mt-pick-hint">클릭하면 지점·매니저 현황 보기</span>
     </article>
     <p class="mt-small">측정불가 유형(유형 분류 기준 미설명)은 아래 지점·매니저 현황에서 참고로 볼 수 있습니다.</p>
@@ -764,7 +768,7 @@
       <div><span class="mt-lbl">지점</span><span class="mt-big"><span data-draw="selstat" data-stat="branches" data-source="managers">—</span>곳</span></div>
       <div><span class="mt-lbl">매니저</span><span class="mt-big"><span data-draw="selstat" data-stat="managers" data-source="managers">—</span>명</span></div>
       <div><span class="mt-lbl">추가관리대상</span><span class="mt-big"><span data-draw="selstat" data-stat="extra" data-source="managers">—</span>명</span></div>
-      <div><span class="mt-lbl">LG 판매 1~9월</span><span class="mt-big"><span data-draw="selstat" data-stat="lg" data-source="managers">—</span><span class="mt-small"> 백만원</span></span></div>
+      <div><span class="mt-lbl">LG 판매 1~10월</span><span class="mt-big"><span data-draw="selstat" data-stat="lg" data-source="managers">—</span><span class="mt-small"> 백만원</span></span></div>
     </div>
 
     <div class="mt-panel">
@@ -783,11 +787,13 @@
             <th data-field="level">지점군</th>
             <th data-field="n">매니저</th>
             <th data-field="extra">추가관리</th>
-            <th data-field="lg">LG 1~9월</th>
+            <th data-field="lg">LG 1~10월</th>
             <th data-field="ms_p1">MS 1~5월</th>
             <th data-field="ms_p2">MS 6~7월</th>
             <th data-field="ms_p3">MS 8~9월</th>
+            <th data-field="ms_p4">MS 10월</th>
             <th data-field="d32">증감 8~9월</th>
+            <th data-field="d43">증감 10월</th>
           </tr></thead>
           <tbody data-draw="branches"></tbody>
         </table>
@@ -800,14 +806,15 @@
   <details>
     <summary>계산 기준과 데이터 확인 사항</summary>
     <dl>
-      <dt>기간</dt><dd>평시 1~5월(P1), 전시 6~7월(P2), 반격기 8~9월(P3). 10월(P4)은 데이터 없음.</dd>
+      <dt>기간</dt><dd>평시 1~5월(P1), 전시 6~7월(P2), 반격기 8~9월(P3), 10월(P4). 10월 구간 이름은 원본에 없음.</dd>
       <dt>MS</dt><dd>LG ÷ (LG + 삼성). 유형·팀 MS는 개인 MS 평균이 아니라 판매 합으로 계산한 가중 MS.</dd>
       <dt>매니저 MS</dt><dd>매니저 개인의 LG ÷ (LG + 삼성). 해당 기간 판매가 없으면 —로 표시.</dd>
-      <dt>LG판매 비중</dt><dd>유형의 1~9월 LG 판매 합 ÷ 전체 LG 판매 합.</dd>
-      <dt>삼성 추정치</dt><dd>삼성 판매 = LG 판매 ÷ MS − LG 판매를 기간 개월 수(5·2·2)로 나눈 값. 원본 삼성 판매가 아니라 역산한 값이라 반올림 오차가 있음.</dd>
+      <dt>LG판매 비중</dt><dd>유형의 1~10월 LG 판매 합 ÷ 전체 LG 판매 합.</dd>
+      <dt>삼성 추정치</dt><dd>삼성 판매 = LG 판매 ÷ MS − LG 판매를 기간 개월 수(5·2·2·1)로 나눈 값. 원본 삼성 판매가 아니라 역산한 값이라 반올림 오차가 있음.</dd>
       <dt>유형 설명</dt><dd>유첨 장표 문구만 사용. Monitoring과 측정불가는 장표에 설명 없음.</dd>
-      <dt>원본 오류</dt><dd>MASTER AD열 'MS_P3(10월)'은 P4 오타로 보이며 ×100이 빠져 있고, 10월 데이터가 비어 #DIV/0!이 남. 이 대시보드는 이 열을 쓰지 않음.</dd>
-      <dt>출처</dt><dd>유형 집계는 혼매호남팀_매니저유형_현황.md, 지점·매니저 현황은 하이마트 판매구조분석_1102.xlsx MASTER 시트의 혼매호남팀 303명</dd>
+      <dt>원본 오류</dt><dd>MASTER AD열 'MS_P3(10월)'은 P4 오타로 보이며 ×100이 빠져 있음(판매 없는 매니저는 #DIV/0!). 이 대시보드는 이 열을 쓰지 않고 AA·AB열(10월 LG·삼성)로 직접 계산. 원본에 음수 판매가 있는 매니저는 MS가 0~100%를 벗어나며, 그래프에서는 빼고 표에만 그대로 표시.</dd>
+      <dt>지점 이동</dt><dd>MASTER I열(이동지점명)이 있는 매니저는 이동한 지점으로 집계. 이동 전 실적(1~10월)은 그대로 포함하고, 이름 옆에 이전 지점을 표시.</dd>
+      <dt>출처</dt><dd>하이마트 판매구조분석_10월 누적.xlsx MASTER 시트의 혼매호남팀 303명(유형·지점·매니저 현황 모두)</dd>
     </dl>
   </details>
 </div>
@@ -866,9 +873,9 @@
   dash.calc('type_share', {
     inputs: ['types'],
     title: '유형별 인원·LG판매 비중',
-    description: '유형 인원 ÷ 전체 인원, 유형 1~9월 LG 판매 합(백만원)과 그 합 ÷ 전체 LG 판매 합',
+    description: '유형 인원 ÷ 전체 인원, 유형 1~10월 LG 판매 합(백만원)과 그 합 ÷ 전체 LG 판매 합',
     fn: (types) => {
-      const lg = (r) => Number(r.lg_p1) + Number(r.lg_p2) + Number(r.lg_p3);
+      const lg = (r) => Number(r.lg_p1) + Number(r.lg_p2) + Number(r.lg_p3) + Number(r.lg_p4);
       const nAll = d3.sum(types, (r) => Number(r.n));
       const lgAll = d3.sum(types, lg);
       return types.map((r) => ({ type: r.type, n_share: Number(r.n) / nAll, lg_share: lg(r) / lgAll, lg_total: Math.round(lg(r)) }));
@@ -878,11 +885,11 @@
   dash.calc('team_samsung', {
     inputs: ['team'],
     title: '팀 월평균 판매 (삼성 추정)',
-    description: '삼성 판매 = LG 판매 ÷ MS − LG 판매, 기간 개월 수(5·2·2)로 나눈 추정치',
+    description: '삼성 판매 = LG 판매 ÷ MS − LG 판매, 기간 개월 수(5·2·2·1)로 나눈 추정치',
     fn: (team) => {
       const t = team[0];
-      const months = { p1: 5, p2: 2, p3: 2 };
-      return ['p1', 'p2', 'p3'].map((p) => {
+      const months = { p1: 5, p2: 2, p3: 2, p4: 1 };
+      return ['p1', 'p2', 'p3', 'p4'].map((p) => {
         const lg = Number(t['lg_' + p]);
         const ms = Number(t['ms_' + p]) / 100;
         return { period: p, lg_month: lg / months[p], ss_month: (lg / ms - lg) / months[p] };
@@ -919,24 +926,24 @@
     const r = dash.data('types').data.find((x) => x.type === t);
     const tm = dash.data('team').data[0];
     if (!r || !tm) return;
-    const vals = [r.ms_p1, r.ms_p2, r.ms_p3].map(Number);
-    const tv = [tm.ms_p1, tm.ms_p2, tm.ms_p3].map(Number);
+    const vals = [r.ms_p1, r.ms_p2, r.ms_p3, r.ms_p4].map(Number);
+    const tv = [tm.ms_p1, tm.ms_p2, tm.ms_p3, tm.ms_p4].map(Number);
     const W = Math.max(180, el.clientWidth || 240), H = 106, m = { l: 18, r: 18, t: 18, b: 32 };
-    const P = ['1~5월', '6~7월', '8~9월'];
+    const P = ['1~5월', '6~7월', '8~9월', '10월'];
     const x = d3.scalePoint(P, [m.l, W - m.r]);
     const y = d3.scaleLinear([20, 80], [H - m.b, m.t]);
     const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img')
       .attr('aria-label', `${r.name_en} MS ${vals.map(MT.F.pct).join(', ')}`);
-    const line = d3.line().x((v, i) => x(P[i])).y((v) => y(v));
+    const line = d3.line().x((v, i) => x(P[i])).y((v) => y(v)).curve(d3.curveMonotoneX);
     svg.append('path').attr('d', line(tv)).style('fill', 'none').style('stroke', 'var(--cds-chart-reference)').style('stroke-width', 1.5).style('stroke-dasharray', '2 3');
     svg.append('path').attr('d', line(vals)).style('fill', 'none').style('stroke', MT.colorOf(t)).style('stroke-width', 2).style('stroke-linecap', 'round').style('stroke-linejoin', 'round');
     const g = svg.selectAll('g.pt').data(vals).join('g').attr('transform', (v, i) => `translate(${x(P[i])},${y(v)})`);
     g.append('circle').attr('r', 3.5).style('fill', MT.colorOf(t)).style('stroke', 'var(--color-panel)').style('stroke-width', 1.5);
-    g.append('text').attr('y', (v, i) => (v >= tv[i] ? -7 : 14)).attr('text-anchor', (v, i) => (i === 0 ? 'start' : i === 2 ? 'end' : 'middle'))
-      .attr('dx', (v, i) => (i === 0 ? -4 : i === 2 ? 4 : 0))
+    g.append('text').attr('y', (v, i) => (v >= tv[i] ? -7 : 14)).attr('text-anchor', (v, i) => (i === 0 ? 'start' : i === P.length - 1 ? 'end' : 'middle'))
+      .attr('dx', (v, i) => (i === 0 ? -4 : i === P.length - 1 ? 4 : 0))
       .style('fill', 'var(--color-fg)').style('font-size', '11px').text((v) => MT.F.pct(v));
     svg.selectAll('text.ax').data(P).join('text').attr('class', 'ax').attr('x', (p) => x(p)).attr('y', H - 2)
-      .attr('text-anchor', (p, i) => (i === 0 ? 'start' : i === 2 ? 'end' : 'middle')).attr('dx', (p, i) => (i === 0 ? -4 : i === 2 ? 4 : 0))
+      .attr('text-anchor', (p, i) => (i === 0 ? 'start' : i === P.length - 1 ? 'end' : 'middle')).attr('dx', (p, i) => (i === 0 ? -4 : i === P.length - 1 ? 4 : 0))
       .style('fill', 'var(--color-fg-muted)').style('font-size', '10px').text((p) => p);
   });
 
@@ -950,14 +957,14 @@
     const types = dash.data('types').data, tm = dash.data('team').data[0];
     const series = MT.ORDER.filter((t) => t !== 'unmeasured').map((t) => {
       const r = types.find((x) => x.type === t);
-      return r && { key: t, name: r.name_en, vals: [r.ms_p1, r.ms_p2, r.ms_p3].map(Number), color: MT.colorOf(t), dash: t === 'monitoring' ? '5 4' : null, w: 2 };
+      return r && { key: t, name: r.name_en, vals: [r.ms_p1, r.ms_p2, r.ms_p3, r.ms_p4].map(Number), color: MT.colorOf(t), dash: t === 'monitoring' ? '5 4' : null, w: 2 };
     }).filter(Boolean);
-    series.push({ key: 'team', name: '팀 전체', vals: [tm.ms_p1, tm.ms_p2, tm.ms_p3].map(Number), color: 'var(--color-fg)', dash: '1 4', w: 2.5 });
+    series.push({ key: 'team', name: '팀 전체', vals: [tm.ms_p1, tm.ms_p2, tm.ms_p3, tm.ms_p4].map(Number), color: 'var(--color-fg)', dash: '1 4', w: 2.5 });
 
     const W = Math.max(300, el.clientWidth || 600), H = 300;
     const narrow = W < 520;
     const m = { l: 40, r: narrow ? 104 : 140, t: 14, b: 42 };
-    const P = ['1~5월', '6~7월', '8~9월'], PS = ['평시', '전시', '반격기'];
+    const P = ['1~5월', '6~7월', '8~9월', '10월'], PS = ['평시', '전시', '반격기', ''];
     const x = d3.scalePoint(P, [m.l + 8, W - m.r]);
     const y = d3.scaleLinear([20, 80], [H - m.b, m.t]);
     const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', '유형별 MS 추이');
@@ -973,23 +980,23 @@
     xl.append('tspan').attr('x', (p) => x(p)).attr('y', H - m.b + 18).style('fill', 'var(--color-fg)').text((p) => p);
     xl.append('tspan').attr('x', (p) => x(p)).attr('y', H - m.b + 32).style('fill', 'var(--color-fg-muted)').text((p, i) => PS[i]);
 
-    const line = d3.line().x((v, i) => x(P[i])).y((v) => y(v));
+    const line = d3.line().x((v, i) => x(P[i])).y((v) => y(v)).curve(d3.curveMonotoneX);
     const lines = svg.append('g').selectAll('g').data(series).join('g');
     lines.append('path').attr('d', (s) => line(s.vals)).style('fill', 'none').style('stroke', (s) => s.color)
       .style('stroke-width', (s) => s.w).style('stroke-dasharray', (s) => s.dash).style('stroke-linecap', 'round').style('stroke-linejoin', 'round');
     lines.selectAll('circle').data((s) => s.vals.map((v, i) => ({ v, i, s }))).join('circle')
       .attr('cx', (d) => x(P[d.i])).attr('cy', (d) => y(d.v)).attr('r', 3).style('fill', (d) => d.s.color);
 
-    const labels = series.map((s) => ({ s, y: y(s.vals[2]) })).sort((a, b) => a.y - b.y);
+    const labels = series.map((s) => ({ s, y: y(s.vals[s.vals.length - 1]) })).sort((a, b) => a.y - b.y);
     const gap = 15;
     for (let i = 1; i < labels.length; i++) if (labels[i].y - labels[i - 1].y < gap) labels[i].y = labels[i - 1].y + gap;
     const over = labels[labels.length - 1].y - (H - m.b);
     if (over > 0) labels.forEach((l) => (l.y -= over));
     for (let i = labels.length - 2; i >= 0; i--) if (labels[i + 1].y - labels[i].y < gap) labels[i].y = labels[i + 1].y - gap;
-    const lx = x(P[2]) + 10;
+    const lx = x(P[P.length - 1]) + 10;
     const lab = svg.append('g').selectAll('text').data(labels).join('text').attr('x', lx).attr('y', (l) => l.y + 4).style('font-size', '11px');
     lab.append('tspan').style('fill', (l) => (l.s.key in MT.MAIN ? l.s.color : 'var(--color-fg)')).style('font-weight', 600).text((l) => l.s.name);
-    lab.append('tspan').attr('dx', 5).style('fill', 'var(--color-fg-muted)').text((l) => MT.F.pct(l.s.vals[2]));
+    lab.append('tspan').attr('dx', 5).style('fill', 'var(--color-fg-muted)').text((l) => MT.F.pct(l.s.vals[l.s.vals.length - 1]));
 
     const tip = document.createElement('div');
     tip.className = 'mt-tip';
@@ -1006,7 +1013,7 @@
         tip.replaceChildren();
         const h = document.createElement('div');
         h.className = 'mt-tip-h';
-        h.textContent = `${p} ${PS[i]}`;
+        h.textContent = `${p} ${PS[i]}`.trim();
         tip.append(h);
         series.slice().sort((a, b) => b.vals[i] - a.vals[i]).forEach((s) => {
           const row = document.createElement('div');
@@ -1080,7 +1087,7 @@
   dash.calc('branches', {
     inputs: ['managers'],
     title: '유형 × 지점 집계',
-    description: '유형·지점별(type=all은 전체 유형) 매니저 수, 지점의 유형별 인원, 추가관리대상 수, 1~9월 LG 판매 합, 판매 합으로 계산한 가중 MS',
+    description: '유형·지점별(type=all은 전체 유형) 매니저 수, 지점의 유형별 인원, 추가관리대상 수, 1~10월 LG 판매 합, 판매 합으로 계산한 가중 MS',
     fn: (managers) => {
       const out = [];
       const mixOf = new Map();
@@ -1093,10 +1100,12 @@
         for (const [branch, ms] of byBranch) {
           const s = (c) => d3.sum(ms, (m) => Number(m[c]) || 0);
           const w = (p) => { const l = s('lg_' + p), x = s('ss_' + p); return l + x > 0 ? Math.round((1000 * l) / (l + x)) / 10 : null; };
-          const r = { key: type + '|' + branch, type, branch, mix: mixOf.get(branch), type_mix: mixOf.get(branch).map(([t, n]) => MT.TLABEL[t] + ' ' + n).join(' · '), capa: ms[0].capa, level: ms[0].level, n: ms.length,
-            extra: ms.filter((m) => m.extra === 'Y').length, lg: Math.round(s('lg_p1') + s('lg_p2') + s('lg_p3')),
-            ms_p1: w('p1'), ms_p2: w('p2'), ms_p3: w('p3') };
+          const base = ms.find((m) => !m.moved_from) || ms[0];
+          const r = { key: type + '|' + branch, type, branch, mix: mixOf.get(branch), type_mix: mixOf.get(branch).map(([t, n]) => MT.TLABEL[t] + ' ' + n).join(' · '), capa: base.capa, level: base.level, n: ms.length,
+            extra: ms.filter((m) => m.extra === 'Y').length, lg: Math.round(s('lg_p1') + s('lg_p2') + s('lg_p3') + s('lg_p4')),
+            ms_p1: w('p1'), ms_p2: w('p2'), ms_p3: w('p3'), ms_p4: w('p4') };
           r.d32 = r.ms_p2 != null && r.ms_p3 != null ? Math.round((r.ms_p3 - r.ms_p2) * 10) / 10 : null;
+          r.d43 = r.ms_p3 != null && r.ms_p4 != null ? Math.round((r.ms_p4 - r.ms_p3) * 10) / 10 : null;
           out.push(r);
         }
       }
@@ -1147,7 +1156,7 @@
     const v = k === 'branches' ? new Set(rows.map((m) => m.branch)).size
       : k === 'managers' ? rows.length
       : k === 'extra' ? rows.filter((m) => m.extra === 'Y').length
-      : Math.round(d3.sum(rows, (m) => (Number(m.lg_p1) || 0) + (Number(m.lg_p2) || 0) + (Number(m.lg_p3) || 0)));
+      : Math.round(d3.sum(rows, (m) => (Number(m.lg_p1) || 0) + (Number(m.lg_p2) || 0) + (Number(m.lg_p3) || 0) + (Number(m.lg_p4) || 0)));
     el.textContent = MT.F.int(v);
   });
 
@@ -1179,8 +1188,8 @@
       });
       mix.append(wrap);
       tr.append(td(b.branch), td(b.capa || '—'), mix, td(b.level || '—'), td(MT.F.int(b.n)), td(MT.F.int(b.extra)),
-        td(cellNum(b.lg, 'mil')), td(cellNum(b.ms_p1, 'pct')), td(cellNum(b.ms_p2, 'pct')), td(cellNum(b.ms_p3, 'pct')),
-        td(cellNum(b.d32, 'pp'), ppClass(b.d32)));
+        td(cellNum(b.lg, 'mil')), td(cellNum(b.ms_p1, 'pct')), td(cellNum(b.ms_p2, 'pct')), td(cellNum(b.ms_p3, 'pct')), td(cellNum(b.ms_p4, 'pct')),
+        td(cellNum(b.d32, 'pp'), ppClass(b.d32)), td(cellNum(b.d43, 'pp'), ppClass(b.d43)));
       tb.append(tr);
       if (MT.branch === b.branch) tb.append(branchMgrRow(b));
     });
@@ -1235,7 +1244,7 @@
         name.append(flag);
       }
       const ms = document.createElement('span');
-      ms.textContent = `MS 6~7월 ${cellNum(m.ms_p2, 'pct')} · 8~9월 ${cellNum(m.ms_p3, 'pct')}`;
+      ms.textContent = `${m.moved_from ? '이전 ' + m.moved_from + ' · ' : ''}MS 8~9월 ${cellNum(m.ms_p3, 'pct')} · 10월 ${cellNum(m.ms_p4, 'pct')}`;
       btn.append(name, ms);
       grid.append(btn);
     });
@@ -1299,10 +1308,10 @@
       if (m.extra === 'Y') { const b = document.createElement('span'); b.className = 'mt-badge mt-flag'; b.textContent = 'Y'; ex.append(b); }
       const ty = td('', 'mt-td-l');
       ty.append(typeTag(m.type));
-      tr.append(td(m.branch), td(m.manager), ty, ex, td(m.level || '—'),
-        td(cellNum(m.lg_p1, 'mil')), td(cellNum(m.lg_p2, 'mil')), td(cellNum(m.lg_p3, 'mil')),
-        td(cellNum(m.ms_p1, 'pct')), td(cellNum(m.ms_p2, 'pct')), td(cellNum(m.ms_p3, 'pct')),
-        td(cellNum(m.d21, 'pp'), ppClass(m.d21)), td(cellNum(m.d32, 'pp'), ppClass(m.d32)));
+      tr.append(td(MT.brLabel(m)), td(m.manager), ty, ex, td(m.level || '—'),
+        td(cellNum(m.lg_p1, 'mil')), td(cellNum(m.lg_p2, 'mil')), td(cellNum(m.lg_p3, 'mil')), td(cellNum(m.lg_p4, 'mil')),
+        td(cellNum(m.ms_p1, 'pct')), td(cellNum(m.ms_p2, 'pct')), td(cellNum(m.ms_p3, 'pct')), td(cellNum(m.ms_p4, 'pct')),
+        td(cellNum(m.d21, 'pp'), ppClass(m.d21)), td(cellNum(m.d32, 'pp'), ppClass(m.d32)), td(cellNum(m.d43, 'pp'), ppClass(m.d43)));
       tb.append(tr);
     });
   });
@@ -1622,7 +1631,7 @@
         const name = document.createElement('b');
         name.append(typePill(m.type), m.manager);
         const info = document.createElement('span');
-        info.textContent = `${m.branch} · MS 8~9월 ${cellNum(m.ms_p3, 'pct')}`;
+        info.textContent = `${MT.brLabel(m)} · MS 10월 ${cellNum(m.ms_p4, 'pct')}`;
         btn.append(name, info);
         grid.append(btn);
       });
@@ -1678,11 +1687,11 @@
   dash.calc('ms_matrix', {
     inputs: ['managers'],
     title: '개인 MS 감소폭 × 6~7월 개인 MS',
-    description: '측정불가 유형·1~5월/6~7월 판매 없는 매니저 제외. 행: 6~7월−1~5월 개인 MS(L4 ≤−20%p, L3 ≤−10, L2 <0, L1 ≥0), 열: 6~7월 개인 MS(A ≥50%, B ≥40, C ≥30, D <30). 판매 비중: 양사 1~9월 판매 ÷ 팀 전체 양사 판매',
+    description: '측정불가 유형·1~5월/6~7월 판매 없는 매니저 제외. 행: 6~7월−1~5월 개인 MS(L4 ≤−20%p, L3 ≤−10, L2 <0, L1 ≥0), 열: 6~7월 개인 MS(A ≥50%, B ≥40, C ≥30, D <30). 판매 비중: 양사 1~10월 판매 ÷ 팀 전체 양사 판매',
     fn: (managers) => {
       const v = (m, c) => Number(m[c]) || 0;
       const ms = (l, s) => (l + s > 0 ? (100 * l) / (l + s) : null);
-      const both = (m) => ['lg_p1', 'lg_p2', 'lg_p3', 'ss_p1', 'ss_p2', 'ss_p3'].reduce((a, c) => a + v(m, c), 0);
+      const both = (m) => ['lg_p1', 'lg_p2', 'lg_p3', 'lg_p4', 'ss_p1', 'ss_p2', 'ss_p3', 'ss_p4'].reduce((a, c) => a + v(m, c), 0);
       const total = d3.sum(managers, both);
       const cells = new Map();
       for (const m of managers) {
@@ -1702,11 +1711,12 @@
         const [type, lv, col] = key.split('|');
         const s = (c) => d3.sum(list, (m) => v(m, c));
         const w = (p) => (s('lg_' + p) + s('ss_' + p) > 0 ? Math.round((1000 * s('lg_' + p)) / (s('lg_' + p) + s('ss_' + p))) / 10 : null);
-        return { key, type, lv, col, n: list.length, share: d3.sum(list, both) / total, ms_p1: w('p1'), ms_p2: w('p2'), ms_p3: w('p3') };
+        return { key, type, lv, col, n: list.length, share: d3.sum(list, both) / total, ms_p1: w('p1'), ms_p2: w('p2'), ms_p3: w('p3'), ms_p4: w('p4') };
       });
     }
   });
 
+  MT.brLabel = (m) => (m.moved_from ? `${m.branch} (이전 ${m.moved_from})` : m.branch);
   MT.mx = 'all';
   MT.mxCell = (m) => {
     const v = (c) => Number(m[c]) || 0;
@@ -1745,7 +1755,7 @@
     mid.className = 'mid';
     mid.textContent = p(r.ms_p2);
     const part = (x) => { const s = document.createElement('span'); s.textContent = x; return s; };
-    el.append(part(p(r.ms_p1)), ' ', part('→'), ' ', mid, ' ', part('→'), ' ', part(p(r.ms_p3)));
+    el.append(part(p(r.ms_p1)), ' ', part('→'), ' ', mid, ' ', part('→'), ' ', part(p(r.ms_p3)), ' ', part('→'), ' ', part(p(r.ms_p4)));
   });
 
   MT.mxSel = null;
@@ -1791,8 +1801,8 @@
       if (m.extra === 'Y') { const b = document.createElement('span'); b.className = 'mt-badge mt-flag'; b.textContent = 'Y'; ex.append(b); }
       const p2 = td(cellNum(m.ms_p2, 'pct'));
       p2.style.fontWeight = '600';
-      tr.append(nm, td(m.branch), ex, td(cellNum(m.ms_p1, 'pct')), p2, td(cellNum(m.ms_p3, 'pct')),
-        td(cellNum(m.d21, 'pp'), ppClass(m.d21)), td(cellNum(m.d32, 'pp'), ppClass(m.d32)));
+      tr.append(nm, td(MT.brLabel(m)), ex, td(cellNum(m.ms_p1, 'pct')), p2, td(cellNum(m.ms_p3, 'pct')), td(cellNum(m.ms_p4, 'pct')),
+        td(cellNum(m.d21, 'pp'), ppClass(m.d21)), td(cellNum(m.d32, 'pp'), ppClass(m.d32)), td(cellNum(m.d43, 'pp'), ppClass(m.d43)));
       tb.append(tr);
     });
   });
@@ -1872,11 +1882,12 @@
     const ty = dash.data('types').data.find((x) => x.type === m.type) || {};
     const tm = dash.data('team').data[0];
     const nv = (v) => (v === '' || v == null || isNaN(Number(v)) ? null : Number(v));
-    const P = ['1~5월', '6~7월', '8~9월'], PS = ['평시', '전시', '반격기'];
+    const cv = (v) => { const n = nv(v); return n == null || n < 0 || n > 100 ? null : n; };
+    const P = ['1~5월', '6~7월', '8~9월', '10월'], PS = ['평시', '전시', '반격기', ''];
     const series = [
-      { name: m.manager, vals: [m.ms_p1, m.ms_p2, m.ms_p3].map(nv), color: 'var(--lg-red, var(--color-fg))', w: 3, dash: null, label: true },
-      { name: `${ty.name_en || ''} 평균`, vals: [ty.ms_p1, ty.ms_p2, ty.ms_p3].map(nv), color: MT.colorOf(m.type), w: 2, dash: '6 4' },
-      { name: '팀 평균', vals: [tm.ms_p1, tm.ms_p2, tm.ms_p3].map(nv), color: 'var(--color-fg-muted)', w: 2, dash: '2 3' }
+      { name: m.manager, vals: [m.ms_p1, m.ms_p2, m.ms_p3, m.ms_p4].map(cv), color: 'var(--lg-red, var(--color-fg))', w: 3, dash: null, label: true },
+      { name: `${ty.name_en || ''} 평균`, vals: [ty.ms_p1, ty.ms_p2, ty.ms_p3, ty.ms_p4].map(nv), color: MT.colorOf(m.type), w: 2, dash: '6 4' },
+      { name: '팀 평균', vals: [tm.ms_p1, tm.ms_p2, tm.ms_p3, tm.ms_p4].map(nv), color: 'var(--color-fg-muted)', w: 2, dash: '2 3' }
     ];
 
     const head = document.createElement('div');
@@ -1886,18 +1897,19 @@
     nm.textContent = m.manager;
     const meta = document.createElement('span');
     meta.className = 'mt-small';
-    meta.textContent = `${m.branch} · ${ty.name_en || ''} ${ty.name_ko || ''} · 지점군 ${m.level || '—'}${m.extra === 'Y' ? ' · 추가관리대상' : ''}`;
+    meta.textContent = `${MT.brLabel(m)} · ${ty.name_en || ''} ${ty.name_ko || ''} · 지점군 ${m.level || '—'}${m.extra === 'Y' ? ' · 추가관리대상' : ''}`;
     head.append(nm, meta);
     el.append(head);
 
-    const v1 = nv(m.ms_p1), v2 = nv(m.ms_p2), v3 = nv(m.ms_p3);
+    const v1 = nv(m.ms_p1), v2 = nv(m.ms_p2), v3 = nv(m.ms_p3), v4 = nv(m.ms_p4);
     const say = document.createElement('p');
     say.className = 'mt-mt-sum';
     const pctOr = (v) => (v == null ? '데이터 없음' : MT.F.pct(v));
     const ppOr = (v) => (nv(v) == null ? '' : ` (${MT.F.pp(nv(v))})`);
-    let line1 = `MS는 1~5월 ${pctOr(v1)} → 6~7월 ${pctOr(v2)}${ppOr(m.d21)} → 8~9월 ${pctOr(v3)}${ppOr(m.d32)}입니다.`;
-    const ty3 = nv(ty.ms_p3), tm3 = nv(tm.ms_p3);
-    if (v3 != null && ty3 != null && tm3 != null) line1 += ` 8~9월 MS는 ${ty.name_en || ''} 평균 대비 ${MT.F.pp(v3 - ty3)}, 팀 평균 대비 ${MT.F.pp(v3 - tm3)}입니다.`;
+    let line1 = `MS는 1~5월 ${pctOr(v1)} → 6~7월 ${pctOr(v2)}${ppOr(m.d21)} → 8~9월 ${pctOr(v3)}${ppOr(m.d32)} → 10월 ${pctOr(v4)}${ppOr(m.d43)}입니다.`;
+    const ty4 = nv(ty.ms_p4), tm4 = nv(tm.ms_p4);
+    if (v4 != null && v4 >= 0 && v4 <= 100 && ty4 != null && tm4 != null) line1 += ` 10월 MS는 ${ty.name_en || ''} 평균 대비 ${MT.F.pp(v4 - ty4)}, 팀 평균 대비 ${MT.F.pp(v4 - tm4)}입니다.`;
+    if (series[0].vals.some((v, i) => v == null && [v1, v2, v3, v4][i] != null)) line1 += ' 음수 판매로 MS가 0~100%를 벗어난 구간은 그래프에서 뺐습니다.';
     say.textContent = line1;
     el.append(say);
     const layout = document.createElement('div');
@@ -1922,7 +1934,7 @@
     xl.append('tspan').attr('x', (p) => x(p)).attr('y', H - m0.b + 18).style('fill', 'var(--color-fg)').text((p) => p);
     xl.append('tspan').attr('x', (p) => x(p)).attr('y', H - m0.b + 32).style('fill', 'var(--color-fg-muted)').text((p, i) => PS[i]);
 
-    const line = d3.line().defined((v) => v != null).x((v, i) => x(P[i])).y((v) => y(v));
+    const line = d3.line().defined((v) => v != null).x((v, i) => x(P[i])).y((v) => y(v)).curve(d3.curveMonotoneX);
     series.slice().reverse().forEach((s) => {
       svg.append('path').attr('d', line(s.vals)).style('fill', 'none').style('stroke', s.color).style('stroke-width', s.w)
         .style('stroke-dasharray', s.dash).style('stroke-linecap', 'round').style('stroke-linejoin', 'round');
@@ -1940,11 +1952,11 @@
       svg.append('text').attr('x', x(P[i])).attr('y', y(v) + (above ? -10 : 18)).attr('text-anchor', 'middle')
         .style('fill', me.color).style('font-size', '12px').style('font-weight', 700).text(MT.F.pct(v));
     });
-    const labels = series.map((s) => ({ s, v: s.vals[2] != null ? s.vals[2] : s.vals[1] })).filter((l) => l.v != null)
+    const labels = series.map((s) => ({ s, v: [...s.vals].reverse().find((v) => v != null) })).filter((l) => l.v != null)
       .map((l) => ({ ...l, y: y(l.v) })).sort((a, b) => a.y - b.y);
     for (let i = 1; i < labels.length; i++) if (labels[i].y - labels[i - 1].y < 15) labels[i].y = labels[i - 1].y + 15;
     labels.forEach((l) => {
-      svg.append('text').attr('x', x(P[2]) + 12).attr('y', l.y + 4).style('font-size', '11px')
+      svg.append('text').attr('x', x(P[P.length - 1]) + 12).attr('y', l.y + 4).style('font-size', '11px')
         .style('fill', l.s.label ? l.s.color : 'var(--color-fg-muted)').style('font-weight', l.s.label ? 700 : 400).text(l.s.name);
     });
 
@@ -1960,17 +1972,17 @@
     thead.append(hr);
     const body = document.createElement('tbody');
     [
-      ['LG 판매 (백만원)', [m.lg_p1, m.lg_p2, m.lg_p3].map(fmt)],
-      ['삼성 판매 (백만원)', [m.ss_p1, m.ss_p2, m.ss_p3].map(fmt)],
-      ['개인 MS', [m.ms_p1, m.ms_p2, m.ms_p3].map(pc), 'b'],
-      [`${ty.name_en || ''} 평균 MS`, [ty.ms_p1, ty.ms_p2, ty.ms_p3].map(pc)],
-      ['팀 평균 MS', [tm.ms_p1, tm.ms_p2, tm.ms_p3].map(pc)],
-      ['MS 증감', ['—', pp(m.d21), pp(m.d32)], 'd']
+      ['LG 판매 (백만원)', [m.lg_p1, m.lg_p2, m.lg_p3, m.lg_p4].map(fmt)],
+      ['삼성 판매 (백만원)', [m.ss_p1, m.ss_p2, m.ss_p3, m.ss_p4].map(fmt)],
+      ['개인 MS', [m.ms_p1, m.ms_p2, m.ms_p3, m.ms_p4].map(pc), 'b'],
+      [`${ty.name_en || ''} 평균 MS`, [ty.ms_p1, ty.ms_p2, ty.ms_p3, ty.ms_p4].map(pc)],
+      ['팀 평균 MS', [tm.ms_p1, tm.ms_p2, tm.ms_p3, tm.ms_p4].map(pc)],
+      ['MS 증감', ['—', pp(m.d21), pp(m.d32), pp(m.d43)], 'd']
     ].forEach(([label, vals, kind]) => {
       const tr = document.createElement('tr');
       if (kind === 'b') tr.className = 'mt-mt-me';
       tr.append(td(label));
-      vals.forEach((x, i) => tr.append(td(x, kind === 'd' && i > 0 ? ppClass(i === 1 ? m.d21 : m.d32) : undefined)));
+      vals.forEach((x, i) => tr.append(td(x, kind === 'd' && i > 0 ? ppClass([null, m.d21, m.d32, m.d43][i]) : undefined)));
       body.append(tr);
     });
     table.append(thead, body);
