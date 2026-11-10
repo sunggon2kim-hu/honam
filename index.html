@@ -1579,8 +1579,8 @@
       const lg3 = (Number(m.lg_p3) || 0) / 2, lg4 = Number(m.lg_p4) || 0;
       const ms3 = nv(m.ms_p3), ms4 = nv(m.ms_p4), d = nv(m.d43);
       const none = lg3 > 0 && lg4 === 0 && (Number(m.ss_p4) || 0) === 0;
-      const drop = ok(ms3) && ok(ms4) && d != null && d < 0 && lg4 >= 0 && lg4 < lg3;
-      return (none || drop) ? { m, lg3, lg4, ms3, ms4, d, none, lgc: lg3 > 0 ? (lg4 - lg3) / lg3 : null } : null;
+      const drop = ok(ms3) && ok(ms4) && d != null && d < 0 && lg4 > 0 && lg4 < lg3;
+      return drop ? { m, lg3, lg4, ms3, ms4, d, none, lgc: lg3 > 0 ? (lg4 - lg3) / lg3 : null } : null;
     }).filter(Boolean).sort((a, b) => (a.none - b.none) || (a.d - b.d) || a.m.manager.localeCompare(b.m.manager, 'ko'));
   };
   dash.draw('focus', (el) => {
@@ -1604,7 +1604,7 @@
     h.append(h3, n);
     const rule = document.createElement('p');
     rule.className = 'mt-focus-rule';
-    rule.textContent = '기준: 8~9월 대비 10월 개인 MS 하락 + LG 판매 감소(8~9월 월평균 대비), 또는 10월 판매 없음 · MS 하락폭 큰 순 · 행을 누르면 매니저 실적이 열립니다';
+    rule.textContent = '기준: 8~9월 대비 10월 개인 MS 하락 + LG 판매 감소(8~9월 월평균 대비) · MS·LG 판매가 100% 감소한 매니저(10월 판매 0)와 음수 판매는 데이터 확인이 필요해 제외 · MS 하락폭 큰 순 · 행을 누르면 매니저 실적이 열립니다';
     el.append(h, rule);
     if (!list.length) { const e = document.createElement('p'); e.className = 'mt-focus-empty'; e.textContent = '해당 매니저 없음'; el.append(e); return; }
     const tw = document.createElement('div');
