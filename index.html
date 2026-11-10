@@ -603,6 +603,22 @@
     .mt-strip .mt-st-total > .mt-st-d { font-size: 14px; }
     .mt-strip .mt-st-total > .mt-st-d > span { font-size: 15px; }
   }
+
+  /* refined header + strip */
+  .mt .mt-head-l { gap: 10px; }
+  .mt .mt-eyebrow { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; font-size: 13px; font-weight: 600; letter-spacing: .06em; color: #8A1538; background: rgba(165,0,52,.07); border: 1px solid rgba(165,0,52,.18); padding: 5px 12px; border-radius: 999px; }
+  .mt .mt-eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #A50034; }
+  .mt .mt-title { font-size: calc(var(--cds-font-size-title) * 1.625); font-weight: 800; letter-spacing: -.025em; line-height: 1.15; color: #1F2430; }
+  .mt .mt-title-acc { background: linear-gradient(90deg, #A50034, #D4436B); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .mt .mt-title::after { content: ""; display: block; width: 56px; height: 4px; border-radius: 2px; margin-top: 12px; background: linear-gradient(90deg, #A50034, rgba(165,0,52,0)); }
+  .mt-strip .mt-st.mt-st-total { background: linear-gradient(135deg, #232834 0%, #343B4A 100%); border: 0; border-left: 5px solid #C4164F; box-shadow: 0 6px 18px rgba(20,24,33,.12); }
+  .mt-strip .mt-st-total > .mt-st-d b { color: #FFB8CB !important; }
+  .mt-strip .mt-st-total .mt-st-key { border-color: rgba(255,255,255,.18) !important; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mt .mt-title { color: #F2F3F5; } :root:not([data-theme="light"]) .mt .mt-eyebrow { color: #FF8FAE; background: rgba(255,143,174,.1); border-color: rgba(255,143,174,.25); } :root:not([data-theme="light"]) .mt .mt-title-acc { background-image: linear-gradient(90deg, #FF6F96, #FF9DB7); } }
+  :root[data-theme="dark"] .mt .mt-title { color: #F2F3F5; }
+  :root[data-theme="dark"] .mt .mt-eyebrow { color: #FF8FAE; background: rgba(255,143,174,.1); border-color: rgba(255,143,174,.25); }
+  :root[data-theme="dark"] .mt .mt-title-acc { background-image: linear-gradient(90deg, #FF6F96, #FF9DB7); }
+  @media (max-width: 40rem) { .mt .mt-title { font-size: 2rem; } .mt .mt-eyebrow { font-size: 11px; } }
 </style>
 <style>
   html.locked .site { display: none; }
@@ -628,7 +644,7 @@
     <div class="mt-head-top">
       <div class="mt-head-l">
         <span class="mt-eyebrow">LG전자 혼매호남팀 · 하이마트 채널 · 2026년 1~10월 실적</span>
-        <h1 class="mt-title" id="top">혼매호남팀 키맨 관리현황</h1>
+        <h1 class="mt-title" id="top">혼매호남팀 <span class="mt-title-acc">키맨 관리현황</span></h1>
       </div>
       <div class="mt-dlbox" id="downloads">
         <a class="mt-dlcard" href="files/summary.pptx" download="혼매호남팀_키맨관리현황_전체.pptx" aria-label="혼매호남팀 전체 요약본, PPT 8장">
