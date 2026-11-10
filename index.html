@@ -613,7 +613,7 @@
       <div class="mt-dlbox" id="downloads">
         <a class="mt-dlcard" href="files/summary.pptx" download="혼매호남팀_키맨관리현황_전체.pptx" aria-label="혼매호남팀 전체 요약본, PPT 8장">
           <span class="mt-dl-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 19h16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <span class="mt-dl-tx"><b>혼매호남팀 전체 요약본</b><span>8장 · 팀 전체 요약 + 유형별 현황·실행방안</span><span class="mt-dl-fmt">PPTX · 11월 7일 기준</span></span>
+          <span class="mt-dl-tx"><b>혼매호남팀 전체 요약본</b><span>8장 · 팀 전체 요약 + 유형별 현황·실행방안</span><span class="mt-dl-fmt">PPTX · 10월 누적 기준</span></span>
         </a>
         <div class="mt-dlpick" id="dlpick">
           <span class="mt-dlpick-l">마케터/현장관리자별 요약본</span>
@@ -621,7 +621,7 @@
             <select class="mt-dlsel" id="mt-dlsel" data-draw="dlsel" data-source="decks" aria-label="요약본을 받을 담당자 선택"><option value="">담당자 선택</option></select>
             <a class="mt-dlone" id="mt-dlone" href="#" aria-disabled="true">받기</a>
           </div>
-          <span class="mt-dlpick-n" data-draw="dlnote" data-source="decks">마케터·현장관리자 담당 지점만 담은 8장</span>
+          <span class="mt-dlpick-n" data-draw="dlnote" data-source="decks">마케터·현장관리자 담당 지점만 담은 9장</span>
         </div>
       </div>
     </div>
@@ -1483,7 +1483,7 @@
   });
   dash.draw('dlnote', (el) => {
     const r = deckRow();
-    el.textContent = r ? (r.role === 'marketer' ? '담당 마케터 ' : '현장관리자 ') + r.name + ' · 지점 ' + r.branches + '곳 · 매니저 ' + r.managers + '명만 담은 8장' : '마케터·현장관리자 담당 지점만 담은 8장';
+    el.textContent = r ? (r.role === 'marketer' ? '담당 마케터 ' : '현장관리자 ') + r.name + ' · 지점 ' + r.branches + '곳 · 매니저 ' + r.managers + '명만 담은 9장' : '마케터·현장관리자 담당 지점만 담은 9장';
   });
   document.querySelectorAll('#mt-dlsel').forEach((s) => s.addEventListener('change', () => { MT.deck = s.value; syncDeckLink(); dash.draw('dlnote'); }));
   document.querySelectorAll('#mt-dlone').forEach((a) => a.addEventListener('click', (e) => { if (!deckRow()) { e.preventDefault(); document.querySelectorAll('#mt-dlsel').forEach((s) => s.focus()); } }));
