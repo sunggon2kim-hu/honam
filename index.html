@@ -482,6 +482,27 @@
   .mt-st-hero .mt-st-p4 { font-weight: 600; }
   .mt-scroll.mt-scroll-br { max-height: min(48rem, 80vh); }
   .mt-scroll-br .mt-table td { padding-top: 9px; padding-bottom: 9px; }
+  .mt-focus { --oc: var(--lg-red); margin-top: var(--cds-gap-sm); border-radius: 14px; overflow: hidden; border: 1.5px solid color-mix(in srgb, var(--oc) 45%, transparent); background: var(--color-panel); }
+  .mt-focus[data-role="marketer"] { --oc: #1F4FA3; }
+  .mt-focus[data-role="field_mgr"] { --oc: #0E7A5F; }
+  .mt-focus[hidden] { display: none; }
+  .mt-focus-h { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 14px; padding: 12px 18px; background: color-mix(in srgb, var(--oc) 10%, var(--color-panel)); border-bottom: 1px solid color-mix(in srgb, var(--oc) 25%, transparent); }
+  .mt-focus-h h3 { margin: 0; font-size: 19px; font-weight: 800; color: var(--oc); }
+  .mt-focus-h h3 em { font-style: normal; color: var(--color-fg); font-weight: 700; font-size: 16px; margin-left: 6px; }
+  .mt-focus-n { font-size: 15px; color: var(--color-fg-muted); }
+  .mt-focus-n b { font-size: 22px; color: var(--lg-red); margin-right: 2px; }
+  .mt-focus-rule { margin: 0; padding: 8px 18px 0; font-size: 12.5px; color: var(--color-fg-muted); }
+  .mt-focus-tw { max-height: min(30rem, 60vh); overflow: auto; padding: 6px 12px 12px; }
+  .mt-focus table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .mt-focus th { position: sticky; top: 0; z-index: 1; background: var(--color-panel); text-align: right; font-size: 12.5px; font-weight: 700; color: var(--color-fg-muted); padding: 8px 8px; border-bottom: 1.5px solid var(--color-border-line); white-space: nowrap; }
+  .mt-focus th.l, .mt-focus td.l { text-align: left; }
+  .mt-focus td { text-align: right; padding: 8px 8px; border-bottom: 1px solid var(--color-border-line); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .mt-focus tbody tr { cursor: pointer; }
+  .mt-focus tbody tr:hover td { background: color-mix(in srgb, var(--oc) 7%, transparent); }
+  .mt-focus td.mgr { font-weight: 700; }
+  .mt-focus td.down { color: #C2410C; font-weight: 700; }
+  .mt-focus .mt-focus-tag { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 12.5px; font-weight: 700; color: var(--lg-red); background: color-mix(in srgb, var(--lg-red) 9%, var(--color-panel)); border: 1px solid color-mix(in srgb, var(--lg-red) 30%, transparent); }
+  .mt-focus-empty { padding: 14px 18px; color: var(--color-fg-muted); }
   /* Photo cards for the four main types */
   .mt-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .mt-st-total, .mt-st.mt-st-sub { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: center; column-gap: 1.5rem; }
@@ -614,6 +635,7 @@
       <div class="mt-st mt-pickable mt-st-sub" data-tcolor="monitoring" data-pick="monitoring" tabindex="0" role="button" aria-pressed="false"><span class="mt-st-l"><i class="mt-sw" data-tswatch="monitoring"></i><span class="mt-name">Monitoring</span><span class="mt-badge">서브</span></span><span class="mt-st-n"><span data-draw="v" data-source="types" data-field="n" data-where="type=monitoring">—</span>명 <span class="mt-small" data-draw="v" data-fmt="share" data-source="type_share" data-field="n_share" data-where="type=monitoring">—</span></span><span class="mt-st-d mt-st-inc">추가관리대상 <span data-draw="v" data-source="types" data-field="extra" data-where="type=monitoring">—</span>명 포함</span><span class="mt-st-d">MS 6~7월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p2" data-where="type=monitoring">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d21" data-where="type=monitoring">—</b></span><span class="mt-st-d">MS 8~9월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p3" data-where="type=monitoring">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d32" data-where="type=monitoring">—</b></span><span class="mt-st-d mt-st-p4">MS 10월 <span data-draw="v" data-fmt="pct" data-source="types" data-field="ms_p4" data-where="type=monitoring">—</span> <b data-draw="v" data-fmt="pp" data-source="types" data-field="d43" data-where="type=monitoring">—</b></span></div>
     </div>
     <div class="mt-owners" id="owners" data-draw="owners" data-source="owners managers" role="group" aria-label="담당자별 보기"></div>
+    <section class="mt-focus" id="mt-focus" data-draw="focus" data-source="owners managers" aria-label="이달의 집중관리 필요 매니저" hidden></section>
   </header>
 
   <section class="mt-sec" id="ms-matrix">
@@ -1418,7 +1440,7 @@
     document.querySelectorAll('tbody[data-draw="cmp"] tr').forEach((tr) => tr.classList.toggle('is-sel', tr.dataset.key === MT.sel));
     document.querySelectorAll('#mt-clear-branch').forEach((b) => { b.hidden = !MT.branch; });
   }
-  function redrawDetail() { ['selname', 'selstat', 'branches', 'plan', 'ownbar', 'owners', 'dlsel', 'dlnote'].forEach((n) => dash.draw(n)); markSel(); }
+  function redrawDetail() { ['selname', 'selstat', 'branches', 'plan', 'ownbar', 'owners', 'focus', 'dlsel', 'dlnote'].forEach((n) => dash.draw(n)); markSel(); }
   // Per-person summary decks (one file per 마케터 / 현장관리자).
   MT.deck = '';
   const deckRow = () => (MT.ok('decks') ? dash.data('decks').data.find((d) => d.file === MT.deck) : null);
@@ -1548,6 +1570,78 @@
     x.textContent = '전체 지점 보기 ✕';
     el.append(tx, x);
   });
+
+  // 이달의 집중관리 필요 매니저: 10월 MS가 8~9월보다 떨어지고 10월 LG 판매가 8~9월 월평균보다 줄어든 매니저, 10월 판매가 없는 매니저.
+  MT.focusList = (os) => {
+    const nv = (v) => (v === '' || v == null || isNaN(Number(v)) ? null : Number(v));
+    const ok = (v) => v != null && v >= 0 && v <= 100;
+    return dash.data('managers').data.filter((m) => os.has(m.branch)).map((m) => {
+      const lg3 = (Number(m.lg_p3) || 0) / 2, lg4 = Number(m.lg_p4) || 0;
+      const ms3 = nv(m.ms_p3), ms4 = nv(m.ms_p4), d = nv(m.d43);
+      const none = lg3 > 0 && lg4 === 0 && (Number(m.ss_p4) || 0) === 0;
+      const drop = ok(ms3) && ok(ms4) && d != null && d < 0 && lg4 >= 0 && lg4 < lg3;
+      return (none || drop) ? { m, lg3, lg4, ms3, ms4, d, none, lgc: lg3 > 0 ? (lg4 - lg3) / lg3 : null } : null;
+    }).filter(Boolean).sort((a, b) => (a.none - b.none) || (a.d - b.d) || a.m.manager.localeCompare(b.m.manager, 'ko'));
+  };
+  dash.draw('focus', (el) => {
+    el.replaceChildren();
+    const os = MT.ownerSet();
+    el.hidden = !os || !MT.ok('managers');
+    if (el.hidden) return;
+    el.dataset.role = MT.owner.role;
+    const list = MT.focusList(os);
+    const h = document.createElement('div');
+    h.className = 'mt-focus-h';
+    const h3 = document.createElement('h3');
+    const who = document.createElement('em');
+    who.textContent = MT.owner.name + ' 담당 · 10월 기준';
+    h3.append('이달의 집중관리 필요 매니저', who);
+    const n = document.createElement('span');
+    n.className = 'mt-focus-n';
+    const nb = document.createElement('b');
+    nb.textContent = list.length;
+    n.append(nb, '명');
+    h.append(h3, n);
+    const rule = document.createElement('p');
+    rule.className = 'mt-focus-rule';
+    rule.textContent = '기준: 10월 개인 MS가 8~9월보다 하락하고, 10월 LG 판매가 8~9월 월평균보다 감소한 매니저 + 10월 판매가 없는 매니저. MS 하락폭 큰 순. 원본 음수 판매로 MS가 0~100%를 벗어난 매니저는 제외. 이름을 누르면 아래에서 실적을 엽니다.';
+    el.append(h, rule);
+    if (!list.length) { const e = document.createElement('p'); e.className = 'mt-focus-empty'; e.textContent = '해당 매니저 없음'; el.append(e); return; }
+    const tw = document.createElement('div');
+    tw.className = 'mt-focus-tw';
+    const tb = document.createElement('table');
+    const th = document.createElement('thead');
+    const hr = document.createElement('tr');
+    [['유형', 'l'], ['지점명', 'l'], ['매니저명', 'l'], ['사유', 'l'], ['MS 8~9월', ''], ['MS 10월', ''], ['MS 증감', ''], ['LG 월평균 8~9월', ''], ['LG 10월', ''], ['LG 증감', '']].forEach(([x, c]) => {
+      const e = document.createElement('th'); e.textContent = x; if (c) e.className = c; hr.append(e);
+    });
+    th.append(hr);
+    const body = document.createElement('tbody');
+    const pct = (v) => (v == null ? '—' : MT.F.pct(v));
+    list.forEach((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.focusMgr = r.m.id;
+      tr.tabIndex = 0;
+      const ty = td('', 'l'); ty.append(typePill(r.m.type));
+      const mg = td(r.m.manager, 'l mgr');
+      if (r.m.extra === 'Y') { const f = document.createElement('span'); f.className = 'mt-badge mt-flag'; f.textContent = '추가관리'; mg.append(' ', f); }
+      const why = r.none ? '8~9월엔 판매했으나 10월 판매 없음' : 'MS ' + Math.abs(r.d).toFixed(1) + '%p 하락 · LG 판매 ' + d3.format('.0%')(Math.abs(r.lgc)) + ' 감소' + (r.ms4 < 40 ? ' · 10월 MS 40% 미만' : '');
+      const wy = td('', 'l why'); const wt = document.createElement('span'); wt.className = 'mt-focus-tag'; wt.textContent = why; wy.append(wt);
+      tr.append(ty, td(MT.brLabel(r.m), 'l'), mg, wy, td(pct(r.ms3)), td(pct(r.ms4)),
+        td(r.d == null ? '—' : MT.F.pp(r.d), r.d != null && r.d < 0 ? 'down' : ''),
+        td(MT.F.mil(r.lg3)), td(MT.F.mil(r.lg4)),
+        td(r.lgc == null ? '—' : d3.format('+.0%')(r.lgc).replace('-', '−'), r.lgc != null && r.lgc < 0 ? 'down' : ''));
+      body.append(tr);
+    });
+    tb.append(th, body);
+    tw.append(tb);
+    el.append(tw);
+  });
+  document.querySelectorAll('[data-draw="focus"]').forEach((box) => {
+    const go = (e) => { const tr = e.target.closest('[data-focus-mgr]'); if (tr) openFromSearch(tr.dataset.focusMgr); };
+    box.addEventListener('click', go);
+    box.addEventListener('keydown', (e) => { if (e.key === 'Enter') go(e); });
+  });
   function pickOwner(role, name) {
     const same = MT.owner && MT.owner.role === role && MT.owner.name === name;
     MT.owner = same ? null : { role, name };
@@ -1555,7 +1649,7 @@
     MT.branch = null;
     clearMgr('mgrs');
     redrawDetail();
-    if (!same) document.querySelectorAll('#detail').forEach((s) => s.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    if (!same) document.querySelectorAll('#mt-focus').forEach((s) => s.scrollIntoView({ behavior: 'smooth', block: 'start' }));
   }
   document.querySelectorAll('[data-draw="owners"], [data-draw="ownbar"]').forEach((box) => box.addEventListener('click', (e) => {
     if (e.target.closest('[data-own-clear]')) { MT.owner = null; MT.branch = null; redrawDetail(); return; }
