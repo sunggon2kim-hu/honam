@@ -480,6 +480,8 @@
 
   .mt-mx-traj { font-size: 12px; letter-spacing: -.02em; }
   .mt-st-hero .mt-st-p4 { font-weight: 600; }
+  .mt-scroll.mt-scroll-br { max-height: min(48rem, 80vh); }
+  .mt-scroll-br .mt-table td { padding-top: 9px; padding-bottom: 9px; }
   /* Photo cards for the four main types */
   .mt-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .mt-st-total, .mt-st.mt-st-sub { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: center; column-gap: 1.5rem; }
@@ -778,7 +780,7 @@
         <input type="search" id="mt-q" class="mt-search" placeholder="지점·매니저 이름 검색" aria-label="지점·매니저 이름 검색" autocomplete="off">
       </div>
       <div class="mt-q-res" id="mt-q-res" hidden></div>
-      <div class="mt-tw mt-scroll">
+      <div class="mt-tw mt-scroll mt-scroll-br">
         <table class="mt-table mt-click" data-source="branches" data-row-key="key">
           <thead><tr>
             <th data-field="branch">지점</th>
